@@ -1,6 +1,8 @@
 package com.github.superkiria.cbbot;
 
-import com.github.superkiria.chess.pgn.PgnTools;
+import com.github.bhlangonijr.chesslib.game.Game;
+import com.github.bhlangonijr.chesslib.game.GameResult;
+import com.github.bhlangonijr.chesslib.pgn.GameLoader;
 import com.github.superkiria.chess.svg.SvgBoardBuilder;
 import lombok.SneakyThrows;
 
@@ -8,6 +10,7 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
@@ -41,13 +44,20 @@ public class MovePublisher {
                         }
                         buffer.add(part);
                         String pgn = String.join("\n", buffer);
-                        String fen = PgnTools.convertPgnToFen(pgn);
+
+                        Game game = GameLoader.loadNextGame(Arrays.asList(pgn.split("\n")).listIterator());
+                        String message = "";
+                        if (!game.getResult().equals(GameResult.ONGOING)) {
+                            message = game.getResult().value() + " " + game.getResult().getDescription() + " ";
+                        }
+                        message = message + game.getCommentary().get(game.getCurrentMoveList().size());
+                        bot.sendTextToChannel(message);
+
                         SvgBoardBuilder builder = new SvgBoardBuilder();
-                        builder.setFen(fen);
+                        builder.setPgn(pgn);
                         builder.init();
                         ByteArrayOutputStream baos = saveDocumentToPngByteBuffer(builder.getDocument());
                         InputStream inputStream = new ByteArrayInputStream(baos.toByteArray());
-                        bot.sendTextToChannel(String.valueOf(queue.size()));
                         bot.sendPhotoToChannel(inputStream, "file");
                     } catch (Exception e) {
                         System.out.println(e.getMessage());

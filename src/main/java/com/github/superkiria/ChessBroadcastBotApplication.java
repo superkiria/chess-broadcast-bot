@@ -20,7 +20,7 @@ public class ChessBroadcastBotApplication {
 		MovePublisher publisher = new MovePublisher(bot);
 		Consumer<String> consumer = new MoveConsumer(publisher);
 		publisher.startPublishing();
-		broadcastConsumer.pgnsForRound("dyeyegeX").subscribe(consumer);
+		broadcastConsumer.pgnsForRound(args[0]).subscribe(consumer);
 	}
 
 }
