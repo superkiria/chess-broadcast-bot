@@ -1,5 +1,6 @@
 package com.github.superkiria.cbbot;
 
+import com.github.bhlangonijr.chesslib.Board;
 import com.github.bhlangonijr.chesslib.game.Game;
 import com.github.bhlangonijr.chesslib.game.GameResult;
 import com.github.bhlangonijr.chesslib.pgn.GameLoader;
@@ -10,17 +11,19 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import static com.github.superkiria.cbbot.CommentaryHelper.moveFromMovesList;
 import static com.github.superkiria.chess.svg.SvgUtils.saveDocumentToPngByteBuffer;
 
 public class MovePublisher {
 
     private final ChessBroadcastBot bot;
-    private final BlockingQueue<String> queue = new LinkedBlockingQueue<String>();
+    private final BlockingQueue<String> queue = new LinkedBlockingQueue<>();
+    private final HashMap<String, String> opennings = new HashMap<>();
 
     public MovePublisher(ChessBroadcastBot bot) {
         this.bot = bot;
@@ -41,28 +44,46 @@ public class MovePublisher {
                         while (!part.startsWith("1.")) {
                             part = queue.take();
                             buffer.add(part);
+                            System.out.println(part);
                         }
-                        buffer.add(part);
-                        String pgn = String.join("\n", buffer);
+                        Game game = GameLoader.loadNextGame(buffer.listIterator());
+                        game.setBoard(new Board());
+                        game.gotoLast();
+                        String gameName = game.getWhitePlayer().getName() + " - " + game.getBlackPlayer().getName();
+                        String caption = gameName + "\n";
 
-                        Game game = GameLoader.loadNextGame(Arrays.asList(pgn.split("\n")).listIterator());
-                        String message = "";
-                        if (!game.getResult().equals(GameResult.ONGOING)) {
-                            message = game.getResult().value() + " " + game.getResult().getDescription() + " ";
+                        System.out.println(game.getBoard());
+
+                        int current = game.getHalfMoves().size();
+
+                        if (current > 1) {
+                            caption = caption + moveFromMovesList(game, game.getHalfMoves().size() - 1) + "\n";
                         }
-                        message = message + game.getCommentary().get(game.getCurrentMoveList().size());
-                        bot.sendTextToChannel(message);
+
+                        caption = caption + moveFromMovesList(game, current);
+
+                        if (game.getOpening() != null && (opennings.get(gameName) == null || !opennings.get(gameName).equals(game.getOpening()))) {
+                            caption = caption + "\n" + game.getOpening();
+                            opennings.put(gameName, game.getOpening());
+                        }
+
+                        if (!game.getResult().equals(GameResult.ONGOING)) {
+                            String message = "\n" + game.getResult().value() + " " + game.getResult().getDescription();
+                            caption = caption + message;
+                        }
 
                         SvgBoardBuilder builder = new SvgBoardBuilder();
-                        builder.setPgn(pgn);
+                        builder.setPgn(String.join("\n", buffer));
                         builder.init();
                         ByteArrayOutputStream baos = saveDocumentToPngByteBuffer(builder.getDocument());
                         InputStream inputStream = new ByteArrayInputStream(baos.toByteArray());
-                        bot.sendPhotoToChannel(inputStream, "file");
+
+                        bot.sendPhotoToChannel(inputStream, "move.png", caption);
                     } catch (Exception e) {
-                        System.out.println(e.getMessage());
+                        System.out.println(e + " " + e.getMessage());
+                        e.printStackTrace();
                     } finally {
-                        Thread.sleep(10000);
+                        Thread.sleep(1000);
                     }
                 }
             }

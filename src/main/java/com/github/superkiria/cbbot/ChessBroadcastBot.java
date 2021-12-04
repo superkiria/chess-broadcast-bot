@@ -7,6 +7,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
+import org.telegram.telegrambots.meta.api.objects.MessageEntity;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -46,9 +47,10 @@ public class ChessBroadcastBot extends TelegramLongPollingBot {
         }
     }
 
-    public void sendPhotoToChannel(InputStream stream, String fileName) {
+    public void sendPhotoToChannel(InputStream stream, String fileName, String caption) {
         SendPhoto message = SendPhoto
                 .builder()
+                .caption(caption)
                 .photo(new InputFile(stream, fileName))
                 .chatId(CHAT_ID)
                 .build();
