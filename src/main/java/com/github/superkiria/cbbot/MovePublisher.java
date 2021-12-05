@@ -6,6 +6,8 @@ import com.github.bhlangonijr.chesslib.game.GameResult;
 import com.github.bhlangonijr.chesslib.pgn.GameLoader;
 import com.github.superkiria.chess.svg.SvgBoardBuilder;
 import lombok.SneakyThrows;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -24,6 +26,7 @@ public class MovePublisher {
     private final ChessBroadcastBot bot;
     private final BlockingQueue<String> queue = new LinkedBlockingQueue<>();
     private final HashMap<String, String> opennings = new HashMap<>();
+    private final static Logger LOG = LoggerFactory.getLogger(MovePublisher.class);
 
     public MovePublisher(ChessBroadcastBot bot) {
         this.bot = bot;
@@ -38,21 +41,21 @@ public class MovePublisher {
             @SneakyThrows
             public void run() {
                 while (true) {
-                    try {
-                        List<String> buffer = new ArrayList<>();
-                        String part = "";
-                        while (!part.startsWith("1.")) {
-                            part = queue.take();
-                            buffer.add(part);
-                            System.out.println(part);
+                    List<String> buffer = new ArrayList<>();
+                    String part = "";
+                    while (!part.startsWith("1.")) {
+                        part = queue.take().trim();
+                        if (part.startsWith("[TimeControl")) {
+                            continue;
                         }
+                        buffer.add(part);
+                    }
+                    try {
                         Game game = GameLoader.loadNextGame(buffer.listIterator());
                         game.setBoard(new Board());
                         game.gotoLast();
                         String gameName = game.getWhitePlayer().getName() + " - " + game.getBlackPlayer().getName();
                         String caption = gameName + "\n";
-
-                        System.out.println(game.getBoard());
 
                         int current = game.getHalfMoves().size();
 
@@ -79,9 +82,10 @@ public class MovePublisher {
                         InputStream inputStream = new ByteArrayInputStream(baos.toByteArray());
 
                         bot.sendPhotoToChannel(inputStream, "move.png", caption);
+
+                        LOG.info("Move sent: {}, half-move {}", gameName, current);
                     } catch (Exception e) {
-                        System.out.println(e + " " + e.getMessage());
-                        e.printStackTrace();
+                        LOG.error(String.join("\n", buffer), e);
                     } finally {
                         Thread.sleep(1000);
                     }

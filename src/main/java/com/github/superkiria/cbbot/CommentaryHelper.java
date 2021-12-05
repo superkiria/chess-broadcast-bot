@@ -1,8 +1,6 @@
 package com.github.superkiria.cbbot;
 
 import com.github.bhlangonijr.chesslib.game.Game;
-import com.github.bhlangonijr.chesslib.game.GameResult;
-import com.github.bhlangonijr.chesslib.move.MoveList;
 
 public class CommentaryHelper {
 

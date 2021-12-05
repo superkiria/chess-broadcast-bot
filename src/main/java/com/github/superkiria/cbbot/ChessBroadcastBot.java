@@ -1,13 +1,14 @@
 package com.github.superkiria.cbbot;
 
 import com.github.superkiria.props.SecretProps;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
-import org.telegram.telegrambots.meta.api.objects.MessageEntity;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
@@ -16,7 +17,8 @@ import java.io.InputStream;
 @Component
 public class ChessBroadcastBot extends TelegramLongPollingBot {
 
-    private static String CHAT_ID = "-1001694568044";
+    private static final String CHAT_ID = "-1001694568044";
+    private final static Logger LOG = LoggerFactory.getLogger(ChessBroadcastBot.class);
 
     @Autowired
     private SecretProps secretProps;
@@ -43,7 +45,7 @@ public class ChessBroadcastBot extends TelegramLongPollingBot {
         try {
             this.execute(message); // Call method to send the message
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            LOG.error("On sending message to " + CHAT_ID + ": " + text, e);
         }
     }
 
@@ -57,7 +59,7 @@ public class ChessBroadcastBot extends TelegramLongPollingBot {
         try {
             this.execute(message); // Call method to send the message
         } catch (TelegramApiException e) {
-            e.printStackTrace();
+            LOG.error("On sending photo to " + CHAT_ID + " with caption: " + caption, e);
         }
     }
 
