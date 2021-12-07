@@ -33,6 +33,9 @@ public class CommentaryHelper {
     }
 
     public static String moveFromMovesList(Game game, int move) {
+        if (game.getHalfMoves().size() == 0) {
+            return "";
+        }
         String comment = game.getCommentary().get(move);
         int moveNumber = move / 2 + move % 2;
         String forBlackMove = move % 2 == 0 ? ".." : "";

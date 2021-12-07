@@ -19,6 +19,7 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 
 import static com.github.superkiria.cbbot.CommentaryHelper.moveFromMovesList;
+import static com.github.superkiria.cbbot.GameHelper.makeGameFromPgn;
 import static com.github.superkiria.chess.svg.SvgUtils.saveDocumentToPngByteBuffer;
 
 public class MovePublisher {
@@ -42,18 +43,20 @@ public class MovePublisher {
             public void run() {
                 while (true) {
                     List<String> buffer = new ArrayList<>();
-                    String part = "";
-                    while (!part.startsWith("1.")) {
-                        part = queue.take().trim();
-                        if (part.startsWith("[TimeControl")) {
-                            continue;
+                    String part = queue.take().trim();
+                    while ( !(part.endsWith("1-0") ||
+                            part.endsWith("0-1") ||
+                            part.endsWith("1/2-1/2") ||
+                            part.endsWith("*"))) {
+                                part = queue.take().trim();
+                                if (part.startsWith("[TimeControl")) {
+                                    continue;
                         }
                         buffer.add(part);
                     }
                     try {
-                        Game game = GameLoader.loadNextGame(buffer.listIterator());
-                        game.setBoard(new Board());
-                        game.gotoLast();
+                        Game game = makeGameFromPgn(buffer);
+
                         String gameName = game.getWhitePlayer().getName() + " - " + game.getBlackPlayer().getName();
                         String caption = gameName + "\n";
 
