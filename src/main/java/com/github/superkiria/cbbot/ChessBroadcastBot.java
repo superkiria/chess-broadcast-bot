@@ -35,6 +35,7 @@ public class ChessBroadcastBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
+        LOG.info("Message received: {} {}", update.getMessage().getChat().getUserName(), update.getMessage().getChat().getId());
     }
 
     public void sendTextToChannel(String text) {

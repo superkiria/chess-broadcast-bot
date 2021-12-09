@@ -1,5 +1,6 @@
 package com.github.superkiria.lichess;
 
+import com.github.superkiria.lichess.model.LichessEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
@@ -9,6 +10,8 @@ import reactor.util.retry.Retry;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Component
 public class BroadcastConsumer {
@@ -24,6 +27,14 @@ public class BroadcastConsumer {
                 .doOnSubscribe(o -> LOG.info("Subscibed for lichess broadcast: {}", o.toString()))
                 .retryWhen(Retry.fixedDelay(10, Duration.ofSeconds(10)))
                 .doOnError(IOException.class, e -> LOG.error("Round" + round, e));
+    }
+
+    public List<LichessEvent> getLichessBroascasts() {
+        return webClient.get()
+                .uri("https://lichess.org/api/broadcast")
+                .retrieve()
+                .bodyToFlux(LichessEvent.class)
+                .collect(Collectors.toList()).block();
     }
 
 }

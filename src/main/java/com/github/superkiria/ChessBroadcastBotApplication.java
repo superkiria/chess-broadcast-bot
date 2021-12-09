@@ -4,10 +4,14 @@ import com.github.superkiria.cbbot.ChessBroadcastBot;
 import com.github.superkiria.cbbot.MoveConsumer;
 import com.github.superkiria.cbbot.MovePublisher;
 import com.github.superkiria.lichess.BroadcastConsumer;
+import com.github.superkiria.lichess.model.LichessEvent;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.updatesreceivers.DefaultBotSession;
 
+import java.util.List;
 import java.util.function.Consumer;
 
 @SpringBootApplication
@@ -21,6 +25,9 @@ public class ChessBroadcastBotApplication {
 		Consumer<String> consumer = new MoveConsumer(publisher);
 		publisher.startPublishing();
 		broadcastConsumer.pgnsForRound(args[0]).subscribe(consumer);
+		TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
+		telegramBotsApi.registerBot(bot);
+		List<LichessEvent> events = broadcastConsumer.getLichessBroascasts();
 	}
 
 }
