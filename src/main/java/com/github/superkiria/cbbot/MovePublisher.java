@@ -8,6 +8,8 @@ import com.github.superkiria.chess.svg.SvgBoardBuilder;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -22,6 +24,7 @@ import static com.github.superkiria.cbbot.CommentaryHelper.moveFromMovesList;
 import static com.github.superkiria.cbbot.GameHelper.makeGameFromPgn;
 import static com.github.superkiria.chess.svg.SvgUtils.saveDocumentToPngByteBuffer;
 
+@Component
 public class MovePublisher {
 
     private final ChessBroadcastBot bot;
@@ -29,6 +32,7 @@ public class MovePublisher {
     private final HashMap<String, String> opennings = new HashMap<>();
     private final static Logger LOG = LoggerFactory.getLogger(MovePublisher.class);
 
+    @Autowired
     public MovePublisher(ChessBroadcastBot bot) {
         this.bot = bot;
     }

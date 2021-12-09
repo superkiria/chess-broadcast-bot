@@ -21,13 +21,11 @@ public class ChessBroadcastBotApplication {
 		ConfigurableApplicationContext context = SpringApplication.run(ChessBroadcastBotApplication.class, args);
 		ChessBroadcastBot bot = context.getBean(ChessBroadcastBot.class);
 		BroadcastConsumer broadcastConsumer = context.getBean(BroadcastConsumer.class);
-		MovePublisher publisher = new MovePublisher(bot);
-		Consumer<String> consumer = new MoveConsumer(publisher);
-		publisher.startPublishing();
+		Consumer<String> consumer = context.getBean(MoveConsumer.class);
+		context.getBean(MovePublisher.class).startPublishing();
 		broadcastConsumer.pgnsForRound(args[0]).subscribe(consumer);
 		TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
 		telegramBotsApi.registerBot(bot);
-		List<LichessEvent> events = broadcastConsumer.getLichessBroascasts();
 	}
 
 }

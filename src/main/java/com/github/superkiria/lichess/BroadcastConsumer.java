@@ -29,7 +29,7 @@ public class BroadcastConsumer {
                 .doOnError(IOException.class, e -> LOG.error("Round" + round, e));
     }
 
-    public List<LichessEvent> getLichessBroascasts() {
+    public List<LichessEvent> getLichessBroadcasts() {
         return webClient.get()
                 .uri("https://lichess.org/api/broadcast")
                 .retrieve()
