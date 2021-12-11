@@ -1,5 +1,6 @@
 package com.github.superkiria.cbbot;
 
+import com.github.superkiria.cbbot.channel.MovePublisher;
 import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,9 +1,8 @@
-package com.github.superkiria.cbbot;
+package com.github.superkiria.cbbot.channel;
 
-import com.github.bhlangonijr.chesslib.Board;
 import com.github.bhlangonijr.chesslib.game.Game;
 import com.github.bhlangonijr.chesslib.game.GameResult;
-import com.github.bhlangonijr.chesslib.pgn.GameLoader;
+import com.github.superkiria.cbbot.ChessBroadcastBot;
 import com.github.superkiria.chess.svg.SvgBoardBuilder;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;

@@ -1,5 +1,6 @@
 package com.github.superkiria.cbbbot;
 
+import com.github.bhlangonijr.chesslib.Side;
 import com.github.bhlangonijr.chesslib.game.Game;
 import org.junit.jupiter.api.Test;
 
@@ -75,6 +76,10 @@ public class MoveConsumerTest {
     @Test
     public void test() {
         Game game = makeGameFromPgn(Arrays.stream(input.split("\n")).collect(Collectors.toList()));
+        System.out.println(Long.toBinaryString(game.getBoard().getBitboard(Side.WHITE)));
+        System.out.println(Long.toBinaryString(game.getBoard().getBitboard(Side.BLACK)));
+        System.out.println(Long.toBinaryString(game.getBoard().getBitboard()));
+        System.out.println(game.getBoard().getPositionId());
         System.out.println(moveFromMovesList(game, 1));
     }
 

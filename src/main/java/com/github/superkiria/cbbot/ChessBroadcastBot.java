@@ -1,7 +1,8 @@
 package com.github.superkiria.cbbot;
 
-import com.github.superkiria.lichess.BroadcastConsumer;
-import com.github.superkiria.lichess.model.LichessEvent;
+import com.github.superkiria.chatchain.ActorsChain;
+import com.github.superkiria.chatchain.ChatContext;
+import com.github.superkiria.lichess.ChannelBroadcastConsumer;
 import com.github.superkiria.props.SecretProps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,13 +13,9 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Update;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
-import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.InputStream;
-import java.util.Collections;
-import java.util.List;
 
 @Component
 public class ChessBroadcastBot extends TelegramLongPollingBot {
@@ -26,15 +23,16 @@ public class ChessBroadcastBot extends TelegramLongPollingBot {
     private static final String CHAT_ID = "-1001694568044";
     private static final Logger LOG = LoggerFactory.getLogger(ChessBroadcastBot.class);
 
-    private final BroadcastConsumer broadcastConsumer;
+    private final SecretProps secretProps;
+    private final ChannelBroadcastConsumer broadcastConsumer;
+    private final ActorsChain chain;
 
     @Autowired
-    public ChessBroadcastBot(BroadcastConsumer broadcastConsumer) {
-        this.broadcastConsumer = broadcastConsumer;
+    public ChessBroadcastBot(SecretProps secretProps, ChannelBroadcastConsumer channelBroadcastConsumer, ActorsChain chain) {
+        this.secretProps = secretProps;
+        this.broadcastConsumer = channelBroadcastConsumer;
+        this.chain = chain;
     }
-
-    @Autowired
-    private SecretProps secretProps;
 
     @Override
     public String getBotUsername() {
@@ -48,29 +46,10 @@ public class ChessBroadcastBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        LOG.info("Message received: {} {} {}",
-                update.getMessage().getChat().getUserName(),
-                update.getMessage().getChat().getId(),
-                update.getMessage().getText());
-        List<LichessEvent> lichessBroascasts = broadcastConsumer.getLichessBroadcasts();
-        InlineKeyboardMarkup.InlineKeyboardMarkupBuilder markup = InlineKeyboardMarkup.builder();
-        for(LichessEvent event : lichessBroascasts) {
-            InlineKeyboardButton button = InlineKeyboardButton.builder()
-                    .callbackData(event.getTour().getId())
-                    .text(event.getTour().getName())
-                    .build();
-            markup.keyboardRow(Collections.singletonList(button));
-        }
-        SendMessage message = SendMessage.builder()
-                .text("Список турниров:")
-                .replyMarkup(markup.build())
-                .chatId(update.getMessage().getChat().getId().toString())
-                .build();
-        try {
-            this.execute(message); // Call method to send the message
-        } catch (TelegramApiException e) {
-            LOG.error("On sending message to " + CHAT_ID + ": " + message, e);
-        }
+        LOG.info("Message received: {}",
+                update);
+        ChatContext context = ChatContext.builder().update(update).build();
+        chain.startWithContext(context);
     }
 
     public void sendTextToChannel(String text) {
