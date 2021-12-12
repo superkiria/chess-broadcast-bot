@@ -3,7 +3,7 @@ package com.github.superkiria.chatchain.actors;
 import com.github.superkiria.cbbot.broadcast.BroadcastsKeeper;
 import com.github.superkiria.chatchain.ChatActor;
 import com.github.superkiria.chatchain.ChatContext;
-import com.github.superkiria.lichess.BroadcastConsumersKeeper;
+import com.github.superkiria.lichess.LichessConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -12,12 +12,12 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 public class ButtonClickActor implements ChatActor {
 
     private final BroadcastsKeeper broadcastsKeeper;
-    private final BroadcastConsumersKeeper broadcastConsumersKeeper;
+    private final LichessConsumer broadcastConsumersKeeper;
 
     @Autowired
-    public ButtonClickActor(BroadcastsKeeper broadcastsKeeper, BroadcastConsumersKeeper broadcastConsumersKeeper) {
+    public ButtonClickActor(BroadcastsKeeper broadcastsKeeper, LichessConsumer lichessConsumer) {
         this.broadcastsKeeper = broadcastsKeeper;
-        this.broadcastConsumersKeeper = broadcastConsumersKeeper;
+        this.broadcastConsumersKeeper = lichessConsumer;
     }
 
     @Override

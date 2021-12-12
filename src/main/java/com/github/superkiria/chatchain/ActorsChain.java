@@ -11,7 +11,7 @@ import java.util.List;
 @Component
 public class ActorsChain {
 
-    List<ChatActor> actors = new ArrayList<>();
+    private final List<ChatActor> actors = new ArrayList<>();
 
     @Autowired
     public ActorsChain(ApplicationContext context) {
@@ -22,9 +22,12 @@ public class ActorsChain {
     }
 
     public void startWithContext(ChatContext context) {
-        for (ChatActor actor : actors) {
-            actor.act(context);
-        }
+        Thread thread = new Thread(() -> {
+            for (ChatActor actor : actors) {
+                actor.act(context);
+            }
+        });
+        thread.start();
     }
 
 }

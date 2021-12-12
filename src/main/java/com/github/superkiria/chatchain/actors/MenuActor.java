@@ -2,7 +2,7 @@ package com.github.superkiria.chatchain.actors;
 
 import com.github.superkiria.chatchain.ChatActor;
 import com.github.superkiria.chatchain.ChatContext;
-import com.github.superkiria.lichess.ChannelBroadcastConsumer;
+import com.github.superkiria.lichess.LichessConsumer;
 import com.github.superkiria.lichess.model.LichessEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,10 +17,10 @@ import java.util.stream.Collectors;
 @Component
 public class MenuActor implements ChatActor {
 
-    private final ChannelBroadcastConsumer broadcastConsumer;
+    private final LichessConsumer broadcastConsumer;
 
     @Autowired
-    public MenuActor(ChannelBroadcastConsumer broadcastConsumer) {
+    public MenuActor(LichessConsumer broadcastConsumer) {
         this.broadcastConsumer = broadcastConsumer;
     }
 

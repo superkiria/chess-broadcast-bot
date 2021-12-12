@@ -21,7 +21,7 @@ public class BroadcastsKeeper {
     }
 
     public void registerBroadcast(String chatId, String round) {
-        ChatBroadcaster chatBroadcaster = new ChatBroadcaster(messageQueue, chatId);
+        ChatBroadcaster chatBroadcaster = new ChatBroadcaster(messageQueue, chatId, round);
         addBroadcaster(round, chatBroadcaster);
     }
 

@@ -29,72 +29,80 @@ public class ChatBroadcaster {
     private final MessageQueue messageQueue;
     private final String chatId;
     private final static Logger LOG = LoggerFactory.getLogger(ChatBroadcaster.class);
+    private final String round;
+    private boolean active = false;
 
-    public ChatBroadcaster(MessageQueue messageQueue, String chatId) {
+    public ChatBroadcaster(MessageQueue messageQueue, String chatId, String round) {
         this.messageQueue = messageQueue;
         this.chatId = chatId;
+        this.round = round;
+        LOG.info("Broadcaster for chatId {}, round {} created", chatId, round);
     }
 
     public void addPartOfPgn(String s) {
-        synchronized (this) {
-            String part = s.trim();
-            pgnPartQueue.add(part);
-            if (!(part.endsWith("1-0") ||
-                    part.endsWith("0-1") ||
-                    part.endsWith("1/2-1/2") ||
-                    part.endsWith("*"))) {
-                return;
-            }
-            if (part.trim().equals("*")) {
-                pgnPartQueue = new ArrayList<>();
-                return;
-            }
-            try {
-                Game game = makeGameFromPgn(pgnPartQueue);
-
-                String gameName = game.getWhitePlayer().getName() + " - " + game.getBlackPlayer().getName();
-                String caption = gameName + "\n";
-
-                int current = game.getHalfMoves().size();
-
-                if (current > 1) {
-                    caption = caption + moveFromMovesList(game, game.getHalfMoves().size() - 1) + "\n";
-                }
-
-                caption = caption + moveFromMovesList(game, current);
-
-                if (game.getOpening() != null && (openings.get(gameName) == null || !openings.get(gameName).equals(game.getOpening()))) {
-                    caption = caption + "\n" + game.getOpening();
-                    openings.put(gameName, game.getOpening());
-                }
-
-                if (!game.getResult().equals(GameResult.ONGOING)) {
-                    String message = "\n" + game.getResult().value() + " " + game.getResult().getDescription();
-                    caption = caption + message;
-                }
-
-                SvgBoardBuilder builder = new SvgBoardBuilder();
-                builder.setPgn(String.join("\n", pgnPartQueue));
-                builder.init();
-                ByteArrayOutputStream baos = saveDocumentToPngByteBuffer(builder.getDocument());
-                InputStream inputStream = new ByteArrayInputStream(baos.toByteArray());
-
-                SendPhoto message = SendPhoto
-                        .builder()
-                        .caption(caption)
-                        .photo(new InputFile(inputStream, "move.png"))
-                        .chatId(chatId)
-                        .build();
-
-                messageQueue.add(MessageQueueObject.builder().chatId(chatId).context(ChatContext.builder().sendPhoto(message).build()).build());
-
-                pgnPartQueue = new ArrayList<>();
-
-                LOG.info("Move sent: {}, half-move {}", gameName, current);
-            } catch (Exception e) {
-                LOG.error(String.join("\n", pgnPartQueue), e);
-            }
+        if (!active) {
+            LOG.info("Broadcaster for chatId {}, round {} recieves str: {}", chatId, round, s);
+            active = true;
         }
+//        synchronized (this) {
+//            String part = s.trim();
+//            pgnPartQueue.add(part);
+//            if (!(part.endsWith("1-0") ||
+//                    part.endsWith("0-1") ||
+//                    part.endsWith("1/2-1/2") ||
+//                    part.endsWith("*"))) {
+//                return;
+//            }
+//            if (part.trim().equals("*")) {
+//                pgnPartQueue = new ArrayList<>();
+//                return;
+//            }
+//            try {
+//                Game game = makeGameFromPgn(pgnPartQueue);
+//
+//                String gameName = game.getWhitePlayer().getName() + " - " + game.getBlackPlayer().getName();
+//                String caption = gameName + "\n";
+//
+//                int current = game.getHalfMoves().size();
+//
+//                if (current > 1) {
+//                    caption = caption + moveFromMovesList(game, game.getHalfMoves().size() - 1) + "\n";
+//                }
+//
+//                caption = caption + moveFromMovesList(game, current);
+//
+//                if (game.getOpening() != null && (openings.get(gameName) == null || !openings.get(gameName).equals(game.getOpening()))) {
+//                    caption = caption + "\n" + game.getOpening();
+//                    openings.put(gameName, game.getOpening());
+//                }
+//
+//                if (!game.getResult().equals(GameResult.ONGOING)) {
+//                    String message = "\n" + game.getResult().value() + " " + game.getResult().getDescription();
+//                    caption = caption + message;
+//                }
+//
+//                SvgBoardBuilder builder = new SvgBoardBuilder();
+//                builder.setPgn(String.join("\n", pgnPartQueue));
+//                builder.init();
+//                ByteArrayOutputStream baos = saveDocumentToPngByteBuffer(builder.getDocument());
+//                InputStream inputStream = new ByteArrayInputStream(baos.toByteArray());
+//
+//                SendPhoto message = SendPhoto
+//                        .builder()
+//                        .caption(caption)
+//                        .photo(new InputFile(inputStream, "move.png"))
+//                        .chatId(chatId)
+//                        .build();
+//
+//                messageQueue.add(MessageQueueObject.builder().chatId(chatId).context(ChatContext.builder().sendPhoto(message).build()).build());
+//
+//                pgnPartQueue = new ArrayList<>();
+//
+//                LOG.info("Move sent: {}, half-move {}", gameName, current);
+//            } catch (Exception e) {
+//                LOG.error(String.join("\n", pgnPartQueue), e);
+//            }
+//        }
     }
 
 }

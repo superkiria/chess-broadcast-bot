@@ -30,21 +30,21 @@ public class MessageSender {
             try {
                 long now = new Date().getTime();
                 if (now - last.getTime() <  34) {
-                    Thread.sleep(now - last.getTime());
+                    Thread.sleep(34 - now + last.getTime());
                     now = new Date().getTime();
                 }
                 if (lastForUser.get(messageObject.getChatId()) != null
                         && now - lastForUser.get(messageObject.getChatId()).getTime() <  1000) {
-                    Thread.sleep(now - lastForUser.get(messageObject.getChatId()).getTime());
+                    Thread.sleep(1000 - now + lastForUser.get(messageObject.getChatId()).getTime());
                 }
                 last = new Date();
                 lastForUser.put(messageObject.getChatId(), last);
                 if (messageObject.getContext().getResponse() != null) {
                     bot.execute(messageObject.getContext().getResponse()); // Call method to send the message
                 }
-                if (messageObject.getContext().getSendPhoto() != null) {
-                    bot.execute(messageObject.getContext().getSendPhoto()); // Call method to send the message
-                }
+//                if (messageObject.getContext().getSendPhoto() != null) {
+//                    bot.execute(messageObject.getContext().getSendPhoto()); // Call method to send the message
+//                }
             } catch (TelegramApiException | InterruptedException e) {
                 e.printStackTrace();
             }
