@@ -9,7 +9,6 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 
 @Component
 public class MessageSender {
@@ -42,9 +41,9 @@ public class MessageSender {
                 if (messageObject.getContext().getResponse() != null) {
                     bot.execute(messageObject.getContext().getResponse()); // Call method to send the message
                 }
-//                if (messageObject.getContext().getSendPhoto() != null) {
-//                    bot.execute(messageObject.getContext().getSendPhoto()); // Call method to send the message
-//                }
+                if (messageObject.getContext().getSendPhoto() != null) {
+                    bot.execute(messageObject.getContext().getSendPhoto()); // Call method to send the message
+                }
             } catch (TelegramApiException | InterruptedException e) {
                 e.printStackTrace();
             }

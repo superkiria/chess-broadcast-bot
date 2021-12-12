@@ -8,11 +8,12 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
+import reactor.core.Disposable;
+import reactor.util.retry.Retry;
 
+import java.time.Duration;
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.stream.Collectors;
 
 @Component
@@ -21,12 +22,11 @@ public class LichessConsumer {
     private final static Logger LOG = LoggerFactory.getLogger(LichessConsumer.class);
     private final WebClient webClient;
     private final BroadcastsKeeper keeper;
-    private final Map<String, RoundConsumer> broadcastConsumers = new ConcurrentHashMap<>();
 
     private Date lastCall = new Date(0);
-
     private Date eventsCacheLastCall = new Date(0);
     private List<LichessEvent> eventsCache;
+    private Disposable subscription;
 
     @Autowired
     public LichessConsumer(WebClient webClient, BroadcastsKeeper keeper) {
@@ -35,32 +35,42 @@ public class LichessConsumer {
     }
 
     @SneakyThrows
-    public RoundConsumer registerBroadcast(String round) {
+    public void subscribeForRound(String round) {
         synchronized (this) {
+            if (subscription != null) {
+                subscription.dispose();
+                subscription = null;
+            }
             long now  = new Date().getTime();
-            if (now - lastCall.getTime() < 310000) {
-                Thread.sleep(310000 - now + lastCall.getTime());
+            if (now - lastCall.getTime() < 61000) {
+                Thread.sleep(61000 - now + lastCall.getTime());
             }
             lastCall = new Date();
-            if (broadcastConsumers.get(round) == null) {
-                broadcastConsumers.put(round, new RoundConsumer(webClient, round, keeper));
-            }
+            subscription = webClient.get()
+                    .uri("https://lichess.org/api/stream/broadcast/round/{round}.pgn", round)
+                    .retrieve()
+                    .bodyToFlux(String.class)
+                    .doOnSubscribe(o -> LOG.info("Subscibed for lichess broadcast: {}", o.toString()))
+                    .retryWhen(Retry.fixedDelay(3, Duration.ofSeconds(60)))
+                    .doOnError(Exception.class, e -> LOG.error("Round" + round, e))
+                    .subscribe(s -> this.keeper.getChatBroadcasters(round).forEach(chatBroadcaster -> chatBroadcaster.addPartOfPgn(s)));
         }
-        return broadcastConsumers.get(round);
     }
 
     @SneakyThrows
     public List<LichessEvent> getLichessBroadcasts() {
-        if (eventsCache != null) {
+        long now  = new Date().getTime();
+        if (eventsCache != null && now - eventsCacheLastCall.getTime() < 1200000) {
             LOG.info("getLichessBroadcasts from cache");
             return eventsCache;
         }
         synchronized (this) {
-            long now  = new Date().getTime();
+            now  = new Date().getTime();
             if (now - lastCall.getTime() < 61000) {
-                Thread.sleep(now - lastCall.getTime());
+                Thread.sleep(610000 - now + lastCall.getTime());
             }
             lastCall = new Date();
+            eventsCacheLastCall = new Date();
             LOG.info("getLichessBroadcasts");
             eventsCache = webClient.get()
                         .uri("https://lichess.org/api/broadcast")

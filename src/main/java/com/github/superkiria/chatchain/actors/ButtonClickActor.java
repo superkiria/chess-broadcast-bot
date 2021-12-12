@@ -26,7 +26,7 @@ public class ButtonClickActor implements ChatActor {
             return;
         }
         String round = context.getUpdate().getCallbackQuery().getData().trim();
-        broadcastConsumersKeeper.registerBroadcast(round);
+        broadcastConsumersKeeper.subscribeForRound(round);
         broadcastsKeeper.registerBroadcast(context.getChatId(), context.getUpdate().getCallbackQuery().getData());
         SendMessage message = SendMessage.builder()
                 .text("Вы подписаны на игру!")
