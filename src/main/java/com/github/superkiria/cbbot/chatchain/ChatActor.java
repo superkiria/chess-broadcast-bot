@@ -1,4 +1,4 @@
-package com.github.superkiria.chatchain;
+package com.github.superkiria.cbbot.chatchain;
 
 public interface ChatActor {
 

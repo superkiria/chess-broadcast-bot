@@ -15,7 +15,7 @@ public class MessageQueue {
     private int currentPartition = 0;
 
     public MessageQueue() {
-        for (int i = 0; i < 30; i++) {
+        for (int i = 0; i < 90; i++) {
             partitions.add(new ConcurrentLinkedDeque<>());
         }
     }

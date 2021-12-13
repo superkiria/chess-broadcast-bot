@@ -2,6 +2,7 @@ package com.github.superkiria;
 
 import com.github.superkiria.cbbot.ChessBroadcastBot;
 import com.github.superkiria.cbbot.MessageSender;
+import com.github.superkiria.cbbot.broadcast.PgnDispatcher;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
@@ -21,6 +22,7 @@ public class ChessBroadcastBotApplication {
 		TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
 		telegramBotsApi.registerBot(bot);
 		context.getBean(MessageSender.class).start();
+		context.getBean(PgnDispatcher.class).start();
 	}
 
 }

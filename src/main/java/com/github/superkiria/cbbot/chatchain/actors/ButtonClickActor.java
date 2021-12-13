@@ -1,9 +1,9 @@
-package com.github.superkiria.chatchain.actors;
+package com.github.superkiria.cbbot.chatchain.actors;
 
-import com.github.superkiria.cbbot.broadcast.BroadcastsKeeper;
-import com.github.superkiria.chatchain.ChatActor;
-import com.github.superkiria.chatchain.ChatContext;
-import com.github.superkiria.lichess.LichessConsumer;
+import com.github.superkiria.cbbot.broadcast.PgnDispatcher;
+import com.github.superkiria.cbbot.chatchain.ChatContext;
+import com.github.superkiria.cbbot.chatchain.ChatActor;
+import com.github.superkiria.cbbot.incoming.lichess.LichessConsumer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -11,12 +11,12 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 @Component
 public class ButtonClickActor implements ChatActor {
 
-    private final BroadcastsKeeper broadcastsKeeper;
+    private final PgnDispatcher pgnDispatcher;
     private final LichessConsumer broadcastConsumersKeeper;
 
     @Autowired
-    public ButtonClickActor(BroadcastsKeeper broadcastsKeeper, LichessConsumer lichessConsumer) {
-        this.broadcastsKeeper = broadcastsKeeper;
+    public ButtonClickActor(PgnDispatcher pgnDispatcher, LichessConsumer lichessConsumer) {
+        this.pgnDispatcher = pgnDispatcher;
         this.broadcastConsumersKeeper = lichessConsumer;
     }
 
@@ -27,7 +27,7 @@ public class ButtonClickActor implements ChatActor {
         }
         String round = context.getUpdate().getCallbackQuery().getData().trim();
         broadcastConsumersKeeper.subscribeForRound(round);
-        broadcastsKeeper.registerBroadcast(context.getChatId(), context.getUpdate().getCallbackQuery().getData());
+//        pgnDispatcher.registerBroadcast(context.getChatId(), context.getUpdate().getCallbackQuery().getData());
         SendMessage message = SendMessage.builder()
                 .text("Вы подписаны на игру!")
                 .chatId(context.getChatId())

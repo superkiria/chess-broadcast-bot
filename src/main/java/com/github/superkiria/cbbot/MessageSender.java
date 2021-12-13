@@ -24,30 +24,32 @@ public class MessageSender {
     }
 
     public void start() {
-        for (;;) {
-            MessageQueueObject messageObject = queue.poll();
-            try {
-                long now = new Date().getTime();
-                if (now - last.getTime() <  34) {
-                    Thread.sleep(34 - now + last.getTime());
-                    now = new Date().getTime();
+        new Thread(() -> {
+            while (true) {
+                MessageQueueObject messageObject = queue.poll();
+                try {
+                    long now = new Date().getTime();
+                    if (now - last.getTime() < 34) {
+                        Thread.sleep(34 - now + last.getTime());
+                        now = new Date().getTime();
+                    }
+                    if (lastForUser.get(messageObject.getChatId()) != null
+                            && now - lastForUser.get(messageObject.getChatId()).getTime() < 3000) {
+                        Thread.sleep(3000 - now + lastForUser.get(messageObject.getChatId()).getTime());
+                    }
+                    last = new Date();
+                    lastForUser.put(messageObject.getChatId(), last);
+                    if (messageObject.getContext().getResponse() != null) {
+                        bot.execute(messageObject.getContext().getResponse()); // Call method to send the message
+                    }
+                    if (messageObject.getContext().getSendPhoto() != null) {
+                        bot.execute(messageObject.getContext().getSendPhoto()); // Call method to send the message
+                    }
+                } catch (TelegramApiException | InterruptedException e) {
+                    e.printStackTrace();
                 }
-                if (lastForUser.get(messageObject.getChatId()) != null
-                        && now - lastForUser.get(messageObject.getChatId()).getTime() <  1000) {
-                    Thread.sleep(1000 - now + lastForUser.get(messageObject.getChatId()).getTime());
-                }
-                last = new Date();
-                lastForUser.put(messageObject.getChatId(), last);
-                if (messageObject.getContext().getResponse() != null) {
-                    bot.execute(messageObject.getContext().getResponse()); // Call method to send the message
-                }
-                if (messageObject.getContext().getSendPhoto() != null) {
-                    bot.execute(messageObject.getContext().getSendPhoto()); // Call method to send the message
-                }
-            } catch (TelegramApiException | InterruptedException e) {
-                e.printStackTrace();
             }
-        }
+        }).start();
     }
 
 }

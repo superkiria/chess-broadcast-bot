@@ -1,8 +1,7 @@
 package com.github.superkiria.cbbot;
 
-import com.github.superkiria.chatchain.ActorsChain;
-import com.github.superkiria.chatchain.ChatContext;
-import com.github.superkiria.lichess.ChannelBroadcastConsumer;
+import com.github.superkiria.cbbot.chatchain.ActorsChain;
+import com.github.superkiria.cbbot.chatchain.ChatContext;
 import com.github.superkiria.props.SecretProps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,13 +23,11 @@ public class ChessBroadcastBot extends TelegramLongPollingBot {
     private static final Logger LOG = LoggerFactory.getLogger(ChessBroadcastBot.class);
 
     private final SecretProps secretProps;
-    private final ChannelBroadcastConsumer broadcastConsumer;
     private final ActorsChain chain;
 
     @Autowired
-    public ChessBroadcastBot(SecretProps secretProps, ChannelBroadcastConsumer channelBroadcastConsumer, ActorsChain chain) {
+    public ChessBroadcastBot(SecretProps secretProps, ActorsChain chain) {
         this.secretProps = secretProps;
-        this.broadcastConsumer = channelBroadcastConsumer;
         this.chain = chain;
     }
 

@@ -1,7 +1,7 @@
-package com.github.superkiria.lichess;
+package com.github.superkiria.cbbot.incoming.lichess;
 
-import com.github.superkiria.cbbot.broadcast.BroadcastsKeeper;
-import com.github.superkiria.lichess.model.LichessEvent;
+import com.github.superkiria.cbbot.broadcast.PgnDispatcher;
+import com.github.superkiria.cbbot.incoming.lichess.model.LichessEvent;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +21,7 @@ public class LichessConsumer {
 
     private final static Logger LOG = LoggerFactory.getLogger(LichessConsumer.class);
     private final WebClient webClient;
-    private final BroadcastsKeeper keeper;
+    private final PgnDispatcher dispatcher;
 
     private Date lastCall = new Date(0);
     private Date eventsCacheLastCall = new Date(0);
@@ -29,9 +29,9 @@ public class LichessConsumer {
     private Disposable subscription;
 
     @Autowired
-    public LichessConsumer(WebClient webClient, BroadcastsKeeper keeper) {
+    public LichessConsumer(WebClient webClient, PgnDispatcher dispatcher) {
         this.webClient = webClient;
-        this.keeper = keeper;
+        this.dispatcher = dispatcher;
     }
 
     @SneakyThrows
@@ -53,7 +53,7 @@ public class LichessConsumer {
                     .doOnSubscribe(o -> LOG.info("Subscibed for lichess broadcast: {}", o.toString()))
                     .retryWhen(Retry.fixedDelay(3, Duration.ofSeconds(60)))
                     .doOnError(Exception.class, e -> LOG.error("Round" + round, e))
-                    .subscribe(s -> this.keeper.getChatBroadcasters(round).forEach(chatBroadcaster -> chatBroadcaster.addPartOfPgn(s)));
+                    .subscribe(this.dispatcher::putPgnPart);
         }
     }
 

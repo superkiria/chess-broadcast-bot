@@ -1,6 +1,6 @@
 package com.github.superkiria.cbbot.queue;
 
-import com.github.superkiria.chatchain.ChatContext;
+import com.github.superkiria.cbbot.chatchain.ChatContext;
 import lombok.Builder;
 import lombok.Data;
 

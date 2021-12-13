@@ -1,6 +1,9 @@
-package com.github.superkiria.chatchain;
+package com.github.superkiria.cbbot.chatchain;
 
-import com.github.superkiria.chatchain.actors.*;
+import com.github.superkiria.cbbot.chatchain.actors.ButtonClickActor;
+import com.github.superkiria.cbbot.chatchain.actors.ChatIdExtractor;
+import com.github.superkiria.cbbot.chatchain.actors.MenuActor;
+import com.github.superkiria.cbbot.chatchain.actors.SendMessageActor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;

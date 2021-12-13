@@ -1,4 +1,4 @@
-package com.github.superkiria.chatchain.actors;
+package com.github.superkiria.cbbot.chatchain.actors;
 
 import com.github.superkiria.cbbot.queue.MessageQueue;
 import org.springframework.beans.factory.annotation.Autowired;

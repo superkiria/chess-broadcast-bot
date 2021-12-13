@@ -1,9 +1,9 @@
-package com.github.superkiria.chatchain.actors;
+package com.github.superkiria.cbbot.chatchain.actors;
 
-import com.github.superkiria.chatchain.ChatActor;
-import com.github.superkiria.chatchain.ChatContext;
-import com.github.superkiria.lichess.LichessConsumer;
-import com.github.superkiria.lichess.model.LichessEvent;
+import com.github.superkiria.cbbot.chatchain.ChatActor;
+import com.github.superkiria.cbbot.chatchain.ChatContext;
+import com.github.superkiria.cbbot.incoming.lichess.LichessConsumer;
+import com.github.superkiria.cbbot.incoming.lichess.model.LichessEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;

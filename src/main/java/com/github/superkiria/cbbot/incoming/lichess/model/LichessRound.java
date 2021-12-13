@@ -1,4 +1,4 @@
-package com.github.superkiria.lichess.model;
+package com.github.superkiria.cbbot.incoming.lichess.model;
 
 import lombok.Data;
 

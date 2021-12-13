@@ -4,7 +4,7 @@ import com.github.bhlangonijr.chesslib.game.Game;
 import com.github.bhlangonijr.chesslib.game.GameResult;
 import com.github.superkiria.cbbot.queue.MessageQueue;
 import com.github.superkiria.cbbot.queue.MessageQueueObject;
-import com.github.superkiria.chatchain.ChatContext;
+import com.github.superkiria.cbbot.chatchain.ChatContext;
 import com.github.superkiria.chess.svg.SvgBoardBuilder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
