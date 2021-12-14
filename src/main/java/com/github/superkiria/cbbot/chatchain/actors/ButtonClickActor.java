@@ -1,6 +1,6 @@
 package com.github.superkiria.cbbot.chatchain.actors;
 
-import com.github.superkiria.cbbot.broadcast.PgnDispatcher;
+import com.github.superkiria.cbbot.outgoing.PgnDispatcher;
 import com.github.superkiria.cbbot.chatchain.ChatContext;
 import com.github.superkiria.cbbot.chatchain.ChatActor;
 import com.github.superkiria.cbbot.incoming.lichess.LichessConsumer;
@@ -11,12 +11,10 @@ import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 @Component
 public class ButtonClickActor implements ChatActor {
 
-    private final PgnDispatcher pgnDispatcher;
     private final LichessConsumer broadcastConsumersKeeper;
 
     @Autowired
-    public ButtonClickActor(PgnDispatcher pgnDispatcher, LichessConsumer lichessConsumer) {
-        this.pgnDispatcher = pgnDispatcher;
+    public ButtonClickActor(LichessConsumer lichessConsumer) {
         this.broadcastConsumersKeeper = lichessConsumer;
     }
 
@@ -27,7 +25,6 @@ public class ButtonClickActor implements ChatActor {
         }
         String round = context.getUpdate().getCallbackQuery().getData().trim();
         broadcastConsumersKeeper.subscribeForRound(round);
-//        pgnDispatcher.registerBroadcast(context.getChatId(), context.getUpdate().getCallbackQuery().getData());
         SendMessage message = SendMessage.builder()
                 .text("Вы подписаны на игру!")
                 .chatId(context.getChatId())

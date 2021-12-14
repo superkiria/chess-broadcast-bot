@@ -1,7 +1,6 @@
-package com.github.superkiria.cbbot;
+package com.github.superkiria.cbbot.outgoing;
 
-import com.github.superkiria.cbbot.queue.MessageQueue;
-import com.github.superkiria.cbbot.queue.MessageQueueObject;
+import com.github.superkiria.cbbot.chatchain.ChatContext;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
@@ -26,24 +25,24 @@ public class MessageSender {
     public void start() {
         new Thread(() -> {
             while (true) {
-                MessageQueueObject messageObject = queue.poll();
+                ChatContext context = queue.poll();
                 try {
                     long now = new Date().getTime();
                     if (now - last.getTime() < 34) {
                         Thread.sleep(34 - now + last.getTime());
                         now = new Date().getTime();
                     }
-                    if (lastForUser.get(messageObject.getChatId()) != null
-                            && now - lastForUser.get(messageObject.getChatId()).getTime() < 3000) {
-                        Thread.sleep(3000 - now + lastForUser.get(messageObject.getChatId()).getTime());
+                    if (lastForUser.get(context.getChatId()) != null
+                            && now - lastForUser.get(context.getChatId()).getTime() < 3000) {
+                        Thread.sleep(3000 - now + lastForUser.get(context.getChatId()).getTime());
                     }
                     last = new Date();
-                    lastForUser.put(messageObject.getChatId(), last);
-                    if (messageObject.getContext().getResponse() != null) {
-                        bot.execute(messageObject.getContext().getResponse()); // Call method to send the message
+                    lastForUser.put(context.getChatId(), last);
+                    if (context.getResponse() != null) {
+                        bot.execute(context.getResponse()); // Call method to send the message
                     }
-                    if (messageObject.getContext().getSendPhoto() != null) {
-                        bot.execute(messageObject.getContext().getSendPhoto()); // Call method to send the message
+                    if (context.getSendPhoto() != null) {
+                        bot.execute(context.getSendPhoto()); // Call method to send the message
                     }
                 } catch (TelegramApiException | InterruptedException e) {
                     e.printStackTrace();

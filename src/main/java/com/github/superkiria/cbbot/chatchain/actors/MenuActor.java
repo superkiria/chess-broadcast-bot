@@ -31,16 +31,16 @@ public class MenuActor implements ChatActor {
         }
         List<LichessEvent> lichessBroascasts = broadcastConsumer.getLichessBroadcasts();
         List<LichessEvent> ongoingTours = lichessBroascasts.stream().filter(
-                o -> o.getRounds().stream().anyMatch(r -> r.getOngoing() != null)
+                o -> o.getRounds().stream().anyMatch(r -> r.getFinished() == null)
         ).collect(Collectors.toList());
 
         InlineKeyboardMarkup.InlineKeyboardMarkupBuilder markup = InlineKeyboardMarkup.builder();
 
         for(LichessEvent event : ongoingTours) {
             InlineKeyboardButton button = InlineKeyboardButton.builder()
-                    .callbackData(event.getRounds().stream().filter(r -> r.getOngoing() != null).findFirst().get().getId())
+                    .callbackData(event.getRounds().stream().filter(r -> r.getFinished() == null).findFirst().get().getId())
                     .text(event.getTour().getName()
-                            + " - " + event.getRounds().stream().filter(r -> r.getOngoing() != null).findFirst().get().getName())
+                            + " - " + event.getRounds().stream().filter(r -> r.getFinished() == null).findFirst().get().getName())
                     .build();
             markup.keyboardRow(Collections.singletonList(button));
         }

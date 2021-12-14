@@ -1,4 +1,4 @@
-package com.github.superkiria.cbbot;
+package com.github.superkiria.cbbot.processing;
 
 import com.github.bhlangonijr.chesslib.game.Game;
 

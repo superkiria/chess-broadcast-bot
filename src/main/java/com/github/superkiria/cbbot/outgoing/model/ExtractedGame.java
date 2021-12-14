@@ -1,4 +1,4 @@
-package com.github.superkiria.cbbot.broadcast.model;
+package com.github.superkiria.cbbot.outgoing.model;
 
 import com.github.bhlangonijr.chesslib.game.Game;
 import lombok.Builder;

@@ -11,4 +11,5 @@ public class SpringConfig {
     public WebClient webClient() {
         return WebClient.create();
     }
+
 }

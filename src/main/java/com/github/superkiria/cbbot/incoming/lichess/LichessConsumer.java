@@ -1,6 +1,6 @@
 package com.github.superkiria.cbbot.incoming.lichess;
 
-import com.github.superkiria.cbbot.broadcast.PgnDispatcher;
+import com.github.superkiria.cbbot.outgoing.PgnDispatcher;
 import com.github.superkiria.cbbot.incoming.lichess.model.LichessEvent;
 import lombok.SneakyThrows;
 import org.slf4j.Logger;

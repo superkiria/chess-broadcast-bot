@@ -1,5 +1,6 @@
-package com.github.superkiria.cbbot.queue;
+package com.github.superkiria.cbbot.outgoing;
 
+import com.github.superkiria.cbbot.chatchain.ChatContext;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ import java.util.concurrent.ConcurrentLinkedDeque;
 @Component
 public class MessageQueue {
 
-    private final List<Queue<MessageQueueObject>> partitions = new ArrayList<>();
+    private final List<Queue<ChatContext>> partitions = new ArrayList<>();
 
     private int currentPartition = 0;
 
@@ -20,15 +21,11 @@ public class MessageQueue {
         }
     }
 
-    public int getPartitionsAmount() {
-        return partitions.size();
-    }
-
-    public boolean add(MessageQueueObject o) {
+    public boolean add(ChatContext o) {
         return partitions.get(Math.abs(o.getChatId().hashCode() % partitions.size())).add(o);
     }
 
-    public MessageQueueObject poll() {
+    public ChatContext poll() {
         synchronized (this) {
             while (partitions.get(currentPartition).isEmpty()) {
                 currentPartition++;
