@@ -1,4 +1,4 @@
-package com.github.superkiria;
+package com.github.superkiria.lichess.stub;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -18,7 +18,7 @@ public class LichessStreamDumper {
         this.webClient = webClient;
     }
 
-    void start(String round) {
+    public void start(String round) {
         Disposable subscription = webClient.get()
                 .uri("https://lichess.org/api/stream/broadcast/round/{round}.pgn", round)
                 .retrieve()
@@ -29,7 +29,7 @@ public class LichessStreamDumper {
                 .subscribe(this::append);
     }
 
-    void append(String text) {
+    private void append(String text) {
         try(FileWriter writer = new FileWriter("stream.txt", true))
         {
             writer.append(text);
