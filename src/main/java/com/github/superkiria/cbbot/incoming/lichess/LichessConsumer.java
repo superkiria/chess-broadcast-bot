@@ -6,6 +6,7 @@ import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.Disposable;
@@ -22,6 +23,9 @@ public class LichessConsumer {
     private final static Logger LOG = LoggerFactory.getLogger(LichessConsumer.class);
     private final WebClient webClient;
     private final PgnDispatcher dispatcher;
+
+    @Value("${lichess.stream.endpoint}")
+    private String streamEndpoint;
 
     private Date lastCall = new Date(0);
     private Date eventsCacheLastCall = new Date(0);
@@ -47,7 +51,7 @@ public class LichessConsumer {
             }
             lastCall = new Date();
             subscription = webClient.get()
-                    .uri("https://lichess.org/api/stream/broadcast/round/{round}.pgn", round)
+                    .uri("{streamEndpoint}{round}.pgn", streamEndpoint, round)
                     .retrieve()
                     .bodyToFlux(String.class)
                     .doOnSubscribe(o -> LOG.info("Subscibed for lichess broadcast: {}", o.toString()))
