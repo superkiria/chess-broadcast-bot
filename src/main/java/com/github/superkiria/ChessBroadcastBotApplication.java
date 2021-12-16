@@ -15,10 +15,10 @@ public class ChessBroadcastBotApplication {
 	public static void main(String[] args) throws Exception {
 		ConfigurableApplicationContext context = SpringApplication.run(ChessBroadcastBotApplication.class, args);
 		ChessBroadcastBot bot = context.getBean(ChessBroadcastBot.class);
-		TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
-		telegramBotsApi.registerBot(bot);
-		context.getBean(MessageSender.class).start();
-		context.getBean(PgnDispatcher.class).start();
+//		TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
+//		telegramBotsApi.registerBot(bot);
+//		context.getBean(MessageSender.class).start();
+//		context.getBean(PgnDispatcher.class).start();
 	}
 
 }

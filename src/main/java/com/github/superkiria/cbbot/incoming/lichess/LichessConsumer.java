@@ -65,11 +65,6 @@ public class LichessConsumer {
             return eventsCache;
         }
         synchronized (this) {
-            now  = new Date().getTime();
-            if (now - lastCall.getTime() < 61000) {
-                Thread.sleep(610000 - now + lastCall.getTime());
-            }
-            lastCall = new Date();
             eventsCacheLastCall = new Date();
             LOG.info("getLichessBroadcasts");
             eventsCache = webClient.get()
