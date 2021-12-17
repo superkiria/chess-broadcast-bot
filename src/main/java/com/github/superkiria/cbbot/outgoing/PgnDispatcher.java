@@ -6,6 +6,7 @@ import com.github.superkiria.cbbot.chatchain.ChatContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 
@@ -22,7 +23,9 @@ public class PgnDispatcher {
     private final BlockingQueue<String> incoming = new LinkedBlockingQueue<>() ;
     private final MessageQueue messageQueue;
     private final static Logger LOG = LoggerFactory.getLogger(PgnDispatcher.class);
-    private static final String CHAT_ID = "-1001694568044";
+
+    @Value("telegram.channel.chatId")
+    private static String chatId;
 
     @Autowired
     public PgnDispatcher(MessageQueue messageQueue) {
@@ -40,7 +43,7 @@ public class PgnDispatcher {
                 try {
                     ExtractedGame extractedGame = extractNextGame();
                     LOG.info("ExtractedGame extractedGame = extractNextGame();");
-                    messageQueue.add(ChatContext.builder().response(SendMessage.builder().chatId(CHAT_ID).text(extractedGame.getGameId()).build()).build());
+                    messageQueue.add(ChatContext.builder().response(SendMessage.builder().chatId(chatId).text(extractedGame.getGameId()).build()).build());
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }

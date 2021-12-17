@@ -27,6 +27,9 @@ public class LichessConsumer {
     @Value("${lichess.stream.endpoint}")
     private String streamEndpoint;
 
+    @Value("${lichess.broadcasts.endpoint}")
+    private String broadcastsEndpoint;
+
     private Date lastCall = new Date(0);
     private Date eventsCacheLastCall = new Date(0);
     private List<LichessEvent> eventsCache;
@@ -72,7 +75,7 @@ public class LichessConsumer {
             eventsCacheLastCall = new Date();
             LOG.info("getLichessBroadcasts");
             eventsCache = webClient.get()
-                        .uri("https://lichess.org/api/broadcast")
+                        .uri(broadcastsEndpoint)
                         .retrieve()
                         .bodyToFlux(LichessEvent.class)
                         .collect(Collectors.toList()).block();
