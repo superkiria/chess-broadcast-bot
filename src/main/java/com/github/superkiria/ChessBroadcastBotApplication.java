@@ -1,6 +1,8 @@
 package com.github.superkiria;
 
 import com.github.superkiria.cbbot.ChessBroadcastBot;
+import com.github.superkiria.cbbot.outgoing.MessageSender;
+import com.github.superkiria.cbbot.outgoing.PgnDispatcher;
 import com.github.superkiria.lichess.stub.LichessStreamDumper;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
@@ -19,8 +21,8 @@ public class ChessBroadcastBotApplication {
 //		context.getBean(LichessStreamDumper.class).start("DYcygfVK");
 		TelegramBotsApi telegramBotsApi = new TelegramBotsApi(DefaultBotSession.class);
 		telegramBotsApi.registerBot(bot);
-//		context.getBean(MessageSender.class).start();
-//		context.getBean(PgnDispatcher.class).start();
+		context.getBean(MessageSender.class).start();
+		context.getBean(PgnDispatcher.class).start();
 	}
 
 }

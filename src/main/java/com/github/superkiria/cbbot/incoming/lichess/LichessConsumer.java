@@ -54,12 +54,12 @@ public class LichessConsumer {
             }
             lastCall = new Date();
             subscription = webClient.get()
-                    .uri("{streamEndpoint}{round}.pgn", streamEndpoint, round)
+                    .uri("http://{streamEndpoint}:8080/api/stream/broadcast/round/{round}.pgn", streamEndpoint, round)
                     .retrieve()
                     .bodyToFlux(String.class)
-                    .doOnSubscribe(o -> LOG.info("Subscibed for lichess broadcast: {}", o.toString()))
-                    .retryWhen(Retry.fixedDelay(3, Duration.ofSeconds(60)))
-                    .doOnError(Exception.class, e -> LOG.error("Round" + round, e))
+                    .doOnSubscribe(o -> LOG.info("Subscibed for lichess broadcast: {}/{}.pgn", streamEndpoint, round))
+                    .retryWhen(Retry.fixedDelay(3, Duration.ofSeconds(1)))
+                    .doOnError(Exception.class, e -> LOG.error("Round " + round, e))
                     .subscribe(this.dispatcher::putPgnPart);
         }
     }

@@ -24,8 +24,8 @@ public class PgnDispatcher {
     private final MessageQueue messageQueue;
     private final static Logger LOG = LoggerFactory.getLogger(PgnDispatcher.class);
 
-    @Value("telegram.channel.chatId")
-    private static String chatId;
+    @Value("${telegram.channel.chatId}")
+    private String chatId;
 
     @Autowired
     public PgnDispatcher(MessageQueue messageQueue) {
@@ -40,6 +40,7 @@ public class PgnDispatcher {
         LOG.info("Starting dispatching");
         new Thread(() -> {
             while (true) {
+                LOG.info("Trying to extract a game");
                 try {
                     ExtractedGame extractedGame = extractNextGame();
                     LOG.info("ExtractedGame extractedGame = extractNextGame();");
