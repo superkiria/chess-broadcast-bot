@@ -20,4 +20,8 @@ public class SentMessageKeeper {
         sentMessagesForGames.put(gameKey, context);
     }
 
+    Integer countGames() {
+        return sentMessagesForGames.size();
+    }
+
 }

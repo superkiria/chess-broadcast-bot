@@ -28,12 +28,13 @@ public class ChatContext {
     private String white;
     private String black;
     private InlineKeyboardMarkup inlineKeyboardMarkup;
+    private Integer color;
 
     public Message call(TelegramLongPollingBot bot) throws IllegalStateException, TelegramApiException {
-        if (messageId != null && inputStream != null) {
-             bot.execute(makeEditMessageMedia());
-             return null;
-        }
+//        if (messageId != null && inputStream != null) {
+//             bot.execute(makeEditMessageMedia());
+//             return null;
+//        }
         if (this.getInputStream() != null) {
             return bot.execute(makeSendPhoto());
         }

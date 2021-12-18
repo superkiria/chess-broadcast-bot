@@ -54,8 +54,10 @@ public class PgnDispatcher {
                             .build();
                     ChatContext existing = keeper.getGame(key);
                     Integer messageId = null;
+                    Integer color = keeper.countGames() - 1;
                     if (existing != null) {
                         messageId = existing.getMessageId();
+                        color = existing.getColor();
                     }
                     ChatContext context = ChatContext.builder()
                             .chatId(chatId)
@@ -63,8 +65,9 @@ public class PgnDispatcher {
                             .round(extractedGame.getRound())
                             .white(extractedGame.getWhite())
                             .black(extractedGame.getBlack())
-                            .inputStream(makePictureFromGame(extractedGame.getGame()))
+                            .inputStream(makePictureFromGame(extractedGame.getGame(), color))
                             .response(makeCaptionFromGame(extractedGame.getGame()))
+                            .color(color)
                             .build();
                     messageQueue.add(context);
                 } catch (Exception e) {

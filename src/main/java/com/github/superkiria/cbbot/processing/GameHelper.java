@@ -25,10 +25,10 @@ public class GameHelper {
         return game;
     }
 
-    public static InputStream makePictureFromGame(Game game) throws Exception {
+    public static InputStream makePictureFromGame(Game game, Integer color) throws Exception {
         SvgBoardBuilder builder = new SvgBoardBuilder();
         builder.setPgn(game.toPgn(false, false));
-        builder.init();
+        builder.init(color);
         ByteArrayOutputStream baos = saveDocumentToPngByteBuffer(builder.getDocument());
         return new ByteArrayInputStream(baos.toByteArray());
     }
