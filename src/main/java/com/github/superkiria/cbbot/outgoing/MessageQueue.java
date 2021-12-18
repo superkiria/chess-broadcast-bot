@@ -3,38 +3,24 @@ package com.github.superkiria.cbbot.outgoing;
 import com.github.superkiria.cbbot.chatchain.ChatContext;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
-import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.concurrent.BlockingDeque;
+import java.util.concurrent.LinkedBlockingDeque;
 
 @Component
 public class MessageQueue {
 
-    private final List<Queue<ChatContext>> partitions = new ArrayList<>();
+    private final BlockingDeque<ChatContext> deque = new LinkedBlockingDeque<>();
 
-    private int currentPartition = 0;
-
-    public MessageQueue() {
-        for (int i = 0; i < 90; i++) {
-            partitions.add(new ConcurrentLinkedDeque<>());
-        }
+    public void add(ChatContext o) {
+        deque.addLast(o);
     }
 
-    public boolean add(ChatContext o) {
-        return partitions.get(Math.abs(o.getChatId().hashCode() % partitions.size())).add(o);
+    public void addHighPriority(ChatContext o) {
+        deque.addFirst(o);
     }
 
-    public ChatContext poll() {
-        synchronized (this) {
-            while (partitions.get(currentPartition).isEmpty()) {
-                currentPartition++;
-                if (currentPartition >= partitions.size()) {
-                    currentPartition = 0;
-                }
-            }
-            return partitions.get(currentPartition).poll();
-        }
+    public ChatContext take() throws InterruptedException {
+        return deque.take();
     }
 
 }

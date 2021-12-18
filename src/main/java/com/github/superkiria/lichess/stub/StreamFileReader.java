@@ -12,7 +12,7 @@ import java.util.List;
 @Component
 public class StreamFileReader {
 
-    private List<String> buffer = new ArrayList<>();
+    private final List<String> buffer = new ArrayList<>();
 
     public StreamFileReader() {
         String line = "";

@@ -36,8 +36,7 @@ public class ChessBroadcastBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        LOG.info("Message received: {}",
-                update);
+        LOG.info("Message received: {}", update);
         ChatContext context = ChatContext.builder().update(update).build();
         chain.startWithContext(context);
     }

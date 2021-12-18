@@ -1,18 +1,16 @@
 package com.github.superkiria.cbbot.outgoing.model;
 
-import com.github.bhlangonijr.chesslib.game.Game;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode
 @Builder
-public class ExtractedGame {
+public class GameKey {
 
-    private String pgn;
     private String round;
     private String white;
     private String black;
-    private boolean hasMoves;
-    private Game game;
 
 }

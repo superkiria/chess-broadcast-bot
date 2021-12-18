@@ -45,12 +45,8 @@ public class MenuActor implements ChatActor {
             markup.keyboardRow(Collections.singletonList(button));
         }
 
-        SendMessage message = SendMessage.builder()
-                .text("Список турниров:")
-                .replyMarkup(markup.build())
-                .chatId(context.getChatId())
-                .build();
-        context.setResponse(message);
+        context.setInlineKeyboardMarkup(markup.build());
+        context.setResponse("Список турниров:");
     }
 
 }
