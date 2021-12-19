@@ -6,7 +6,6 @@ import com.github.superkiria.cbbot.incoming.lichess.LichessConsumer;
 import com.github.superkiria.cbbot.incoming.lichess.model.LichessEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
@@ -38,15 +37,14 @@ public class MenuActor implements ChatActor {
 
         for(LichessEvent event : ongoingTours) {
             InlineKeyboardButton button = InlineKeyboardButton.builder()
-                    .callbackData(event.getRounds().stream().filter(r -> r.getFinished() == null).findFirst().get().getId())
-                    .text(event.getTour().getName()
-                            + " - " + event.getRounds().stream().filter(r -> r.getFinished() == null).findFirst().get().getName())
+                    .callbackData("tour:" + event.getTour().getId())
+                    .text(event.getTour().getName())
                     .build();
             markup.keyboardRow(Collections.singletonList(button));
         }
 
         context.setInlineKeyboardMarkup(markup.build());
-        context.setResponse("Список турниров:");
+        context.setResponse(ongoingTours.stream().map(t -> t.getTour().getName() + "\n" + t.getTour().getDescription() + "\n" + t.getTour().getUrl()).collect(Collectors.joining("\n\n")));
     }
 
 }

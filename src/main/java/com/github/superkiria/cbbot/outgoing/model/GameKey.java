@@ -1,11 +1,11 @@
 package com.github.superkiria.cbbot.outgoing.model;
 
 import lombok.Builder;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
-@Data
 @EqualsAndHashCode
+@ToString
 @Builder
 public class GameKey {
 

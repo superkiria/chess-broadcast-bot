@@ -19,6 +19,7 @@ import java.io.InputStream;
 @Builder
 @Data
 public class ChatContext {
+    private boolean skip;
     private String chatId;
     private Integer messageId;
     private Update update;
@@ -31,17 +32,17 @@ public class ChatContext {
     private Integer color;
 
     public Message call(TelegramLongPollingBot bot) throws IllegalStateException, TelegramApiException {
-//        if (messageId != null && inputStream != null) {
-//             bot.execute(makeEditMessageMedia());
-//             return null;
-//        }
+        if (messageId != null && inputStream != null) {
+             bot.execute(makeEditMessageMedia());
+             return null;
+        }
         if (this.getInputStream() != null) {
             return bot.execute(makeSendPhoto());
         }
         if (this.getResponse() != null) {
             return bot.execute(makeSendMessage());
         }
-        throw new IllegalStateException("No data to send");
+        throw new IllegalStateException("No data to send " + this);
     }
 
     private SendMessage makeSendMessage() {
@@ -50,6 +51,7 @@ public class ChatContext {
                 .text(response)
                 .replyToMessageId(messageId)
                 .replyMarkup(inlineKeyboardMarkup)
+                .disableWebPagePreview(true)
                 .build();
     }
 

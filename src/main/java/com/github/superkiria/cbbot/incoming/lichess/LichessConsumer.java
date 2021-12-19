@@ -35,6 +35,8 @@ public class LichessConsumer {
     private List<LichessEvent> eventsCache;
     private Disposable subscription;
 
+    private String currentSubscriptionRoundId = null;
+
     @Autowired
     public LichessConsumer(WebClient webClient, PgnDispatcher dispatcher) {
         this.webClient = webClient;
@@ -43,31 +45,48 @@ public class LichessConsumer {
 
     @SneakyThrows
     public void subscribeForRound(String round) {
+        if (round == null) {
+            return;
+        }
         synchronized (this) {
             if (subscription != null) {
                 subscription.dispose();
                 subscription = null;
+                LOG.info("subscription.dispose();");
             }
             long now  = new Date().getTime();
-            if (now - lastCall.getTime() < 61000) {
-                Thread.sleep(61000 - now + lastCall.getTime());
+            if (now - lastCall.getTime() < 60000) {
+                Thread.sleep(60000 - now + lastCall.getTime());
             }
             lastCall = new Date();
+            setCurrentSubscriptionRoundId(round);
+            String uri = String.format("%s/%s.pgn", streamEndpoint, round);
             subscription = webClient.get()
-                    .uri("http://{streamEndpoint}:8080/api/stream/broadcast/round/{round}.pgn", streamEndpoint, round)
+                    .uri(uri)
                     .retrieve()
                     .bodyToFlux(String.class)
-                    .doOnSubscribe(o -> LOG.info("Subscibed for lichess broadcast: {}/{}.pgn", streamEndpoint, round))
-                    .retryWhen(Retry.fixedDelay(3, Duration.ofSeconds(20)))
+                    .doOnSubscribe(o -> LOG.info(uri))
+                    .retryWhen(Retry.fixedDelay(3, Duration.ofSeconds(60)))
                     .doOnError(Exception.class, e -> LOG.error("Round " + round, e))
                     .subscribe(this.dispatcher::putPgnPart);
+        }
+    }
+
+    public void cancelSubscription() {
+        synchronized (this) {
+            LOG.info("cancelSubscription()");
+            if (subscription != null) {
+                subscription.dispose();
+                subscription = null;
+            }
+            setCurrentSubscriptionRoundId(null);
         }
     }
 
     @SneakyThrows
     public List<LichessEvent> getLichessBroadcasts() {
         long now  = new Date().getTime();
-        if (eventsCache != null && now - eventsCacheLastCall.getTime() < 1200000) {
+        if (eventsCache != null && now - eventsCacheLastCall.getTime() < 300_000) {
             LOG.info("getLichessBroadcasts from cache");
             return eventsCache;
         }
@@ -83,4 +102,17 @@ public class LichessConsumer {
         }
     }
 
+    public LichessEvent getLichessEventById(String eventId) {
+        List<LichessEvent> events = getLichessBroadcasts();
+        return events.stream().filter(e -> e.getTour().getId().equals(eventId)).findFirst().get();
+    }
+
+    public String getCurrentSubscriptionRoundId() {
+        return currentSubscriptionRoundId;
+    }
+
+    public void setCurrentSubscriptionRoundId(String currentSubscriptionRoundId) {
+        dispatcher.setCurrentSubscriptionRoundId(currentSubscriptionRoundId);
+        this.currentSubscriptionRoundId = currentSubscriptionRoundId;
+    }
 }

@@ -1,4 +1,4 @@
-package com.github.superkiria.cbbot.outgoing;
+package com.github.superkiria.cbbot.outgoing.keepers;
 
 import com.github.superkiria.cbbot.chatchain.ChatContext;
 import com.github.superkiria.cbbot.outgoing.model.GameKey;
@@ -10,18 +10,14 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class SentMessageKeeper {
 
-    Map<GameKey, ChatContext> sentMessagesForGames = new ConcurrentHashMap<>();
+    private final Map<GameKey, ChatContext> sentMessagesForGames = new ConcurrentHashMap<>();
 
-    ChatContext getGame(GameKey gameKey) {
+    public ChatContext getGame(GameKey gameKey) {
         return sentMessagesForGames.get(gameKey);
     }
 
-    void putGame(GameKey gameKey, ChatContext context) {
+    public void putGame(GameKey gameKey, ChatContext context) {
         sentMessagesForGames.put(gameKey, context);
-    }
-
-    Integer countGames() {
-        return sentMessagesForGames.size();
     }
 
 }

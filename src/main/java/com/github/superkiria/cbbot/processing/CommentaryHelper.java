@@ -33,7 +33,7 @@ public class CommentaryHelper {
     }
 
     public static String moveFromMovesList(Game game, int move) {
-        if (game.getHalfMoves().size() == 0) {
+        if (game.getHalfMoves().size() == 0 || game.getCommentary() == null) {
             return "";
         }
         String comment = game.getCommentary().get(move);

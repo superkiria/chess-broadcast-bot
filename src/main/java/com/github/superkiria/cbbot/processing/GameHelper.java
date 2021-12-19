@@ -8,9 +8,7 @@ import com.github.superkiria.chess.svg.SvgBoardBuilder;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
 import java.util.List;
 
 import static com.github.superkiria.cbbot.processing.CommentaryHelper.moveFromMovesList;

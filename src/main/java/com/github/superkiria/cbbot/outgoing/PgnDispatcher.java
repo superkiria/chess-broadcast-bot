@@ -1,6 +1,9 @@
 package com.github.superkiria.cbbot.outgoing;
 
 import com.github.bhlangonijr.chesslib.game.Game;
+import com.github.superkiria.cbbot.incoming.lichess.LichessConsumer;
+import com.github.superkiria.cbbot.outgoing.keepers.GameCountKeeper;
+import com.github.superkiria.cbbot.outgoing.keepers.SentMessageKeeper;
 import com.github.superkiria.cbbot.outgoing.model.ExtractedGame;
 import com.github.superkiria.cbbot.chatchain.ChatContext;
 import com.github.superkiria.cbbot.outgoing.model.GameKey;
@@ -9,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,14 +27,17 @@ public class PgnDispatcher {
     private final MessageQueue messageQueue;
     private final static Logger LOG = LoggerFactory.getLogger(PgnDispatcher.class);
     private final SentMessageKeeper keeper;
+    private final GameCountKeeper countKeeper;
+    private String currentSubscriptionRoundId = null;
 
     @Value("${telegram.channel.chatId}")
     private String chatId;
 
     @Autowired
-    public PgnDispatcher(MessageQueue messageQueue, SentMessageKeeper keeper) {
+    public PgnDispatcher(MessageQueue messageQueue, SentMessageKeeper keeper, GameCountKeeper countKeeper) {
         this.messageQueue = messageQueue;
         this.keeper = keeper;
+        this.countKeeper = countKeeper;
     }
 
     public void putPgnPart(String s) {
@@ -43,21 +48,25 @@ public class PgnDispatcher {
         LOG.info("Starting dispatching");
         new Thread(() -> {
             while (true) {
-                LOG.info("Trying to extract a game");
+                LOG.debug("Trying to extract a game");
                 try {
                     ExtractedGame extractedGame = extractNextGame();
-                    LOG.info("ExtractedGame extractedGame = extractNextGame();");
                     GameKey key = GameKey.builder()
                             .round(extractedGame.getRound())
                             .white(extractedGame.getWhite())
                             .black(extractedGame.getBlack())
                             .build();
                     ChatContext existing = keeper.getGame(key);
-                    Integer messageId = null;
-                    Integer color = keeper.countGames() - 1;
+                    Integer messageId;
+                    int color;
                     if (existing != null) {
                         messageId = existing.getMessageId();
                         color = existing.getColor();
+                    } else {
+                        messageId = null;
+                        color = countKeeper.getCount();
+                        countKeeper.add(key);
+                        LOG.info("New color {} for game {}", color, key);
                     }
                     ChatContext context = ChatContext.builder()
                             .chatId(chatId)
@@ -83,7 +92,7 @@ public class PgnDispatcher {
         do {
             part = incoming.take().trim();
             buffer.add(part);
-            LOG.info(part);
+            LOG.trace(part);
         } while (!(part.endsWith("1-0") ||
                     part.endsWith("0-1") ||
                     part.endsWith("1/2-1/2") ||
@@ -93,15 +102,19 @@ public class PgnDispatcher {
             Game game = makeGameFromPgn(buffer);
             extractedGame = ExtractedGame.builder()
                     .game(game)
-                    .round(game.getRound().getEvent().getName() + " | " + game.getRound().getNumber())
+                    .round(currentSubscriptionRoundId)
                     .white(game.getWhitePlayer().getName())
                     .black(game.getBlackPlayer().getName())
                     .build();
-            LOG.info("Game extracted");
+            LOG.debug("Game extracted");
         } catch (RuntimeException e) {
             LOG.error(e.toString());
         }
         return extractedGame;
+    }
+
+    public void setCurrentSubscriptionRoundId(String currentSubscriptionRoundId) {
+        this.currentSubscriptionRoundId = currentSubscriptionRoundId;
     }
 
 }

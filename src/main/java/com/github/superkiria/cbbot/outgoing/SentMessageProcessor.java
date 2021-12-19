@@ -1,6 +1,7 @@
 package com.github.superkiria.cbbot.outgoing;
 
 import com.github.superkiria.cbbot.chatchain.ChatContext;
+import com.github.superkiria.cbbot.outgoing.keepers.SentMessageKeeper;
 import com.github.superkiria.cbbot.outgoing.model.GameKey;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -17,7 +18,7 @@ public class SentMessageProcessor {
     }
 
     void process(ChatContext context, Message message) {
-        if (message == null) {
+        if (message == null || context.getInputStream() == null) {
             return;
         }
         GameKey key = GameKey.builder().round(context.getRound()).white(context.getWhite()).black(context.getBlack()).build();
