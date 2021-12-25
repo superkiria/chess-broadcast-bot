@@ -4,6 +4,8 @@ import com.github.superkiria.cbbot.chatchain.ChatActor;
 import com.github.superkiria.cbbot.chatchain.ChatContext;
 import com.github.superkiria.cbbot.incoming.lichess.LichessConsumer;
 import com.github.superkiria.cbbot.incoming.lichess.model.LichessEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
@@ -15,6 +17,8 @@ import java.util.stream.Collectors;
 
 @Component
 public class MenuActor implements ChatActor {
+
+    private final static Logger LOG = LoggerFactory.getLogger(ButtonClickActor.class);
 
     private final LichessConsumer broadcastConsumer;
 
@@ -32,6 +36,9 @@ public class MenuActor implements ChatActor {
         List<LichessEvent> ongoingTours = lichessBroascasts.stream().filter(
                 o -> o.getRounds().stream().anyMatch(r -> r.getFinished() == null)
         ).collect(Collectors.toList());
+//        List<LichessEvent> ongoingTours = lichessBroascasts;
+
+        LOG.info("Gathered info about {} tours", ongoingTours.size());
 
         InlineKeyboardMarkup.InlineKeyboardMarkupBuilder markup = InlineKeyboardMarkup.builder();
 
@@ -44,7 +51,7 @@ public class MenuActor implements ChatActor {
         }
 
         context.setInlineKeyboardMarkup(markup.build());
-        context.setResponse(ongoingTours.stream().map(t -> t.getTour().getName() + "\n" + t.getTour().getDescription() + "\n" + t.getTour().getUrl()).collect(Collectors.joining("\n\n")));
+        context.setResponse("Found " + ongoingTours.size() + " tours:\n" + ongoingTours.stream().map(t -> t.getTour().getName() + "\n" + t.getTour().getDescription() + "\n" + t.getTour().getUrl()).collect(Collectors.joining("\n\n")));
     }
 
 }
