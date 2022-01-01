@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Comparator;
+import java.util.Date;
 
 @Component
 public class SubscriptionManager {
@@ -75,8 +76,9 @@ public class SubscriptionManager {
         return lichess.getLichessEventById(eventId).getRounds()
                 .stream()
                 .filter(r -> r.getFinished() == null || !r.getFinished())
+                .filter(r -> r.getStartsAt().before(new Date(System.currentTimeMillis() + 3600_000)))
                 .min(Comparator.comparing(LichessRound::getStartsAt))
-                .map(LichessRound::getId).get();
+                .map(LichessRound::getId).orElse(null);
     }
 
 }
