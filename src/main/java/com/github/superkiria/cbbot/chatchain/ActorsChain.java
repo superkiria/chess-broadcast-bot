@@ -17,6 +17,7 @@ public class ActorsChain {
     public ActorsChain(ApplicationContext context) {
         actors.add(context.getBean(ChatIdExtractor.class));
         actors.add(context.getBean(FilterActor.class));
+        actors.add(context.getBean(CancelSubscriptionActor.class));
         actors.add(context.getBean(TourTableMenuActor.class));
         actors.add(context.getBean(StatusActor.class));
         actors.add(context.getBean(ButtonClickActor.class));

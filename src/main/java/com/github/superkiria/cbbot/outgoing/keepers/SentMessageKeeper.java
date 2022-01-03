@@ -13,11 +13,23 @@ public class SentMessageKeeper {
     private final Map<String, ChatContext> sentMessagesForGames = new ConcurrentHashMap<>();
 
     public ChatContext getGame(GameKey gameKey) {
+        if (gameKey == null) {
+            return null;
+        }
         return sentMessagesForGames.get(gameKey.toString());
     }
 
     public void putGame(GameKey gameKey, ChatContext context) {
         sentMessagesForGames.put(gameKey.toString(), context);
+    }
+
+
+    public void clear() {
+        sentMessagesForGames.clear();
+    }
+
+    public int getCount() {
+        return sentMessagesForGames.size();
     }
 
 }

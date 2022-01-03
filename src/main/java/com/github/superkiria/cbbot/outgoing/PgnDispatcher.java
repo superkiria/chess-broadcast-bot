@@ -1,8 +1,6 @@
 package com.github.superkiria.cbbot.outgoing;
 
 import com.github.bhlangonijr.chesslib.game.Game;
-import com.github.superkiria.cbbot.incoming.lichess.LichessConsumer;
-import com.github.superkiria.cbbot.outgoing.keepers.GameCountKeeper;
 import com.github.superkiria.cbbot.outgoing.keepers.SentMessageKeeper;
 import com.github.superkiria.cbbot.outgoing.model.ExtractedGame;
 import com.github.superkiria.cbbot.chatchain.ChatContext;
@@ -27,17 +25,15 @@ public class PgnDispatcher {
     private final MessageQueue messageQueue;
     private final static Logger LOG = LoggerFactory.getLogger(PgnDispatcher.class);
     private final SentMessageKeeper keeper;
-    private final GameCountKeeper countKeeper;
     private String currentSubscriptionRoundId = null;
 
     @Value("${telegram.channel.chatId}")
     private String chatId;
 
     @Autowired
-    public PgnDispatcher(MessageQueue messageQueue, SentMessageKeeper keeper, GameCountKeeper countKeeper) {
+    public PgnDispatcher(MessageQueue messageQueue, SentMessageKeeper keeper) {
         this.messageQueue = messageQueue;
         this.keeper = keeper;
-        this.countKeeper = countKeeper;
     }
 
     public void putPgnPart(String s) {
@@ -56,28 +52,25 @@ public class PgnDispatcher {
                             .white(extractedGame.getWhite())
                             .black(extractedGame.getBlack())
                             .build();
-                    ChatContext existing = keeper.getGame(key);
-                    Integer messageId;
-                    int color;
-                    if (existing != null) {
-                        messageId = existing.getMessageId();
-                        color = existing.getColor();
-                    } else {
-                        messageId = null;
-                        color = countKeeper.getCount();
-                        countKeeper.add(key);
-                        LOG.info("New color {} for game {}", color, key);
-                    }
                     ChatContext context = ChatContext.builder()
                             .chatId(chatId)
-                            .messageId(messageId)
                             .round(extractedGame.getRound())
                             .white(extractedGame.getWhite())
                             .black(extractedGame.getBlack())
-                            .inputStream(makePictureFromGame(extractedGame.getGame(), color))
                             .response(makeCaptionFromGame(extractedGame.getGame()))
-                            .color(color)
+                            .key(key)
                             .build();
+                    ChatContext existing = keeper.getGame(key);
+                    int color;
+                    if (existing != null) {
+                        color = existing.getColor();
+                    } else {
+                        color = keeper.getCount();
+                        keeper.putGame(key, context);
+                        LOG.info("New color {} for game {}", color, key);
+                    }
+                    context.setColor(color);
+                    context.setInputStream(makePictureFromGame(extractedGame.getGame(), color));
                     messageQueue.add(context);
                 } catch (Exception e) {
                     e.printStackTrace();

@@ -3,7 +3,7 @@ package com.github.superkiria.cbbot.incoming.lichess;
 import com.github.superkiria.cbbot.chatchain.ChatContext;
 import com.github.superkiria.cbbot.incoming.lichess.model.LichessRound;
 import com.github.superkiria.cbbot.outgoing.MessageQueue;
-import com.github.superkiria.cbbot.outgoing.keepers.GameCountKeeper;
+import com.github.superkiria.cbbot.outgoing.keepers.SentMessageKeeper;
 import com.github.superkiria.props.TelegramProps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,16 +21,16 @@ public class SubscriptionManager {
     private final LichessConsumer lichess;
     private final TelegramProps telegramProps;
     private final MessageQueue messageQueue;
-    private final GameCountKeeper gameCountKeeper;
+    private final SentMessageKeeper keeper;
 
     private String eventId;
 
     @Autowired
-    public SubscriptionManager(LichessConsumer lichess, TelegramProps telegramProps, MessageQueue messageQueue, GameCountKeeper gameCountKeeper) {
+    public SubscriptionManager(LichessConsumer lichess, TelegramProps telegramProps, MessageQueue messageQueue, SentMessageKeeper keeper) {
         this.lichess = lichess;
         this.telegramProps = telegramProps;
         this.messageQueue = messageQueue;
-        this.gameCountKeeper = gameCountKeeper;
+        this.keeper = keeper;
     }
 
     public String getCurrentSubscription() {
@@ -54,7 +54,7 @@ public class SubscriptionManager {
                 }
                 if (!best.equals(lichess.getCurrentSubscriptionRoundId())) {
                     lichess.cancelSubscription();
-                    gameCountKeeper.clear();
+                    keeper.clear();
                     lichess.subscribeForRound(best);
                     messageQueue.addHighPriority(ChatContext.builder()
                             .chatId(telegramProps.getAdminChatId())
@@ -93,6 +93,13 @@ public class SubscriptionManager {
                 .filter(r -> r.getFinished() == null || !r.getFinished())
                 .min(Comparator.comparing(LichessRound::getStartsAt))
                 .orElse(null);
+    }
+
+    public void cancelSubscription() {
+        eventId = null;
+        lichess.cancelSubscription();
+        keeper.clear();
+        messageQueue.clear();
     }
 
 }

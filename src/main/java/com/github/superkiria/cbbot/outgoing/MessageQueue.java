@@ -27,4 +27,7 @@ public class MessageQueue {
         return deque.size();
     }
 
+    public void clear() {
+        deque.clear();
+    }
 }

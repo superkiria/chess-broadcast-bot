@@ -1,6 +1,7 @@
 package com.github.superkiria.cbbot.outgoing;
 
 import com.github.superkiria.cbbot.chatchain.ChatContext;
+import com.github.superkiria.cbbot.outgoing.keepers.SentMessageKeeper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
@@ -17,14 +18,17 @@ public class MessageSender {
     private final MessageQueue queue;
     private final TelegramLongPollingBot bot;
     private final SentMessageProcessor processor;
+    private final SentMessageKeeper keeper;
+
     private Date last = new Date();
     private final Map<String, Date> lastForUser = new HashMap<>();
 
     @Autowired
-    public MessageSender(MessageQueue queue, TelegramLongPollingBot bot, SentMessageProcessor processor) {
+    public MessageSender(MessageQueue queue, TelegramLongPollingBot bot, SentMessageProcessor processor, SentMessageKeeper keeper) {
         this.queue = queue;
         this.bot = bot;
         this.processor = processor;
+        this.keeper = keeper;
     }
 
     public void start() {
@@ -32,6 +36,10 @@ public class MessageSender {
             while (true) {
                 try {
                     ChatContext context = queue.take();
+                    ChatContext previous = keeper.getGame(context.getKey());
+                    if (previous != null && previous.getMessageId() != null) {
+                        context.setMessageId(previous.getMessageId());
+                    }
                     long now = new Date().getTime();
                     if (now - last.getTime() < 34) {
                         Thread.sleep(34 - now + last.getTime());

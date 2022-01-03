@@ -74,8 +74,8 @@ public class LichessConsumer {
 
     public void cancelSubscription() {
         synchronized (this) {
-            LOG.info("cancelSubscription()");
             if (subscription != null) {
+                LOG.info("Subscription for {} is cancelled", currentSubscriptionRoundId);
                 subscription.dispose();
                 subscription = null;
             }
@@ -87,7 +87,7 @@ public class LichessConsumer {
     public List<LichessEvent> getLichessBroadcasts() {
         long now  = new Date().getTime();
         if (eventsCache != null && now - eventsCacheLastCall.getTime() < 300_000) {
-            LOG.info("getLichessBroadcasts from cache");
+            LOG.debug("getLichessBroadcasts from cache");
             return eventsCache;
         }
         synchronized (this) {

@@ -49,6 +49,11 @@ public class GameHelper {
             String message = "\n" + game.getResult().value() + " " + game.getResult().getDescription();
             caption = caption + message;
         }
+
+        if (game.getRound() != null && game.getRound().getEvent() != null) {
+            caption = caption + "\n" + game.getRound().getEvent().getSite();
+        }
+
         return caption;
     }
 

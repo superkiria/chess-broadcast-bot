@@ -1,6 +1,6 @@
 package com.github.superkiria.cbbot.chatchain;
 
-import com.github.superkiria.cbbot.incoming.lichess.SubscriptionManager;
+import com.github.superkiria.cbbot.outgoing.model.GameKey;
 import lombok.Builder;
 import lombok.Data;
 import org.slf4j.Logger;
@@ -36,6 +36,7 @@ public class ChatContext {
     private String black;
     private InlineKeyboardMarkup inlineKeyboardMarkup;
     private Integer color;
+    private GameKey key;
 
     public Message call(TelegramLongPollingBot bot) throws IllegalStateException, TelegramApiException {
         if (messageId != null && inputStream != null) {
