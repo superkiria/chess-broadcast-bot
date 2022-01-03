@@ -16,20 +16,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class MenuActor implements ChatActor {
+public class TourTableMenuActor implements ChatActor {
 
     private final static Logger LOG = LoggerFactory.getLogger(ButtonClickActor.class);
 
     private final LichessConsumer broadcastConsumer;
 
     @Autowired
-    public MenuActor(LichessConsumer broadcastConsumer) {
+    public TourTableMenuActor(LichessConsumer broadcastConsumer) {
         this.broadcastConsumer = broadcastConsumer;
     }
 
     @Override
     public void act(ChatContext context) {
         if (context.getUpdate().getMessage() == null) {
+            return;
+        }
+        if (!context.getUpdate().getMessage().getText().strip().equals("tt")) {
             return;
         }
         List<LichessEvent> lichessBroascasts = broadcastConsumer.getLichessBroadcasts();

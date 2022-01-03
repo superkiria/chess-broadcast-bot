@@ -23,4 +23,8 @@ public class MessageQueue {
         return deque.take();
     }
 
+    public int size() {
+        return deque.size();
+    }
+
 }

@@ -18,7 +18,7 @@ public class SendMessageActor implements ChatActor {
 
     @Override
     public void act(ChatContext context) {
-        messageQueue.add(context);
+        messageQueue.addHighPriority(context);
     }
 
 }

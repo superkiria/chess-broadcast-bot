@@ -12,11 +12,11 @@ import java.util.Set;
 public class GameCountKeeper {
 
     private final static Logger LOG = LoggerFactory.getLogger(GameCountKeeper.class);
-    private Set<GameKey> games = new HashSet<>();
+    private Set<String> games = new HashSet<>();
 
     public synchronized void add(GameKey key) {
         LOG.info("Adding game {}", key);
-        games.add(key);
+        games.add(key.toString());
     }
 
     public synchronized int getCount() {

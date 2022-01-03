@@ -10,14 +10,14 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class SentMessageKeeper {
 
-    private final Map<GameKey, ChatContext> sentMessagesForGames = new ConcurrentHashMap<>();
+    private final Map<String, ChatContext> sentMessagesForGames = new ConcurrentHashMap<>();
 
     public ChatContext getGame(GameKey gameKey) {
-        return sentMessagesForGames.get(gameKey);
+        return sentMessagesForGames.get(gameKey.toString());
     }
 
     public void putGame(GameKey gameKey, ChatContext context) {
-        sentMessagesForGames.put(gameKey, context);
+        sentMessagesForGames.put(gameKey.toString(), context);
     }
 
 }

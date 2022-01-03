@@ -1,7 +1,10 @@
 package com.github.superkiria.cbbot.chatchain;
 
+import com.github.superkiria.cbbot.incoming.lichess.SubscriptionManager;
 import lombok.Builder;
 import lombok.Data;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
@@ -19,6 +22,9 @@ import java.io.InputStream;
 @Builder
 @Data
 public class ChatContext {
+
+    private final static Logger LOG = LoggerFactory.getLogger(ChatContext.class);
+
     private boolean skip;
     private String chatId;
     private Integer messageId;
@@ -42,7 +48,8 @@ public class ChatContext {
         if (this.getResponse() != null) {
             return bot.execute(makeSendMessage());
         }
-        throw new IllegalStateException("No data to send " + this);
+        LOG.info("No data to send " + this);
+        return null;
     }
 
     private SendMessage makeSendMessage() {

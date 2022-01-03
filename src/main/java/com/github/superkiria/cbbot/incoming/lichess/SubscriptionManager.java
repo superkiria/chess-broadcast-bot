@@ -33,6 +33,10 @@ public class SubscriptionManager {
         this.gameCountKeeper = gameCountKeeper;
     }
 
+    public String getCurrentSubscription() {
+        return eventId;
+    }
+
     public void start() {
         new Thread(() -> {
             while (true) {
@@ -69,16 +73,26 @@ public class SubscriptionManager {
         this.eventId = eventId;
     }
 
-    private String bestRoundToSubscribe() {
+    public String bestRoundToSubscribe() {
+        LichessRound round = nextBestRoundToSubscribe();
+        if (round == null) {
+            return null;
+        }
+        if (round.getStartsAt().before(new Date(System.currentTimeMillis() + 3600_000))) {
+            return round.getId();
+        }
+        return null;
+    }
+
+    public LichessRound nextBestRoundToSubscribe() {
         if (eventId == null) {
             return null;
         }
         return lichess.getLichessEventById(eventId).getRounds()
                 .stream()
                 .filter(r -> r.getFinished() == null || !r.getFinished())
-                .filter(r -> r.getStartsAt().before(new Date(System.currentTimeMillis() + 3600_000)))
                 .min(Comparator.comparing(LichessRound::getStartsAt))
-                .map(LichessRound::getId).orElse(null);
+                .orElse(null);
     }
 
 }
