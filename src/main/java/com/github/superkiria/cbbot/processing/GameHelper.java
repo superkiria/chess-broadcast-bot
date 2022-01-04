@@ -46,8 +46,19 @@ public class GameHelper {
         caption = caption + "\n" + game.getOpening();
 
         if (!game.getResult().equals(GameResult.ONGOING)) {
-            String message = "\n" + game.getResult().value() + " " + game.getResult().getDescription();
-            caption = caption + message;
+            String message = "";
+            switch (game.getResult()) {
+                case WHITE_WON:
+                    message = "🏳️🏳️🏳️ White's victory";
+                    break;
+                case BLACK_WON:
+                    message = "🏴🏴🏴 Black's victory";
+                    break;
+                case DRAW:
+                    message = "🏁👔🏁 Draw";
+                    break;
+            }
+            caption = caption + "\n" + message;
         }
 
         if (game.getRound() != null && game.getRound().getEvent() != null) {
