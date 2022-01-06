@@ -5,6 +5,7 @@ import com.github.superkiria.cbbot.outgoing.keepers.SentMessageKeeper;
 import com.github.superkiria.cbbot.outgoing.model.ExtractedGame;
 import com.github.superkiria.cbbot.chatchain.ChatContext;
 import com.github.superkiria.cbbot.outgoing.model.GameKey;
+import com.github.superkiria.cbbot.outgoing.model.MarkedCaption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,12 +53,14 @@ public class PgnDispatcher {
                             .white(extractedGame.getWhite())
                             .black(extractedGame.getBlack())
                             .build();
+                    MarkedCaption markedCaption = makeMarkedCaptionFromGame(extractedGame.getGame());
                     ChatContext context = ChatContext.builder()
                             .chatId(chatId)
                             .round(extractedGame.getRound())
                             .white(extractedGame.getWhite())
                             .black(extractedGame.getBlack())
-                            .response(makeCaptionFromGame(extractedGame.getGame()))
+                            .response(markedCaption.getCaption())
+                            .entities(markedCaption.getEntities())
                             .key(key)
                             .build();
                     ChatContext existing = keeper.getGame(key);

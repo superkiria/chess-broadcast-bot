@@ -46,8 +46,8 @@ public class MessageSender {
                         now = new Date().getTime();
                     }
                     if (lastForUser.get(context.getChatId()) != null
-                            && now - lastForUser.get(context.getChatId()).getTime() < 3000) {
-                        Thread.sleep(3000 - now + lastForUser.get(context.getChatId()).getTime());
+                            && now - lastForUser.get(context.getChatId()).getTime() < 2000) {
+                        Thread.sleep(2000 - now + lastForUser.get(context.getChatId()).getTime());
                     }
                     last = new Date();
                     lastForUser.put(context.getChatId(), last);

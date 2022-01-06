@@ -17,7 +17,7 @@ public class CommentaryHelper {
         if (result.startsWith("0:")) {
             result = result.substring(2);
         }
-        return "| " + result;
+        return result;
     }
 
     public static String parseEval(String comment) {
@@ -39,8 +39,15 @@ public class CommentaryHelper {
         String comment = game.getCommentary().get(move);
         int moveNumber = move / 2 + move % 2;
         String forBlackMove = move % 2 == 0 ? ".." : "";
-        return moveNumber + "." + forBlackMove + " " + game.getHalfMoves().get(move - 1).getSan() + " " + CommentaryHelper.parseTime(comment) + " " + CommentaryHelper.parseEval(comment);
+        return moveNumber + "." + forBlackMove + " " + game.getHalfMoves().get(move - 1).getSan() + " " + CommentaryHelper.parseEval(comment);
+    }
 
+    public static String timeFromMovesList(Game game, int move) {
+        if (game.getHalfMoves().size() == 0 || game.getCommentary() == null) {
+            return "";
+        }
+        String comment = game.getCommentary().get(move);
+        return CommentaryHelper.parseTime(comment);
     }
 
 }

@@ -12,12 +12,15 @@ import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageCa
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageMedia;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
 import org.telegram.telegrambots.meta.api.objects.Message;
+import org.telegram.telegrambots.meta.api.objects.MessageEntity;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.api.objects.media.InputMediaPhoto;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 
 @Builder
 @Data
@@ -37,6 +40,7 @@ public class ChatContext {
     private InlineKeyboardMarkup inlineKeyboardMarkup;
     private Integer color;
     private GameKey key;
+    private List<MessageEntity> entities;
 
     public Message call(TelegramLongPollingBot bot) throws IllegalStateException, TelegramApiException {
         if (messageId != null && inputStream != null) {
@@ -67,6 +71,7 @@ public class ChatContext {
         return SendPhoto.builder()
                 .chatId(chatId)
                 .caption(response)
+                .captionEntities(entities)
                 .replyToMessageId(messageId)
                 .photo(new InputFile(inputStream, "file.png"))
                 .build();
