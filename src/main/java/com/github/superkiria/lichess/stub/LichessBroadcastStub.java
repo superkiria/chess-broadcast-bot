@@ -1,9 +1,8 @@
 package com.github.superkiria.lichess.stub;
 
-import com.github.superkiria.cbbot.chatchain.actors.ButtonClickActor;
-import com.github.superkiria.cbbot.incoming.lichess.model.LichessEvent;
-import com.github.superkiria.cbbot.incoming.lichess.model.LichessRound;
-import com.github.superkiria.cbbot.incoming.lichess.model.LichessTour;
+import com.github.superkiria.cbbot.lichess.model.LichessEvent;
+import com.github.superkiria.cbbot.lichess.model.LichessRound;
+import com.github.superkiria.cbbot.lichess.model.LichessTour;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,6 @@ import reactor.core.publisher.Flux;
 
 import java.time.Duration;
 import java.util.Collections;
-import java.util.Date;
-import java.util.List;
 
 @RequestMapping("/api")
 @RestController

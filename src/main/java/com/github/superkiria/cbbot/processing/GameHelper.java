@@ -4,7 +4,7 @@ import com.github.bhlangonijr.chesslib.Board;
 import com.github.bhlangonijr.chesslib.game.Game;
 import com.github.bhlangonijr.chesslib.game.GameResult;
 import com.github.bhlangonijr.chesslib.pgn.GameLoader;
-import com.github.superkiria.cbbot.outgoing.model.MarkedCaption;
+import com.github.superkiria.cbbot.sending.model.MarkedCaption;
 import com.github.superkiria.chess.svg.SvgBoardBuilder;
 import org.telegram.telegrambots.meta.api.objects.MessageEntity;
 
@@ -33,43 +33,6 @@ public class GameHelper {
         builder.init(color);
         ByteArrayOutputStream baos = saveDocumentToPngByteBuffer(builder.getDocument());
         return new ByteArrayInputStream(baos.toByteArray());
-    }
-
-    public static String makeCaptionFromGame(Game game) {
-        String gameName = game.getWhitePlayer().getName() + " - " + game.getBlackPlayer().getName();
-        String caption = gameName + "\n";
-
-        int current = game.getHalfMoves().size();
-
-        if (current > 1) {
-            caption = caption + moveFromMovesList(game, game.getHalfMoves().size() - 1) + "\n";
-        }
-
-        caption = caption + moveFromMovesList(game, current);
-
-        caption = caption + "\n" + game.getOpening();
-
-        if (!game.getResult().equals(GameResult.ONGOING)) {
-            String message = "";
-            switch (game.getResult()) {
-                case WHITE_WON:
-                    message = "🏳️🏳️🏳️ White's victory";
-                    break;
-                case BLACK_WON:
-                    message = "🏴🏴🏴 Black's victory";
-                    break;
-                case DRAW:
-                    message = "🏁👔🏁 Draw";
-                    break;
-            }
-            caption = caption + "\n" + message;
-        }
-
-        if (game.getRound() != null && game.getRound().getEvent() != null) {
-            caption = caption + "\n" + game.getRound().getEvent().getSite();
-        }
-
-        return caption;
     }
 
     public static MarkedCaption makeMarkedCaptionFromGame(Game game) {
@@ -132,12 +95,12 @@ public class GameHelper {
             } else {
                 time = timeFromMovesList(game, current) + " ⏱ " + timeFromMovesList(game, current - 1) + "\n";
             }
-            list.add(MessageEntity.builder()
-                    .type("code")
-                    .text(time)
-                    .offset(offset)
-                    .length(time.length())
-                    .build());
+//            list.add(MessageEntity.builder()
+//                    .type("code")
+//                    .text(time)
+//                    .offset(offset)
+//                    .length(time.length())
+//                    .build());
             offset += time.length();
             caption.append(time);
         }
@@ -162,7 +125,10 @@ public class GameHelper {
         offset += opening.length();
         caption.append(opening);
 
-        if (game.getRound() != null && game.getRound().getEvent() != null) {
+        if (game.getRound() != null
+                && game.getRound().getEvent() != null
+                && game.getRound().getEvent().getSite() != null
+                && game.getRound().getEvent().getSite().trim().length() > 0 ) {
             String site = game.getRound().getEvent().getSite();
             String linkText = "lichess";
             list.add(MessageEntity.builder()
