@@ -1,8 +1,7 @@
-package com.github.superkiria.cbbot;
+package com.github.superkiria.cbbot.main;
 
-import com.github.superkiria.cbbot.chatchain.ActorsChain;
-import com.github.superkiria.cbbot.chatchain.ChatContext;
-import com.github.superkiria.props.SecretProps;
+import com.github.superkiria.cbbot.actions.ActorsChain;
+import com.github.superkiria.cbbot.props.SecretProps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +35,7 @@ public class ChessBroadcastBot extends TelegramLongPollingBot {
 
     @Override
     public void onUpdateReceived(Update update) {
-        LOG.info("Message received: {}",
-                update);
+        LOG.info("Message received: {}", update.getMessage() != null ? update.getMessage().getFrom() : (update.getChannelPost() != null) ? "Channel post" : "Unknown");
         ChatContext context = ChatContext.builder().update(update).build();
         chain.startWithContext(context);
     }

@@ -1,4 +1,4 @@
-package com.github.superkiria.props;
+package com.github.superkiria.cbbot.props;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

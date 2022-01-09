@@ -1,7 +1,7 @@
-package com.github.superkiria.cbbot.chatchain.actors;
+package com.github.superkiria.cbbot.actions.actors;
 
-import com.github.superkiria.cbbot.chatchain.ChatActor;
-import com.github.superkiria.cbbot.chatchain.ChatContext;
+import com.github.superkiria.cbbot.actions.ChatActor;
+import com.github.superkiria.cbbot.main.ChatContext;
 import org.springframework.stereotype.Component;
 
 @Component

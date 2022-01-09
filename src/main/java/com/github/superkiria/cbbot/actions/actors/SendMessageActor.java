@@ -1,8 +1,8 @@
-package com.github.superkiria.cbbot.chatchain.actors;
+package com.github.superkiria.cbbot.actions.actors;
 
-import com.github.superkiria.cbbot.chatchain.ChatActor;
-import com.github.superkiria.cbbot.chatchain.ChatContext;
-import com.github.superkiria.cbbot.outgoing.MessageQueue;
+import com.github.superkiria.cbbot.actions.ChatActor;
+import com.github.superkiria.cbbot.main.ChatContext;
+import com.github.superkiria.cbbot.sending.MessageQueue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -18,7 +18,7 @@ public class SendMessageActor implements ChatActor {
 
     @Override
     public void act(ChatContext context) {
-        messageQueue.add(context);
+        messageQueue.addHighPriority(context);
     }
 
 }

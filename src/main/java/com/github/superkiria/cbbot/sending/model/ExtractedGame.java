@@ -1,4 +1,4 @@
-package com.github.superkiria.cbbot.outgoing.model;
+package com.github.superkiria.cbbot.sending.model;
 
 import com.github.bhlangonijr.chesslib.game.Game;
 import lombok.Builder;
@@ -9,7 +9,9 @@ import lombok.Data;
 public class ExtractedGame {
 
     private String pgn;
-    private String gameId;
+    private String round;
+    private String white;
+    private String black;
     private boolean hasMoves;
     private Game game;
 

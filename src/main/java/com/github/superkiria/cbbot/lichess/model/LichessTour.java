@@ -1,8 +1,14 @@
-package com.github.superkiria.cbbot.incoming.lichess.model;
+package com.github.superkiria.cbbot.lichess.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class LichessTour {
 
         private String description;

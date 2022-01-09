@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.Duration;
 
-@Component
+//@Component
 public class LichessStreamDumper {
 
     private final WebClient webClient;

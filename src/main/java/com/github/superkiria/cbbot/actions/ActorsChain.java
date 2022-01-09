@@ -1,9 +1,7 @@
-package com.github.superkiria.cbbot.chatchain;
+package com.github.superkiria.cbbot.actions;
 
-import com.github.superkiria.cbbot.chatchain.actors.ButtonClickActor;
-import com.github.superkiria.cbbot.chatchain.actors.ChatIdExtractor;
-import com.github.superkiria.cbbot.chatchain.actors.MenuActor;
-import com.github.superkiria.cbbot.chatchain.actors.SendMessageActor;
+import com.github.superkiria.cbbot.actions.actors.*;
+import com.github.superkiria.cbbot.main.ChatContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
@@ -19,7 +17,10 @@ public class ActorsChain {
     @Autowired
     public ActorsChain(ApplicationContext context) {
         actors.add(context.getBean(ChatIdExtractor.class));
-        actors.add(context.getBean(MenuActor.class));
+        actors.add(context.getBean(FilterActor.class));
+        actors.add(context.getBean(CancelSubscriptionActor.class));
+        actors.add(context.getBean(TourTableMenuActor.class));
+        actors.add(context.getBean(StatusActor.class));
         actors.add(context.getBean(ButtonClickActor.class));
         actors.add(context.getBean(SendMessageActor.class));
     }
@@ -27,7 +28,9 @@ public class ActorsChain {
     public void startWithContext(ChatContext context) {
         Thread thread = new Thread(() -> {
             for (ChatActor actor : actors) {
-                actor.act(context);
+                if (!context.isSkip()) {
+                    actor.act(context);
+                }
             }
         });
         thread.start();
