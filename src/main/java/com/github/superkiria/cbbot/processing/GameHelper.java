@@ -6,12 +6,10 @@ import com.github.bhlangonijr.chesslib.game.GameResult;
 import com.github.bhlangonijr.chesslib.pgn.GameLoader;
 import com.github.superkiria.cbbot.sending.model.MarkedCaption;
 import com.github.superkiria.chess.svg.SvgBoardBuilder;
-import org.telegram.telegrambots.meta.api.objects.MessageEntity;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import static com.github.superkiria.cbbot.processing.CommentaryHelper.moveFromMovesList;
@@ -36,10 +34,7 @@ public class GameHelper {
     }
 
     public static MarkedCaption makeMarkedCaptionFromGame(Game game) {
-        StringBuilder caption = new StringBuilder();
-        List<MessageEntity> list = new ArrayList<>();
-
-        int offset = 0;
+        CaptionMarkupConstructor constructor = new CaptionMarkupConstructor();
 
         if (!game.getResult().equals(GameResult.ONGOING)) {
             String result = "";
@@ -54,39 +49,18 @@ public class GameHelper {
                     result = "👔 Draw\n";
                     break;
             }
-            list.add(MessageEntity.builder()
-                    .type("bold")
-                    .text(result)
-                    .offset(offset)
-                    .length(result.length())
-                    .build());
-            offset += result.length();
-            caption.append(result);
+            constructor.addString(result, "bold");
         }
 
         int current = game.getHalfMoves().size();
 
         if (current > 1) {
             String previousMove = moveFromMovesList(game, game.getHalfMoves().size() - 1) + "\n";
-            list.add(MessageEntity.builder()
-                    .type("code")
-                    .text(previousMove)
-                    .offset(offset)
-                    .length(previousMove.length())
-                    .build());
-            offset += previousMove.length();
-            caption.append(previousMove);
+            constructor.addString(previousMove, "code");
         }
 
         String currentMove = moveFromMovesList(game, current) + "\n";
-        list.add(MessageEntity.builder()
-                .type("code")
-                .text(currentMove)
-                .offset(offset)
-                .length(currentMove.length())
-                .build());
-        offset += currentMove.length();
-        caption.append(currentMove);
+        constructor.addString(currentMove, "code");
 
         if (current > 1) {
             String time;
@@ -95,53 +69,23 @@ public class GameHelper {
             } else {
                 time = timeFromMovesList(game, current) + " ⏱ " + timeFromMovesList(game, current - 1) + "\n";
             }
-//            list.add(MessageEntity.builder()
-//                    .type("code")
-//                    .text(time)
-//                    .offset(offset)
-//                    .length(time.length())
-//                    .build());
-            offset += time.length();
-            caption.append(time);
+            constructor.addString(time, null);
         }
 
         String gameName = game.getWhitePlayer().getName() + " - " + game.getBlackPlayer().getName() + "\n";
-//        list.add(MessageEntity.builder()
-//                        .type("underline")
-//                        .text(gameName)
-//                        .offset(offset)
-//                        .length(gameName.length())
-//                        .build());
-        offset += gameName.length();
-        caption.append(gameName);
+        constructor.addString(gameName, "bold");
 
         String opening = game.getOpening() + "\n";
-        list.add(MessageEntity.builder()
-                .type("italic")
-                .text(opening)
-                .offset(offset)
-                .length(opening.length())
-                .build());
-        offset += opening.length();
-        caption.append(opening);
+        constructor.addString(opening, "italic");
 
         if (game.getRound() != null
                 && game.getRound().getEvent() != null
                 && game.getRound().getEvent().getSite() != null
-                && game.getRound().getEvent().getSite().trim().length() > 0 ) {
-            String site = game.getRound().getEvent().getSite();
-            String linkText = "lichess";
-            list.add(MessageEntity.builder()
-                    .type("text_link")
-                    .text(linkText)
-                    .url(site)
-                    .offset(offset)
-                    .length(linkText.length())
-                    .build());
-            caption.append(linkText);
+                && game.getRound().getEvent().getSite().trim().startsWith("http")) {
+            constructor.addLink("check on lichess", game.getRound().getEvent().getSite());
         }
 
-        return MarkedCaption.builder().caption(caption.toString()).entities(list).build();
+        return MarkedCaption.builder().caption(constructor.getCaption()).entities(constructor.getEntities()).build();
 
     }
 

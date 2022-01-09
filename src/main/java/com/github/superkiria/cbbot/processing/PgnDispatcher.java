@@ -59,13 +59,15 @@ public class PgnDispatcher {
                         LichessEvent lichessEvent = subscriptionManager.currentEvent();
                         LichessRound lichessRound = subscriptionManager.currentRound();
                             if (lichessEvent != null && lichessEvent.getTour() != null && lichessRound != null) {
-                                String announcement = lichessEvent.getTour().getName() + " - "
-                                        + lichessRound.getName() + "\n"
-                                        + lichessEvent.getTour().getDescription() + "\n"
-                                        + lichessEvent.getTour().getUrl() + "\n"
-                                        + lichessRound.getUrl();
+                                CaptionMarkupConstructor constructor = new CaptionMarkupConstructor();
+                                constructor.addStringLn(lichessEvent.getTour().getName(), "bold");
+                                constructor.addStringLn(lichessRound.getName(), "bold");
+                                constructor.addStringLn(lichessEvent.getTour().getDescription(), null);
+                                if (lichessRound.getUrl().startsWith("http")) {
+                                    constructor.addLink("check on lichess", lichessRound.getUrl());
+                                }
                                 messageQueue.add(ChatContext.builder()
-                                        .chatId(chatId).response(announcement).build());
+                                        .chatId(chatId).response(constructor.getCaption()).entities(constructor.getEntities()).build());
                                 publishedRounds.add(subscriptionManager.currentRound().getId());
                             }
                     }
