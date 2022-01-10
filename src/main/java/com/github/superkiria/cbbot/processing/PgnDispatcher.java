@@ -93,14 +93,14 @@ public class PgnDispatcher {
                         color = existing.getColor();
                     } else {
                         color = keeper.getCount();
-                        keeper.putGame(key, context);
                         LOG.info("New color {} for game {}", color, key);
                     }
                     context.setColor(color);
                     context.setInputStream(makePictureFromGame(extractedGame.getGame(), color));
+                    keeper.putGame(key, context);
                     messageQueue.add(context);
                 } catch (Exception e) {
-                    e.printStackTrace();
+                    LOG.error("Error on making a move: ", e);
                 }
             }
         }).start();
