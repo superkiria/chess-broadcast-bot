@@ -87,7 +87,7 @@ public class LichessConsumer {
     @SneakyThrows
     public List<LichessEvent> getLichessBroadcasts() {
         long now  = new Date().getTime();
-        if (eventsCache != null && now - eventsCacheLastCall.getTime() < 300_000) {
+        if (eventsCache != null && now - eventsCacheLastCall.getTime() < 150_000) {
             LOG.debug("getLichessBroadcasts from cache");
             return eventsCache;
         }

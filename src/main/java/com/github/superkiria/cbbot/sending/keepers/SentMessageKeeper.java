@@ -32,4 +32,10 @@ public class SentMessageKeeper {
         return sentMessagesForGames.size();
     }
 
+    public void putGameIfAbsent(GameKey key, ChatContext context) {
+        if (sentMessagesForGames.containsKey(key)) {
+            return;
+        }
+        sentMessagesForGames.put(key.toString(), context);
+    }
 }

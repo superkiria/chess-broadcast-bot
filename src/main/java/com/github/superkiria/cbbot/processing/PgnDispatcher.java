@@ -78,15 +78,6 @@ public class PgnDispatcher {
                             .black(extractedGame.getBlack())
                             .build();
                     MarkedCaption markedCaption = makeMarkedCaptionFromGame(extractedGame.getGame());
-                    ChatContext context = ChatContext.builder()
-                            .chatId(chatId)
-                            .round(extractedGame.getRound())
-                            .white(extractedGame.getWhite())
-                            .black(extractedGame.getBlack())
-                            .response(markedCaption.getCaption())
-                            .entities(markedCaption.getEntities())
-                            .key(key)
-                            .build();
                     ChatContext existing = keeper.getGame(key);
                     int color;
                     if (existing != null) {
@@ -95,9 +86,18 @@ public class PgnDispatcher {
                         color = keeper.getCount();
                         LOG.info("New color {} for game {}", color, key);
                     }
+                    ChatContext context = ChatContext.builder()
+                            .chatId(chatId)
+                            .round(extractedGame.getRound())
+                            .white(extractedGame.getWhite())
+                            .black(extractedGame.getBlack())
+                            .response(markedCaption.getCaption() + " " + color)
+                            .entities(markedCaption.getEntities())
+                            .key(key)
+                            .build();
                     context.setColor(color);
                     context.setInputStream(makePictureFromGame(extractedGame.getGame(), color));
-                    keeper.putGame(key, context);
+                    keeper.putGameIfAbsent(key, context);
                     messageQueue.add(context);
                 } catch (Exception e) {
                     LOG.error("Error on making a move: ", e);
