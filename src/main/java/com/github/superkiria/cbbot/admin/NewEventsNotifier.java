@@ -40,7 +40,7 @@ public class NewEventsNotifier {
             if (!sentNotifications.contains(event.getTour().getId())) {
                 ChatContext context = ChatContext.builder()
                         .response(eventInfo(event))
-                        .inlineKeyboardMarkup(eventSubscribeButton(event.getTour().getId()))
+//                        .inlineKeyboardMarkup(eventSubscribeButton(event.getTour().getId()))
                         .chatId(adminChatId)
                         .build();
                 messageQueue.add(context);

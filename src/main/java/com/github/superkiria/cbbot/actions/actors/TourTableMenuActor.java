@@ -32,11 +32,10 @@ public class TourTableMenuActor implements ChatActor {
         if (context.getUpdate().getMessage() == null) {
             return;
         }
-        if (!context.getUpdate().getMessage().getText().strip().equals("tt")) {
+        if (!context.getUpdate().getMessage().getText().strip().equalsIgnoreCase("tt")) {
             return;
         }
         List<LichessEvent> ongoingTours = broadcastConsumer.getActualLichessBroadcasts();
-//        List<LichessEvent> ongoingTours = lichessBroascasts;
 
         LOG.info("Gathered info about {} tours", ongoingTours.size());
 

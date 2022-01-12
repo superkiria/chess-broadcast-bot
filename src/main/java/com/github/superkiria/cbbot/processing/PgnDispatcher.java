@@ -5,7 +5,7 @@ import com.github.superkiria.cbbot.admin.SubscriptionManager;
 import com.github.superkiria.cbbot.lichess.model.LichessEvent;
 import com.github.superkiria.cbbot.lichess.model.LichessRound;
 import com.github.superkiria.cbbot.sending.MessageQueue;
-import com.github.superkiria.cbbot.sending.keepers.SentMessageKeeper;
+import com.github.superkiria.cbbot.sending.keepers.SentDataKeeper;
 import com.github.superkiria.cbbot.sending.model.ExtractedGame;
 import com.github.superkiria.cbbot.main.ChatContext;
 import com.github.superkiria.cbbot.sending.model.GameKey;
@@ -16,10 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 import static com.github.superkiria.cbbot.processing.GameHelper.*;
 
@@ -32,14 +29,14 @@ public class PgnDispatcher {
     private String chatId;
 
     private final MessageQueue messageQueue;
-    private final SentMessageKeeper keeper;
+    private final SentDataKeeper keeper;
     private final PgnQueue incoming;
     private final SubscriptionManager subscriptionManager;
 
     private final Set<String> publishedRounds = new HashSet<>();
 
     @Autowired
-    public PgnDispatcher(MessageQueue messageQueue, SentMessageKeeper keeper, PgnQueue incoming, SubscriptionManager subscriptionManager) {
+    public PgnDispatcher(MessageQueue messageQueue, SentDataKeeper keeper, PgnQueue incoming, SubscriptionManager subscriptionManager) {
         this.messageQueue = messageQueue;
         this.keeper = keeper;
         this.incoming = incoming;
@@ -51,8 +48,9 @@ public class PgnDispatcher {
         new Thread(() -> {
             while (true) {
                 LOG.debug("Trying to extract a game");
+                ExtractedGame extractedGame = null;
                 try {
-                    ExtractedGame extractedGame = extractNextGame();
+                    extractedGame = extractNextGame();
 
                     if (subscriptionManager.currentRound() != null
                             && !publishedRounds.contains(subscriptionManager.currentRound().getId())) {
@@ -78,29 +76,27 @@ public class PgnDispatcher {
                             .black(extractedGame.getBlack())
                             .build();
                     MarkedCaption markedCaption = makeMarkedCaptionFromGame(extractedGame.getGame());
-                    ChatContext existing = keeper.getGame(key);
-                    int color;
-                    if (existing != null) {
-                        color = existing.getColor();
-                    } else {
-                        color = keeper.getCount();
+                    Integer color = keeper.getColor(key);
+                    if (color == null) {
+                        color = keeper.getColorsCount();
                         LOG.info("New color {} for game {}", color, key);
+                        keeper.putColor(key, color);
                     }
                     ChatContext context = ChatContext.builder()
                             .chatId(chatId)
                             .round(extractedGame.getRound())
                             .white(extractedGame.getWhite())
                             .black(extractedGame.getBlack())
-                            .response(markedCaption.getCaption() + " " + color)
+                            .response(markedCaption.getCaption())
                             .entities(markedCaption.getEntities())
                             .key(key)
                             .build();
                     context.setColor(color);
                     context.setInputStream(makePictureFromGame(extractedGame.getGame(), color));
-                    keeper.putGameIfAbsent(key, context);
                     messageQueue.add(context);
                 } catch (Exception e) {
                     LOG.error("Error on making a move: ", e);
+                    LOG.error(String.valueOf(extractedGame));
                 }
             }
         }).start();
@@ -127,8 +123,9 @@ public class PgnDispatcher {
                     .black(game.getBlackPlayer().getName())
                     .build();
             LOG.debug("Game extracted");
-        } catch (RuntimeException e) {
-            LOG.error(e.toString());
+        } catch (Exception e) {
+            LOG.error("Game extraction failed", e);
+            LOG.error(String.join("\n", buffer));
         }
         return extractedGame;
     }
