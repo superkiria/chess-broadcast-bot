@@ -27,7 +27,8 @@ public class StatusActor implements ChatActor {
         if (context.getUpdate().getMessage() == null) {
             return;
         }
-        if (!context.getUpdate().getMessage().getText().strip().equalsIgnoreCase("st")) {
+        if (context.getUpdate().getMessage().getText() != null
+                && !context.getUpdate().getMessage().getText().strip().equalsIgnoreCase("st")) {
             return;
         }
         context.setResponse("Status:\n"

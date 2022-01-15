@@ -23,7 +23,8 @@ public class CancelSubscriptionActor implements ChatActor {
         if (context.getUpdate().getMessage() == null) {
             return;
         }
-        if (!context.getUpdate().getMessage().getText().strip().equalsIgnoreCase("cancel")) {
+        if (context.getUpdate().getMessage().getText() != null
+                && !context.getUpdate().getMessage().getText().strip().equalsIgnoreCase("cancel")) {
             return;
         }
         subscriptionManager.cancelSubscription();

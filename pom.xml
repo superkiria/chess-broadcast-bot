@@ -79,8 +79,10 @@
 						</exclude>
 					</excludes>
 				</configuration>
+
 			</plugin>
 		</plugins>
+		<finalName>chess-bot</finalName>
 	</build>
 
 </project>
