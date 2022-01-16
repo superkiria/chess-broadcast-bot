@@ -2,6 +2,7 @@ package com.github.superkiria.cbbot.processing;
 
 import com.github.superkiria.cbbot.lichess.model.LichessEvent;
 import com.github.superkiria.cbbot.lichess.model.LichessRound;
+import com.github.superkiria.cbbot.main.ChatContext;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
@@ -32,6 +33,21 @@ public class ComposeMessageHelper {
                 .build();
         markup.keyboardRow(Collections.singletonList(button));
         return markup.build();
+    }
+
+    public static ChatContext newRoundMessage(LichessEvent lichessEvent, LichessRound lichessRound, String chatId) {
+        if (lichessEvent == null || lichessEvent.getTour() == null || lichessRound == null) {
+            return null;
+        }
+        CaptionMarkupConstructor constructor = new CaptionMarkupConstructor();
+        constructor.addStringLn(lichessEvent.getTour().getName(), "bold");
+        constructor.addStringLn(lichessRound.getName(), "bold");
+        constructor.addStringLn(lichessEvent.getTour().getDescription(), null);
+        if (lichessRound.getUrl().startsWith("http")) {
+            constructor.addLink("check on lichess", lichessRound.getUrl());
+        }
+        return ChatContext.builder()
+                .chatId(chatId).response(constructor.getCaption()).entities(constructor.getEntities()).build();
     }
 
 }

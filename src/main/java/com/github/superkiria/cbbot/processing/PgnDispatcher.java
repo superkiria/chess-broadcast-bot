@@ -18,6 +18,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+import static com.github.superkiria.cbbot.main.Stickers.getRandomStickerId;
+import static com.github.superkiria.cbbot.processing.ComposeMessageHelper.newRoundMessage;
 import static com.github.superkiria.cbbot.processing.GameHelper.*;
 
 @Component
@@ -54,20 +56,9 @@ public class PgnDispatcher {
 
                     if (subscriptionManager.currentRound() != null
                             && !publishedRounds.contains(subscriptionManager.currentRound().getId())) {
-                        LichessEvent lichessEvent = subscriptionManager.currentEvent();
-                        LichessRound lichessRound = subscriptionManager.currentRound();
-                            if (lichessEvent != null && lichessEvent.getTour() != null && lichessRound != null) {
-                                CaptionMarkupConstructor constructor = new CaptionMarkupConstructor();
-                                constructor.addStringLn(lichessEvent.getTour().getName(), "bold");
-                                constructor.addStringLn(lichessRound.getName(), "bold");
-                                constructor.addStringLn(lichessEvent.getTour().getDescription(), null);
-                                if (lichessRound.getUrl().startsWith("http")) {
-                                    constructor.addLink("check on lichess", lichessRound.getUrl());
-                                }
-                                messageQueue.add(ChatContext.builder()
-                                        .chatId(chatId).response(constructor.getCaption()).entities(constructor.getEntities()).build());
+                                messageQueue.add(ChatContext.builder().stickerId(getRandomStickerId()).chatId(chatId).build());
+                                messageQueue.add(newRoundMessage(subscriptionManager.currentEvent(), subscriptionManager.currentRound(), chatId));
                                 publishedRounds.add(subscriptionManager.currentRound().getId());
-                            }
                     }
 
                     GameKey key = GameKey.builder()

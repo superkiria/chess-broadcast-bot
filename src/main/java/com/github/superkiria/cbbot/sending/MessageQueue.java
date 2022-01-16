@@ -12,6 +12,9 @@ public class MessageQueue {
     private final BlockingDeque<ChatContext> deque = new LinkedBlockingDeque<>();
 
     public void add(ChatContext o) {
+        if (o == null) {
+            return;
+        }
         deque.addLast(o);
     }
 

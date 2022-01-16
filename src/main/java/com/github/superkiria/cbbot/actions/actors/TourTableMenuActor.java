@@ -29,11 +29,10 @@ public class TourTableMenuActor implements ChatActor {
 
     @Override
     public void act(ChatContext context) {
-        if (context.getUpdate().getMessage() == null) {
+        if (context.getUpdate().getMessage() == null || context.getUpdate().getMessage().getText() == null) {
             return;
         }
-        if (context.getUpdate().getMessage().getText() != null
-                && !context.getUpdate().getMessage().getText().strip().equalsIgnoreCase("tt")) {
+        if (!context.getUpdate().getMessage().getText().strip().equalsIgnoreCase("tt")) {
             return;
         }
         List<LichessEvent> ongoingTours = broadcastConsumer.getActualLichessBroadcasts();

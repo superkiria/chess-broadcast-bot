@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.methods.send.SendSticker;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageCaption;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageMedia;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
@@ -40,8 +41,13 @@ public class ChatContext {
     private Integer color;
     private GameKey key;
     private List<MessageEntity> entities;
+    private String stickerId;
 
     public Message call(TelegramLongPollingBot bot) throws IllegalStateException, TelegramApiException {
+        if (stickerId != null) {
+            bot.execute(makeSendSticker());
+            return null;
+        }
         if (messageId != null && inputStream != null) {
              bot.execute(makeEditMessageMedia());
              return null;
@@ -98,6 +104,14 @@ public class ChatContext {
                 .chatId(chatId)
                 .messageId(messageId)
                 .media(InputMediaPhoto.builder().caption(response).entities(entities).media("attach://file.png").mediaName("file.png").newMediaStream(inputStream).isNewMedia(true).build())
+                .build();
+    }
+
+    private SendSticker makeSendSticker() {
+        return SendSticker.builder()
+                .chatId(chatId)
+                .sticker(new InputFile(stickerId))
+                .disableNotification(true)
                 .build();
     }
 
