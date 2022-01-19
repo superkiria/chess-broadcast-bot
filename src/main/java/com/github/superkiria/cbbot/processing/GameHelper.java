@@ -35,7 +35,6 @@ public class GameHelper {
 
     public static MarkedCaption makeMarkedCaptionFromGame(Game game) {
         CaptionMarkupConstructor constructor = new CaptionMarkupConstructor();
-
         if (!game.getResult().equals(GameResult.ONGOING)) {
             String result = "";
             switch (game.getResult()) {
@@ -51,17 +50,13 @@ public class GameHelper {
             }
             constructor.addString(result, "bold");
         }
-
         int current = game.getHalfMoves().size();
-
         if (current > 1) {
-            String previousMove = moveFromMovesList(game, game.getHalfMoves().size() - 1) + "\n";
-            constructor.addString(previousMove, "code");
+            constructor.addString(moveFromMovesList(game, game.getHalfMoves().size() - 1) + "\n", "code");
         }
-
-        String currentMove = moveFromMovesList(game, current) + "\n";
-        constructor.addString(currentMove, "code");
-
+        if (current > 0) {
+            constructor.addString(moveFromMovesList(game, current) + "\n", "code");
+        }
         if (current > 1) {
             String time;
             if (current % 2 == 0) {
@@ -69,24 +64,21 @@ public class GameHelper {
             } else {
                 time = timeFromMovesList(game, current) + " ⏱ " + timeFromMovesList(game, current - 1) + "\n";
             }
-            constructor.addString(time, null);
+            if (time.length() > " ⏱ \n".length()) {
+                constructor.addString(time, null);
+            }
         }
-
-        String gameName = game.getWhitePlayer().getName() + " - " + game.getBlackPlayer().getName() + "\n";
-        constructor.addString(gameName, "bold");
-
-        String opening = game.getOpening() + "\n";
-        constructor.addString(opening, "italic");
-
+        constructor.addString(game.getWhitePlayer().getName() + " - " + game.getBlackPlayer().getName() + "\n", "bold");
+        if (current > 0) {
+            constructor.addString(game.getOpening() + "\n", "italic");
+        }
         if (game.getRound() != null
                 && game.getRound().getEvent() != null
                 && game.getRound().getEvent().getSite() != null
                 && game.getRound().getEvent().getSite().trim().startsWith("http")) {
             constructor.addLink("check on lichess", game.getRound().getEvent().getSite());
         }
-
         return MarkedCaption.builder().caption(constructor.getCaption()).entities(constructor.getEntities()).build();
-
     }
 
 }
