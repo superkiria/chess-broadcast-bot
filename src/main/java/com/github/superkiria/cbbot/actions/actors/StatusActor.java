@@ -31,7 +31,9 @@ public class StatusActor implements ChatActor {
             return;
         }
         context.setResponse("Status:\n"
-                + (Runtime.getRuntime().totalMemory() / 1024 / 1024) + " / " + (Runtime.getRuntime().maxMemory() / 1024 / 1024) + "\n"
+                + ((Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024 / 1024)
+                + " / " + (Runtime.getRuntime().totalMemory() / 1024 / 1024)
+                + " / " + (Runtime.getRuntime().maxMemory() / 1024 / 1024) + "\n"
                 + messageQueue.size() + "\n"
                 + subscriptionManager.getCurrentSubscription() + "\n"
                 + subscriptionManager.bestRoundToSubscribe() + "\n"
