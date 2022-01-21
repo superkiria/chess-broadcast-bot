@@ -11,6 +11,7 @@ public class SentDataKeeper {
 
     private final Map<String, Integer> messageIds  = new ConcurrentHashMap<>();
     private final Map<String, Integer> colors  = new ConcurrentHashMap<>();
+    private final Map<Integer, Integer> forwards = new ConcurrentHashMap<>();
 
     public Integer getMessageId(GameKey gameKey) {
         if (gameKey == null) {
@@ -20,7 +21,6 @@ public class SentDataKeeper {
     }
 
     public void putMessageId(GameKey gameKey, Integer messageId) {
-
         messageIds.put(gameKey.toString(), messageId);
     }
 
@@ -33,6 +33,14 @@ public class SentDataKeeper {
 
     public void putColor(GameKey gameKey, int color) {
         colors.put(gameKey.toString(), color);
+    }
+
+    public Integer getForward(Integer from) {
+        return forwards.get(from);
+    }
+
+    public void putForward(Integer from, Integer to) {
+        forwards.put(from, to);
     }
 
     public void clear() {

@@ -31,6 +31,7 @@ public class ChatContext {
     private boolean skip;
     private String chatId;
     private Integer messageId;
+    private Integer forwardedReplyMessageId;
     private Update update;
     private String response;
     private InputStream inputStream;
@@ -42,15 +43,20 @@ public class ChatContext {
     private GameKey key;
     private List<MessageEntity> entities;
     private String stickerId;
+    private String fileId;
 
     public Message call(TelegramLongPollingBot bot) throws IllegalStateException, TelegramApiException {
         if (stickerId != null) {
             bot.execute(makeSendSticker());
             return null;
         }
+        if (forwardedReplyMessageId != null && fileId != null) {
+            LOG.info("{}", makeSendExistingPhoto());
+            bot.execute(makeSendExistingPhoto());
+            return null;
+        }
         if (messageId != null && inputStream != null) {
-             bot.execute(makeEditMessageMedia());
-             return null;
+             return (Message) bot.execute(makeEditMessageMedia());
         }
         if (this.getInputStream() != null) {
             try {
@@ -88,6 +94,16 @@ public class ChatContext {
                 .captionEntities(entities)
                 .replyToMessageId(messageId)
                 .photo(new InputFile(inputStream, "file.png"))
+                .build();
+    }
+
+    private SendPhoto makeSendExistingPhoto() {
+        return SendPhoto.builder()
+                .chatId(chatId)
+                .caption(response)
+                .captionEntities(entities)
+                .replyToMessageId(forwardedReplyMessageId)
+                .photo(new InputFile(fileId))
                 .build();
     }
 
