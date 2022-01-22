@@ -6,6 +6,8 @@ import com.github.superkiria.cbbot.admin.SubscriptionManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.Locale;
+
 @Component
 public class CancelSubscriptionActor implements ChatActor {
 
@@ -21,7 +23,8 @@ public class CancelSubscriptionActor implements ChatActor {
         if (context.getUpdate().getMessage() == null) {
             return;
         }
-        if (!context.getUpdate().getMessage().getText().strip().equals("cancel")) {
+        if (context.getUpdate().getMessage().getText() != null
+                && !context.getUpdate().getMessage().getText().strip().equalsIgnoreCase("cancel")) {
             return;
         }
         subscriptionManager.cancelSubscription();

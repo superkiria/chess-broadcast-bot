@@ -25,21 +25,25 @@ public class CommentaryHelper {
             return "";
         }
         int start = comment.lastIndexOf("%eval");
-        if (start < 0) {
+        int end = comment.indexOf(']', start);
+        if (start < 0 || end < 0 || end <= start) {
             return "";
         }
-        int end = comment.indexOf(']', start);
         return "| " + comment.substring(start + 6, end);
     }
 
     public static String moveFromMovesList(Game game, int move) {
-        if (game.getHalfMoves().size() == 0 || game.getCommentary() == null) {
+        if (game.getHalfMoves().size() == 0) {
             return "";
         }
-        String comment = game.getCommentary().get(move);
         int moveNumber = move / 2 + move % 2;
         String forBlackMove = move % 2 == 0 ? ".." : "";
-        return moveNumber + "." + forBlackMove + " " + game.getHalfMoves().get(move - 1).getSan() + " " + CommentaryHelper.parseEval(comment);
+        String result = moveNumber + "." + forBlackMove + " " + game.getHalfMoves().get(move - 1).getSan();
+        if (game.getCommentary() != null) {
+            String comment = game.getCommentary().get(move);
+            result = result + " " + CommentaryHelper.parseEval(comment);
+        }
+        return result;
     }
 
     public static String timeFromMovesList(Game game, int move) {

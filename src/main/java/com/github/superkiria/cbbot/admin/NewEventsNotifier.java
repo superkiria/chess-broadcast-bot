@@ -14,7 +14,6 @@ import java.util.List;
 import java.util.Set;
 
 import static com.github.superkiria.cbbot.processing.ComposeMessageHelper.eventInfo;
-import static com.github.superkiria.cbbot.processing.ComposeMessageHelper.eventSubscribeButton;
 
 @Component
 public class NewEventsNotifier {
@@ -33,14 +32,13 @@ public class NewEventsNotifier {
         this.messageQueue = messageQueue;
     }
 
-    @Scheduled(fixedDelay = 3600_000, initialDelay = 10_000)
+    @Scheduled(fixedDelay = 1214_000, initialDelay = 60_000)
     void start() {
         List<LichessEvent> currentBroadcasts = lichessConsumer.getActualLichessBroadcasts();
         for (LichessEvent event : currentBroadcasts) {
             if (!sentNotifications.contains(event.getTour().getId())) {
                 ChatContext context = ChatContext.builder()
-                        .response(eventInfo(event))
-                        .inlineKeyboardMarkup(eventSubscribeButton(event.getTour().getId()))
+                        .response("🍀 " + eventInfo(event))
                         .chatId(adminChatId)
                         .build();
                 messageQueue.add(context);

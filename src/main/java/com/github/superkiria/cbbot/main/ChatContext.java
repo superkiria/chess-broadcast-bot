@@ -1,6 +1,7 @@
 package com.github.superkiria.cbbot.main;
 
 import com.github.superkiria.cbbot.sending.model.GameKey;
+import com.github.superkiria.cbbot.sending.model.MarkedCaption;
 import lombok.Builder;
 import lombok.Data;
 import org.slf4j.Logger;
@@ -8,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
+import org.telegram.telegrambots.meta.api.methods.send.SendSticker;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageCaption;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageMedia;
 import org.telegram.telegrambots.meta.api.objects.InputFile;
@@ -19,17 +21,19 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 @Builder
 @Data
-public class ChatContext {
+public class ChatContext implements Comparable<ChatContext> {
 
     private final static Logger LOG = LoggerFactory.getLogger(ChatContext.class);
 
     private boolean skip;
     private String chatId;
     private Integer messageId;
+    private Integer forwardedReplyMessageId;
     private Update update;
     private String response;
     private InputStream inputStream;
@@ -40,11 +44,23 @@ public class ChatContext {
     private Integer color;
     private GameKey key;
     private List<MessageEntity> entities;
+    private String stickerId;
+    private String fileId;
+    private MarkedCaption shortMarkedCaption;
+    private String opening;
+    private Long scheduledTime;
 
     public Message call(TelegramLongPollingBot bot) throws IllegalStateException, TelegramApiException {
+        if (stickerId != null) {
+            bot.execute(makeSendSticker());
+            return null;
+        }
+        if (forwardedReplyMessageId != null && fileId != null) {
+            bot.execute(makeSendExistingPhoto());
+            return null;
+        }
         if (messageId != null && inputStream != null) {
-             bot.execute(makeEditMessageMedia());
-             return null;
+             return (Message) bot.execute(makeEditMessageMedia());
         }
         if (this.getInputStream() != null) {
             try {
@@ -85,6 +101,16 @@ public class ChatContext {
                 .build();
     }
 
+    private SendPhoto makeSendExistingPhoto() {
+        return SendPhoto.builder()
+                .chatId(chatId)
+                .caption(shortMarkedCaption.getCaption())
+                .captionEntities(shortMarkedCaption.getEntities())
+                .replyToMessageId(forwardedReplyMessageId)
+                .photo(new InputFile(fileId))
+                .build();
+    }
+
     private EditMessageCaption makeEditMessageCaption() {
         return EditMessageCaption.builder()
                 .chatId(chatId)
@@ -101,4 +127,22 @@ public class ChatContext {
                 .build();
     }
 
+    private SendSticker makeSendSticker() {
+        return SendSticker.builder()
+                .chatId(chatId)
+                .sticker(new InputFile(stickerId))
+                .disableNotification(true)
+                .build();
+    }
+
+    @Override
+    public int compareTo(ChatContext chatContext) {
+        if (scheduledTime == null) {
+            scheduledTime = new Date().getTime();
+        }
+        if (chatContext.getScheduledTime() == null) {
+            chatContext.setScheduledTime(new Date().getTime());
+        }
+        return scheduledTime.compareTo(chatContext.getScheduledTime());
+    }
 }

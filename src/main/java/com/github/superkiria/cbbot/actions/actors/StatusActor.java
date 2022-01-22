@@ -24,13 +24,16 @@ public class StatusActor implements ChatActor {
 
     @Override
     public void act(ChatContext context) {
-        if (context.getUpdate().getMessage() == null) {
+        if (context.getUpdate().getMessage() == null || context.getUpdate().getMessage().getText() == null) {
             return;
         }
-        if (!context.getUpdate().getMessage().getText().strip().equals("status")) {
+        if (!context.getUpdate().getMessage().getText().strip().equalsIgnoreCase("st")) {
             return;
         }
         context.setResponse("Status:\n"
+                + ((Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024 / 1024)
+                + " / " + (Runtime.getRuntime().totalMemory() / 1024 / 1024)
+                + " / " + (Runtime.getRuntime().maxMemory() / 1024 / 1024) + "\n"
                 + messageQueue.size() + "\n"
                 + subscriptionManager.getCurrentSubscription() + "\n"
                 + subscriptionManager.bestRoundToSubscribe() + "\n"

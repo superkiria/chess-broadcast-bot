@@ -4,8 +4,12 @@ import com.github.bhlangonijr.chesslib.Board;
 import com.github.bhlangonijr.chesslib.game.Game;
 import com.github.bhlangonijr.chesslib.game.GameResult;
 import com.github.bhlangonijr.chesslib.pgn.GameLoader;
+import com.github.superkiria.cbbot.sending.keepers.SentDataKeeper;
+import com.github.superkiria.cbbot.sending.model.GameKey;
 import com.github.superkiria.cbbot.sending.model.MarkedCaption;
 import com.github.superkiria.chess.svg.SvgBoardBuilder;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -16,7 +20,15 @@ import static com.github.superkiria.cbbot.processing.CommentaryHelper.moveFromMo
 import static com.github.superkiria.cbbot.processing.CommentaryHelper.timeFromMovesList;
 import static com.github.superkiria.chess.svg.SvgUtils.saveDocumentToPngByteBuffer;
 
+@Component
 public class GameHelper {
+
+    private final SentDataKeeper sentDataKeeper;
+
+    @Autowired
+    public GameHelper(SentDataKeeper sentDataKeeper) {
+        this.sentDataKeeper = sentDataKeeper;
+    }
 
     public static Game makeGameFromPgn(List<String> buffer) {
         Game game = GameLoader.loadNextGame(buffer.listIterator());
@@ -33,9 +45,12 @@ public class GameHelper {
         return new ByteArrayInputStream(baos.toByteArray());
     }
 
-    public static MarkedCaption makeMarkedCaptionFromGame(Game game) {
-        CaptionMarkupConstructor constructor = new CaptionMarkupConstructor();
+    public MarkedCaption makeMarkedCaptionFromGame(Game game, GameKey gameKey) {
+        return makeMarkedCaptionFromGame(game, gameKey, false);
+    }
 
+    public MarkedCaption makeMarkedCaptionFromGame(Game game, GameKey gameKey, boolean makeItShort) {
+        CaptionMarkupConstructor constructor = new CaptionMarkupConstructor();
         if (!game.getResult().equals(GameResult.ONGOING)) {
             String result = "";
             switch (game.getResult()) {
@@ -51,17 +66,13 @@ public class GameHelper {
             }
             constructor.addString(result, "bold");
         }
-
         int current = game.getHalfMoves().size();
-
         if (current > 1) {
-            String previousMove = moveFromMovesList(game, game.getHalfMoves().size() - 1) + "\n";
-            constructor.addString(previousMove, "code");
+            constructor.addString(moveFromMovesList(game, game.getHalfMoves().size() - 1) + "\n", "code");
         }
-
-        String currentMove = moveFromMovesList(game, current) + "\n";
-        constructor.addString(currentMove, "code");
-
+        if (current > 0) {
+            constructor.addString(moveFromMovesList(game, current) + "\n", "code");
+        }
         if (current > 1) {
             String time;
             if (current % 2 == 0) {
@@ -69,24 +80,31 @@ public class GameHelper {
             } else {
                 time = timeFromMovesList(game, current) + " ⏱ " + timeFromMovesList(game, current - 1) + "\n";
             }
-            constructor.addString(time, null);
+            if (time.length() > " ⏱ \n".length()) {
+                constructor.addString(time, null);
+            }
         }
 
-        String gameName = game.getWhitePlayer().getName() + " - " + game.getBlackPlayer().getName() + "\n";
-        constructor.addString(gameName, "bold");
+        if (!makeItShort) {
+            constructor.addString(game.getWhitePlayer().getName() + " - " + game.getBlackPlayer().getName() + "\n", "bold");
+        }
 
-        String opening = game.getOpening() + "\n";
-        constructor.addString(opening, "italic");
+        if (current > 0 && game.getOpening() != null) {
+            if (!makeItShort || !game.getOpening().equals(sentDataKeeper.getOpening(gameKey))) {
+                constructor.addString(game.getOpening() + "\n", "italic");
+            }
+        }
 
-        if (game.getRound() != null
-                && game.getRound().getEvent() != null
-                && game.getRound().getEvent().getSite() != null
-                && game.getRound().getEvent().getSite().trim().startsWith("http")) {
-            constructor.addLink("check on lichess", game.getRound().getEvent().getSite());
+        if (!makeItShort) {
+            if (game.getRound() != null
+                    && game.getRound().getEvent() != null
+                    && game.getRound().getEvent().getSite() != null
+                    && game.getRound().getEvent().getSite().trim().startsWith("http")) {
+                constructor.addLink("check on lichess", game.getRound().getEvent().getSite());
+            }
         }
 
         return MarkedCaption.builder().caption(constructor.getCaption()).entities(constructor.getEntities()).build();
-
     }
 
 }

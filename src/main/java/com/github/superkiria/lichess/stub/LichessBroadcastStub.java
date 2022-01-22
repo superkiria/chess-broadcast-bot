@@ -14,6 +14,7 @@ import reactor.core.publisher.Flux;
 
 import java.time.Duration;
 import java.util.Collections;
+import java.util.Date;
 
 @RequestMapping("/api")
 @RestController
@@ -34,7 +35,7 @@ public class LichessBroadcastStub {
     public LichessEvent timetable() {
         return LichessEvent.builder()
                 .tour(LichessTour.builder().id("tourId").name("tourName").description("").markup("").slug("").url("").build())
-                .rounds(Collections.singletonList(LichessRound.builder().ongoing(true).name("test LichessRound").id("qwerty").finished(null).slug("").startsAt(null).url("").build())).build();
+                .rounds(Collections.singletonList(LichessRound.builder().ongoing(true).name("test LichessRound").id("qwerty").finished(null).slug("").startsAt(new Date()).url("").build())).build();
     }
 
 }

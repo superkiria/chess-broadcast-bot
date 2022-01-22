@@ -1,6 +1,7 @@
 package com.github.superkiria.cbbot.sending.model;
 
 import com.github.bhlangonijr.chesslib.game.Game;
+import com.github.bhlangonijr.chesslib.game.GameResult;
 import lombok.Builder;
 import lombok.Data;
 
@@ -14,5 +15,6 @@ public class ExtractedGame {
     private String black;
     private boolean hasMoves;
     private Game game;
+    private GameResult gameResult;
 
 }

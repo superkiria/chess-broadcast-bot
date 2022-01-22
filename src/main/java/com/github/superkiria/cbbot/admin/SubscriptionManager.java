@@ -5,7 +5,7 @@ import com.github.superkiria.cbbot.lichess.LichessConsumer;
 import com.github.superkiria.cbbot.lichess.model.LichessEvent;
 import com.github.superkiria.cbbot.lichess.model.LichessRound;
 import com.github.superkiria.cbbot.sending.MessageQueue;
-import com.github.superkiria.cbbot.sending.keepers.SentMessageKeeper;
+import com.github.superkiria.cbbot.sending.keepers.SentDataKeeper;
 import com.github.superkiria.cbbot.props.TelegramProps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,12 +24,12 @@ public class SubscriptionManager {
     private final LichessConsumer lichess;
     private final TelegramProps telegramProps;
     private final MessageQueue messageQueue;
-    private final SentMessageKeeper keeper;
+    private final SentDataKeeper keeper;
 
     private String eventId;
 
     @Autowired
-    public SubscriptionManager(LichessConsumer lichess, TelegramProps telegramProps, MessageQueue messageQueue, SentMessageKeeper keeper) {
+    public SubscriptionManager(LichessConsumer lichess, TelegramProps telegramProps, MessageQueue messageQueue, SentDataKeeper keeper) {
         this.lichess = lichess;
         this.telegramProps = telegramProps;
         this.messageQueue = messageQueue;
@@ -51,7 +51,7 @@ public class SubscriptionManager {
         }
         if (!best.equals(lichess.getCurrentSubscriptionRoundId())) {
             lichess.subscribeForRound(best);
-            messageQueue.addHighPriority(ChatContext.builder()
+            messageQueue.add(ChatContext.builder()
                     .chatId(telegramProps.getAdminChatId())
                     .response("Subscribed for: " + best)
                     .build());
@@ -74,7 +74,7 @@ public class SubscriptionManager {
         if (round == null) {
             return null;
         }
-        if (round.getStartsAt().before(new Date(System.currentTimeMillis() + 3600_000))) {
+        if (round.getStartsAt().before(new Date(System.currentTimeMillis() + 57_000))) {
             return round.getId();
         }
         return null;
