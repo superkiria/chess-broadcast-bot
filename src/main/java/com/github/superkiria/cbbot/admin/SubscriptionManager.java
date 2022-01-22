@@ -51,7 +51,7 @@ public class SubscriptionManager {
         }
         if (!best.equals(lichess.getCurrentSubscriptionRoundId())) {
             lichess.subscribeForRound(best);
-            messageQueue.addHighPriority(ChatContext.builder()
+            messageQueue.add(ChatContext.builder()
                     .chatId(telegramProps.getAdminChatId())
                     .response("Subscribed for: " + best)
                     .build());

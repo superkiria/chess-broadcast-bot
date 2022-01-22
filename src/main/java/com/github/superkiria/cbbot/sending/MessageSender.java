@@ -35,6 +35,11 @@ public class MessageSender {
         new Thread(() -> {
             while (true) {
                 try {
+                    if (!queue.isEmpty() && lastForUser.containsKey(queue.peek().getChatId())) {
+                        while (new Date().getTime() - lastForUser.get(queue.peek().getChatId()).getTime() < 2750) {
+                            Thread.sleep(200);
+                        }
+                    }
                     ChatContext context = queue.take();
                     Integer messageId = keeper.getMessageId(context.getKey());
                     context.setMessageId(messageId);

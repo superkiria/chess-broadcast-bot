@@ -92,7 +92,6 @@ public class GameHelper {
         if (current > 0 && game.getOpening() != null) {
             if (!makeItShort || !game.getOpening().equals(sentDataKeeper.getOpening(gameKey))) {
                 constructor.addString(game.getOpening() + "\n", "italic");
-                sentDataKeeper.putOpening(gameKey, game.getOpening());
             }
         }
 

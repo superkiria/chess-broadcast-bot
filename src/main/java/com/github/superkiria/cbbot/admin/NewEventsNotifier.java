@@ -32,7 +32,7 @@ public class NewEventsNotifier {
         this.messageQueue = messageQueue;
     }
 
-    @Scheduled(fixedDelay = 1214_000, initialDelay = 10_000)
+    @Scheduled(fixedDelay = 1214_000, initialDelay = 60_000)
     void start() {
         List<LichessEvent> currentBroadcasts = lichessConsumer.getActualLichessBroadcasts();
         for (LichessEvent event : currentBroadcasts) {

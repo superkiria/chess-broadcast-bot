@@ -21,11 +21,12 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 @Builder
 @Data
-public class ChatContext {
+public class ChatContext implements Comparable<ChatContext> {
 
     private final static Logger LOG = LoggerFactory.getLogger(ChatContext.class);
 
@@ -46,6 +47,8 @@ public class ChatContext {
     private String stickerId;
     private String fileId;
     private MarkedCaption shortMarkedCaption;
+    private String opening;
+    private Long scheduledTime;
 
     public Message call(TelegramLongPollingBot bot) throws IllegalStateException, TelegramApiException {
         if (stickerId != null) {
@@ -132,4 +135,14 @@ public class ChatContext {
                 .build();
     }
 
+    @Override
+    public int compareTo(ChatContext chatContext) {
+        if (scheduledTime == null) {
+            scheduledTime = new Date().getTime();
+        }
+        if (chatContext.getScheduledTime() == null) {
+            chatContext.setScheduledTime(new Date().getTime());
+        }
+        return scheduledTime.compareTo(chatContext.getScheduledTime());
+    }
 }

@@ -1,6 +1,7 @@
 package com.github.superkiria.cbbot.processing;
 
-import com.github.bhlangonijr.chesslib.game.Game;
+import com.github.bhlangonijr.chesslib.game.*;
+import com.github.bhlangonijr.chesslib.pgn.PgnProperty;
 import com.github.superkiria.cbbot.admin.SubscriptionManager;
 import com.github.superkiria.cbbot.sending.MessageQueue;
 import com.github.superkiria.cbbot.sending.keepers.SentDataKeeper;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 
+import static com.github.bhlangonijr.chesslib.pgn.PgnProperty.parsePgnProperty;
 import static com.github.superkiria.cbbot.main.Stickers.getRandomStickerId;
 import static com.github.superkiria.cbbot.processing.ComposeMessageHelper.newRoundMessage;
 import static com.github.superkiria.cbbot.processing.GameHelper.makeGameFromPgn;
@@ -55,6 +57,7 @@ public class PgnDispatcher {
                 try {
                     extractedGame = extractNextGame();
 
+
                     if (subscriptionManager.currentRound() != null
                             && !publishedRounds.contains(subscriptionManager.currentRound().getId())) {
                                 messageQueue.add(ChatContext.builder().stickerId(getRandomStickerId()).chatId(chatId).build());
@@ -67,6 +70,15 @@ public class PgnDispatcher {
                             .white(extractedGame.getWhite())
                             .black(extractedGame.getBlack())
                             .build();
+
+                    if (extractedGame.getGame() != null) {
+                        keeper.putLastValidGame(key, extractedGame);
+                    } else if (extractedGame.getGameResult() != null) {
+                        Game fallbackGame = keeper.getLastValidGame(key).getGame();
+                        fallbackGame.setResult(extractedGame.getGameResult());
+                        extractedGame.setGame(keeper.getLastValidGame(key).getGame());
+                    }
+
                     MarkedCaption caption = gameHelper.makeMarkedCaptionFromGame(extractedGame.getGame(), key);
                     MarkedCaption shortCaption = gameHelper.makeMarkedCaptionFromGame(extractedGame.getGame(), key, true);
                     Integer color = keeper.getColor(key);
@@ -84,6 +96,7 @@ public class PgnDispatcher {
                             .entities(caption.getEntities())
                             .shortMarkedCaption(shortCaption)
                             .key(key)
+                            .opening(extractedGame.getGame().getOpening())
                             .build();
                     context.setColor(color);
                     context.setInputStream(makePictureFromGame(extractedGame.getGame(), color));
@@ -97,16 +110,27 @@ public class PgnDispatcher {
     }
 
     private ExtractedGame extractNextGame() throws InterruptedException {
-        List<String> buffer = new ArrayList<>();
+        LinkedList<String> buffer = new LinkedList<>();
         String part;
+        boolean hasEventInfo = false;
         do {
             part = incoming.take().trim();
+            if (PgnProperty.isProperty(part) && parsePgnProperty(part).name.equalsIgnoreCase("event")) {
+                hasEventInfo = true;
+            }
+            if (PgnProperty.isProperty(part) && parsePgnProperty(part).name.equalsIgnoreCase("TimeControl")) {
+                LOG.trace("Skipped: {}", part);
+                continue;
+            }
             buffer.add(part);
             LOG.trace(part);
-        } while (!(part.endsWith("1-0") ||
+        } while (!(part.endsWith("*") ||
                     part.endsWith("0-1") ||
                     part.endsWith("1/2-1/2") ||
-                    part.endsWith("*")));
+                    part.endsWith("1-0")));
+        if (!hasEventInfo) {
+            buffer.addFirst("[Event \"Fake event 2022\"]");
+        }
         ExtractedGame extractedGame = null;
         try {
             Game game = makeGameFromPgn(buffer);
@@ -120,6 +144,34 @@ public class PgnDispatcher {
         } catch (Exception e) {
             LOG.error("Game extraction failed", e);
             LOG.error(String.join("\n", buffer));
+            ExtractedGame.ExtractedGameBuilder builder = ExtractedGame.builder();
+            for (String str : buffer) {
+                if (PgnProperty.isProperty(str)) {
+                    PgnProperty pgnProperty = parsePgnProperty(str);
+                    if (pgnProperty.name.equalsIgnoreCase("white")) {
+                        builder.white(pgnProperty.value);
+                    }
+                    if (pgnProperty.name.equalsIgnoreCase("black")) {
+                        builder.black(pgnProperty.value);
+                    }
+                    continue;
+                }
+                if (str.endsWith("*")) {
+                    continue;
+                }
+                if (str.endsWith("1/2-1/2")) {
+                    builder.gameResult(GameResult.DRAW);
+                    continue;
+                }
+                if (str.endsWith("1-0")) {
+                    builder.gameResult(GameResult.WHITE_WON);
+                    continue;
+                }
+                if (str.endsWith("0-1")) {
+                    builder.gameResult(GameResult.BLACK_WON);
+                }
+            }
+            extractedGame = builder.build();
         }
         return extractedGame;
     }

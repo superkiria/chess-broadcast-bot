@@ -36,11 +36,12 @@ public class SentMessageProcessor {
             context.setChatId(groupId);
             context.setForwardedReplyMessageId(keeper.getForward(context.getMessageId()));
             queue.add(context);
-            LOG.info("{}", message.getPhoto());
-            LOG.info("{}", context);
+        }
+        if (context.getFileId() != null && context.getOpening() != null) {
+            keeper.putOpening(context.getKey(), context.getOpening());
         }
         keeper.putMessageId(context.getKey(), message.getMessageId());
-        LOG.info("chatId {} for game {}, total {} games", message.getMessageId(), context.getKey(), keeper.getMessageIdsCount());
+        LOG.info("messageId {} for game {}, total {} games", message.getMessageId(), context.getKey(), keeper.getMessageIdsCount());
     }
 
 }
