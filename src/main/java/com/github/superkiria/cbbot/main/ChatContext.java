@@ -1,6 +1,7 @@
 package com.github.superkiria.cbbot.main;
 
 import com.github.superkiria.cbbot.sending.model.GameKey;
+import com.github.superkiria.cbbot.sending.model.MarkedCaption;
 import lombok.Builder;
 import lombok.Data;
 import org.slf4j.Logger;
@@ -44,6 +45,7 @@ public class ChatContext {
     private List<MessageEntity> entities;
     private String stickerId;
     private String fileId;
+    private MarkedCaption shortMarkedCaption;
 
     public Message call(TelegramLongPollingBot bot) throws IllegalStateException, TelegramApiException {
         if (stickerId != null) {
@@ -51,7 +53,6 @@ public class ChatContext {
             return null;
         }
         if (forwardedReplyMessageId != null && fileId != null) {
-            LOG.info("{}", makeSendExistingPhoto());
             bot.execute(makeSendExistingPhoto());
             return null;
         }
@@ -100,8 +101,8 @@ public class ChatContext {
     private SendPhoto makeSendExistingPhoto() {
         return SendPhoto.builder()
                 .chatId(chatId)
-                .caption(response)
-                .captionEntities(entities)
+                .caption(shortMarkedCaption.getCaption())
+                .captionEntities(shortMarkedCaption.getEntities())
                 .replyToMessageId(forwardedReplyMessageId)
                 .photo(new InputFile(fileId))
                 .build();

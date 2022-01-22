@@ -15,10 +15,5 @@ public class LogMessageActor implements ChatActor {
     @Override
     public void act(ChatContext context) {
         LOG.debug(String.valueOf(context.getUpdate()));
-        try {
-            LOG.info(context.getUpdate().getMessage().getSticker().getFileId());
-        } catch (Throwable ignored) {
-
-        }
     }
 }

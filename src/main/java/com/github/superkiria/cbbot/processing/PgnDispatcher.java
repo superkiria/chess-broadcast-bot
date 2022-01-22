@@ -2,8 +2,6 @@ package com.github.superkiria.cbbot.processing;
 
 import com.github.bhlangonijr.chesslib.game.Game;
 import com.github.superkiria.cbbot.admin.SubscriptionManager;
-import com.github.superkiria.cbbot.lichess.model.LichessEvent;
-import com.github.superkiria.cbbot.lichess.model.LichessRound;
 import com.github.superkiria.cbbot.sending.MessageQueue;
 import com.github.superkiria.cbbot.sending.keepers.SentDataKeeper;
 import com.github.superkiria.cbbot.sending.model.ExtractedGame;
@@ -20,7 +18,8 @@ import java.util.*;
 
 import static com.github.superkiria.cbbot.main.Stickers.getRandomStickerId;
 import static com.github.superkiria.cbbot.processing.ComposeMessageHelper.newRoundMessage;
-import static com.github.superkiria.cbbot.processing.GameHelper.*;
+import static com.github.superkiria.cbbot.processing.GameHelper.makeGameFromPgn;
+import static com.github.superkiria.cbbot.processing.GameHelper.makePictureFromGame;
 
 @Component
 public class PgnDispatcher {
@@ -34,15 +33,17 @@ public class PgnDispatcher {
     private final SentDataKeeper keeper;
     private final PgnQueue incoming;
     private final SubscriptionManager subscriptionManager;
+    private final GameHelper gameHelper;
 
     private final Set<String> publishedRounds = new HashSet<>();
 
     @Autowired
-    public PgnDispatcher(MessageQueue messageQueue, SentDataKeeper keeper, PgnQueue incoming, SubscriptionManager subscriptionManager) {
+    public PgnDispatcher(MessageQueue messageQueue, SentDataKeeper keeper, PgnQueue incoming, SubscriptionManager subscriptionManager, GameHelper gameHelper) {
         this.messageQueue = messageQueue;
         this.keeper = keeper;
         this.incoming = incoming;
         this.subscriptionManager = subscriptionManager;
+        this.gameHelper = gameHelper;
     }
 
     public void start() {
@@ -66,7 +67,8 @@ public class PgnDispatcher {
                             .white(extractedGame.getWhite())
                             .black(extractedGame.getBlack())
                             .build();
-                    MarkedCaption markedCaption = makeMarkedCaptionFromGame(extractedGame.getGame());
+                    MarkedCaption caption = gameHelper.makeMarkedCaptionFromGame(extractedGame.getGame(), key);
+                    MarkedCaption shortCaption = gameHelper.makeMarkedCaptionFromGame(extractedGame.getGame(), key, true);
                     Integer color = keeper.getColor(key);
                     if (color == null) {
                         color = keeper.getColorsCount();
@@ -78,8 +80,9 @@ public class PgnDispatcher {
                             .round(extractedGame.getRound())
                             .white(extractedGame.getWhite())
                             .black(extractedGame.getBlack())
-                            .response(markedCaption.getCaption())
-                            .entities(markedCaption.getEntities())
+                            .response(caption.getCaption())
+                            .entities(caption.getEntities())
+                            .shortMarkedCaption(shortCaption)
                             .key(key)
                             .build();
                     context.setColor(color);
