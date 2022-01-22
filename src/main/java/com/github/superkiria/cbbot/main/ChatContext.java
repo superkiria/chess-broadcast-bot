@@ -32,7 +32,7 @@ public class ChatContext implements Comparable<ChatContext> {
 
     private boolean skip;
     private String chatId;
-    private Integer messageId;
+    private Integer replyMessageId;
     private Integer forwardedReplyMessageId;
     private Update update;
     private String response;
@@ -59,7 +59,7 @@ public class ChatContext implements Comparable<ChatContext> {
             bot.execute(makeSendExistingPhoto());
             return null;
         }
-        if (messageId != null && inputStream != null) {
+        if (replyMessageId != null && inputStream != null) {
              return (Message) bot.execute(makeEditMessageMedia());
         }
         if (this.getInputStream() != null) {
@@ -85,7 +85,7 @@ public class ChatContext implements Comparable<ChatContext> {
                 .chatId(chatId)
                 .text(response)
                 .entities(entities)
-                .replyToMessageId(messageId)
+                .replyToMessageId(replyMessageId)
                 .replyMarkup(inlineKeyboardMarkup)
                 .disableWebPagePreview(true)
                 .build();
@@ -96,7 +96,7 @@ public class ChatContext implements Comparable<ChatContext> {
                 .chatId(chatId)
                 .caption(response)
                 .captionEntities(entities)
-                .replyToMessageId(messageId)
+                .replyToMessageId(replyMessageId)
                 .photo(new InputFile(inputStream, "file.png"))
                 .build();
     }
@@ -114,7 +114,7 @@ public class ChatContext implements Comparable<ChatContext> {
     private EditMessageCaption makeEditMessageCaption() {
         return EditMessageCaption.builder()
                 .chatId(chatId)
-                .messageId(messageId)
+                .messageId(replyMessageId)
                 .caption(response)
                 .build();
     }
@@ -122,7 +122,7 @@ public class ChatContext implements Comparable<ChatContext> {
     private EditMessageMedia makeEditMessageMedia() {
         return EditMessageMedia.builder()
                 .chatId(chatId)
-                .messageId(messageId)
+                .messageId(replyMessageId)
                 .media(InputMediaPhoto.builder().caption(response).entities(entities).media("attach://file.png").mediaName("file.png").newMediaStream(inputStream).isNewMedia(true).build())
                 .build();
     }

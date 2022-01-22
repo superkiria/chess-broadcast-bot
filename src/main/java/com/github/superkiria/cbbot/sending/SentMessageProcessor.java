@@ -15,7 +15,6 @@ public class SentMessageProcessor {
     private final static Logger LOG = LoggerFactory.getLogger(SentMessageProcessor.class);
 
     private final SentDataKeeper keeper;
-
     private final MessageQueue queue;
 
     @Value("${telegram.group.chatId}")
@@ -31,10 +30,10 @@ public class SentMessageProcessor {
         if (context.getKey() == null || message == null) {
             return;
         }
-        if (context.getFileId() == null && context.getMessageId() != null && message.hasPhoto()) {
+        if (context.getFileId() == null && context.getReplyMessageId() != null && message.hasPhoto()) {
             context.setFileId(message.getPhoto().get(0).getFileId());
             context.setChatId(groupId);
-            context.setForwardedReplyMessageId(keeper.getForward(context.getMessageId()));
+            context.setForwardedReplyMessageId(keeper.getForward(context.getReplyMessageId()));
             queue.add(context);
         }
         if (context.getFileId() != null && context.getOpening() != null) {

@@ -3,6 +3,8 @@ package com.github.superkiria.cbbot.sending;
 import com.github.superkiria.cbbot.main.ChatContext;
 import com.github.superkiria.cbbot.sending.keepers.SentDataKeeper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.objects.Message;
@@ -31,29 +33,15 @@ public class MessageSender {
         this.keeper = keeper;
     }
 
-    public void start() {
+    @EventListener
+    public void start(ApplicationReadyEvent event) {
         new Thread(() -> {
             while (true) {
                 try {
-                    if (!queue.isEmpty() && lastForUser.containsKey(queue.peek().getChatId())) {
-                        while (new Date().getTime() - lastForUser.get(queue.peek().getChatId()).getTime() < 2750) {
-                            Thread.sleep(200);
-                        }
-                    }
+                    waitForBestElementInQueue();
                     ChatContext context = queue.take();
-                    Integer messageId = keeper.getMessageId(context.getKey());
-                    context.setMessageId(messageId);
-                    long now = new Date().getTime();
-                    if (now - last.getTime() < 34) {
-                        Thread.sleep(34 - now + last.getTime());
-                        now = new Date().getTime();
-                    }
-                    if (lastForUser.get(context.getChatId()) != null
-                            && now - lastForUser.get(context.getChatId()).getTime() < 3000) {
-                        Thread.sleep(3000 - now + lastForUser.get(context.getChatId()).getTime());
-                    }
-                    last = new Date();
-                    lastForUser.put(context.getChatId(), last);
+                    context.setReplyMessageId(keeper.getMessageId(context.getKey()));
+                    waitToNotViolateTelegramRestrictions(context.getChatId());
                     Message message = context.call(bot);
                     processor.process(context, message);
                 } catch (TelegramApiException | InterruptedException e) {
@@ -61,6 +49,31 @@ public class MessageSender {
                 }
             }
         }).start();
+    }
+
+    private void waitForBestElementInQueue() throws InterruptedException {
+        ChatContext peeked = queue.peek();
+        if (!queue.isEmpty()) {
+            while (lastForUser.containsKey(peeked.getChatId())
+                    && new Date().getTime() - lastForUser.get(peeked.getChatId()).getTime() < 2750) {
+                Thread.sleep(100);
+                peeked = queue.peek();
+            }
+        }
+    }
+
+    private void waitToNotViolateTelegramRestrictions(String chatId) throws InterruptedException {
+        long now = new Date().getTime();
+        if (now - last.getTime() < 34) {
+            Thread.sleep(34 - now + last.getTime());
+            now = new Date().getTime();
+        }
+        if (lastForUser.get(chatId) != null
+                && now - lastForUser.get(chatId).getTime() < 3000) {
+            Thread.sleep(3000 - now + lastForUser.get(chatId).getTime());
+        }
+        last = new Date();
+        lastForUser.put(chatId, last);
     }
 
 }

@@ -5,9 +5,13 @@ import com.github.superkiria.cbbot.props.SecretProps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.objects.Update;
+import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
 @Component
 public class ChessBroadcastBot extends TelegramLongPollingBot {
@@ -16,11 +20,18 @@ public class ChessBroadcastBot extends TelegramLongPollingBot {
 
     private final SecretProps secretProps;
     private final ActorsChain chain;
+    private final TelegramBotsApi telegramBotsApi;
 
     @Autowired
-    public ChessBroadcastBot(SecretProps secretProps, ActorsChain chain) {
+    public ChessBroadcastBot(SecretProps secretProps, ActorsChain chain, TelegramBotsApi telegramBotsApi) {
         this.secretProps = secretProps;
         this.chain = chain;
+        this.telegramBotsApi = telegramBotsApi;
+    }
+
+    @EventListener
+    public void start(ApplicationReadyEvent event) throws TelegramApiException {
+        telegramBotsApi.registerBot(this);
     }
 
     @Override

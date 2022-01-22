@@ -6,10 +6,10 @@ import com.github.superkiria.cbbot.lichess.model.LichessEvent;
 import com.github.superkiria.cbbot.lichess.model.LichessRound;
 import com.github.superkiria.cbbot.sending.MessageQueue;
 import com.github.superkiria.cbbot.sending.keepers.SentDataKeeper;
-import com.github.superkiria.cbbot.props.TelegramProps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -22,16 +22,17 @@ public class SubscriptionManager {
     private final static Logger LOG = LoggerFactory.getLogger(SubscriptionManager.class);
 
     private final LichessConsumer lichess;
-    private final TelegramProps telegramProps;
     private final MessageQueue messageQueue;
     private final SentDataKeeper keeper;
+
+    @Value("${telegram.admin.chatId}")
+    private String adminChatId;
 
     private String eventId;
 
     @Autowired
-    public SubscriptionManager(LichessConsumer lichess, TelegramProps telegramProps, MessageQueue messageQueue, SentDataKeeper keeper) {
+    public SubscriptionManager(LichessConsumer lichess, MessageQueue messageQueue, SentDataKeeper keeper) {
         this.lichess = lichess;
-        this.telegramProps = telegramProps;
         this.messageQueue = messageQueue;
         this.keeper = keeper;
     }
@@ -52,7 +53,7 @@ public class SubscriptionManager {
         if (!best.equals(lichess.getCurrentSubscriptionRoundId())) {
             lichess.subscribeForRound(best);
             messageQueue.add(ChatContext.builder()
-                    .chatId(telegramProps.getAdminChatId())
+                    .chatId(adminChatId)
                     .response("Subscribed for: " + best)
                     .build());
         }
