@@ -71,7 +71,7 @@ public class ChatContext implements Comparable<ChatContext> {
         try {
             return (Message) bot.execute(method);
         } catch (Throwable e) {
-            LOG.error(e.getMessage() + "\nChatContext:\n" + this);
+            LOG.error("\nChatContext:\n" + this, e);
         }
         return null;
     }
@@ -80,7 +80,7 @@ public class ChatContext implements Comparable<ChatContext> {
         try {
             return bot.execute(method);
         } catch (Throwable e) {
-            LOG.error(e.getMessage() + "\nChatContext:\n" + this);
+            LOG.error("\nChatContext:\n" + this, e);
         }
         return null;
     }
@@ -89,7 +89,7 @@ public class ChatContext implements Comparable<ChatContext> {
         try {
             return bot.execute(method);
         } catch (Throwable e) {
-            LOG.error(e.getMessage() + "\nChatContext:\n" + this);
+            LOG.error("\nChatContext:\n" + this, e);
         }
         return null;
     }
@@ -98,7 +98,7 @@ public class ChatContext implements Comparable<ChatContext> {
         try {
             return (Message) bot.execute(method);
         } catch (Throwable e) {
-            LOG.error(e.getMessage() + "\nChatContext:\n" + this);
+            LOG.error("\nChatContext:\n" + this, e);
         }
         return null;
     }
