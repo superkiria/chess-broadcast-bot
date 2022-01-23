@@ -1,4 +1,4 @@
-package com.github.superkiria;
+package com.github.superkiria.cbbot.main;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

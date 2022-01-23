@@ -6,6 +6,7 @@ import com.github.superkiria.cbbot.lichess.model.LichessEvent;
 import com.github.superkiria.cbbot.lichess.model.LichessRound;
 import com.github.superkiria.cbbot.sending.MessageQueue;
 import com.github.superkiria.cbbot.sending.keepers.SentDataKeeper;
+import com.github.superkiria.cbbot.sending.model.MarkedCaption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +55,7 @@ public class SubscriptionManager {
             lichess.subscribeForRound(best);
             messageQueue.add(ChatContext.builder()
                     .chatId(adminChatId)
-                    .response("Subscribed for: " + best)
+                    .markedCaption(MarkedCaption.builder().caption("Subscribed for: " + best).build())
                     .build());
         }
     }
@@ -75,7 +76,7 @@ public class SubscriptionManager {
         if (round == null) {
             return null;
         }
-        if (round.getStartsAt().before(new Date(System.currentTimeMillis() + 57_000))) {
+        if (round.getStartsAt().before(new Date(System.currentTimeMillis() + 37_000))) {
             return round.getId();
         }
         return null;

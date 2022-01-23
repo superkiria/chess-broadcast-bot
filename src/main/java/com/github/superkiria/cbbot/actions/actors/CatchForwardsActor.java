@@ -42,7 +42,6 @@ public class CatchForwardsActor implements ChatActor {
             }
         }
 
-
     }
 
 }

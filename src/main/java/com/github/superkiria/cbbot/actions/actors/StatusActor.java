@@ -5,6 +5,7 @@ import com.github.superkiria.cbbot.main.ChatContext;
 import com.github.superkiria.cbbot.lichess.LichessConsumer;
 import com.github.superkiria.cbbot.admin.SubscriptionManager;
 import com.github.superkiria.cbbot.sending.MessageQueue;
+import com.github.superkiria.cbbot.sending.model.MarkedCaption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -30,7 +31,9 @@ public class StatusActor implements ChatActor {
         if (!context.getUpdate().getMessage().getText().strip().equalsIgnoreCase("st")) {
             return;
         }
-        context.setResponse("Status:\n"
+        context.setMarkedCaption(
+                MarkedCaption.builder()
+                .caption("Status:\n"
                 + ((Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1024 / 1024)
                 + " / " + (Runtime.getRuntime().totalMemory() / 1024 / 1024)
                 + " / " + (Runtime.getRuntime().maxMemory() / 1024 / 1024) + "\n"
@@ -38,7 +41,9 @@ public class StatusActor implements ChatActor {
                 + subscriptionManager.getCurrentSubscription() + "\n"
                 + subscriptionManager.bestRoundToSubscribe() + "\n"
                 + lichessConsumer.getCurrentSubscriptionRoundId() + "\n"
-                + subscriptionManager.nextBestRoundToSubscribe());
+                + subscriptionManager.nextBestRoundToSubscribe())
+                .build()
+        );
     }
 
 }

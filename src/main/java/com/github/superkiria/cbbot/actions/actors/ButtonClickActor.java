@@ -5,6 +5,7 @@ import com.github.superkiria.cbbot.actions.ChatActor;
 import com.github.superkiria.cbbot.lichess.LichessConsumer;
 import com.github.superkiria.cbbot.admin.SubscriptionManager;
 import com.github.superkiria.cbbot.lichess.model.LichessEvent;
+import com.github.superkiria.cbbot.sending.model.MarkedCaption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,12 +39,12 @@ public class ButtonClickActor implements ChatActor {
         if (call.startsWith("tour:")) {
             Optional<LichessEvent> first = lichess.getLichessBroadcasts().stream().filter(t -> t.getTour().getId().equals(call.substring(5))).findFirst();
             if (first.isPresent()) {
-                context.setResponse(eventInfo(first.get()));
+                context.setMarkedCaption(MarkedCaption.builder().caption(eventInfo(first.get())).build());
                 context.setInlineKeyboardMarkup(eventSubscribeButton(call.substring(5)));
             }
         } else if (call.startsWith("subscribe:")) {
             subscriptionManager.subscribeForEvent(call.substring(10));
-            context.setResponse("Subscribe call accepted");
+            context.setMarkedCaption(MarkedCaption.builder().caption("Subscribe call accepted").build());
         }
     }
 }

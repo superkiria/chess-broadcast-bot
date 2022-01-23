@@ -7,16 +7,22 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 
+import java.util.Arrays;
+
 @Component
 public class ChessBroadcastBot extends TelegramLongPollingBot {
 
     private static final Logger LOG = LoggerFactory.getLogger(ChessBroadcastBot.class);
+
+    @Autowired
+    Environment env;
 
     private final SecretProps secretProps;
     private final ActorsChain chain;
@@ -31,7 +37,10 @@ public class ChessBroadcastBot extends TelegramLongPollingBot {
 
     @EventListener
     public void start(ApplicationReadyEvent event) throws TelegramApiException {
-        telegramBotsApi.registerBot(this);
+        if (Arrays.stream(env.getActiveProfiles()).noneMatch(o -> o.equalsIgnoreCase("test"))) {
+            telegramBotsApi.registerBot(this);
+            LOG.info("Bot started...");
+        }
     }
 
     @Override

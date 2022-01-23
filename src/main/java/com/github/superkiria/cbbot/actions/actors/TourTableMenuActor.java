@@ -4,6 +4,7 @@ import com.github.superkiria.cbbot.actions.ChatActor;
 import com.github.superkiria.cbbot.main.ChatContext;
 import com.github.superkiria.cbbot.lichess.LichessConsumer;
 import com.github.superkiria.cbbot.lichess.model.LichessEvent;
+import com.github.superkiria.cbbot.sending.model.MarkedCaption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,7 +51,11 @@ public class TourTableMenuActor implements ChatActor {
         }
 
         context.setInlineKeyboardMarkup(markup.build());
-        context.setResponse("Found " + ongoingTours.size() + " tours:\n" + ongoingTours.stream().map(t -> t.getTour().getName() + "\n" + t.getTour().getDescription() + "\n" + t.getTour().getUrl()).collect(Collectors.joining("\n\n")));
+        context.setMarkedCaption(MarkedCaption.builder()
+                .caption("Found " + ongoingTours.size()
+                            + " tours:\n\n"
+                            + ongoingTours.stream().map(t -> t.getTour().getName() + "\n" + t.getTour().getDescription() + "\n" + t.getTour().getUrl())
+                        .collect(Collectors.joining("\n\n"))).build());
     }
 
 }
