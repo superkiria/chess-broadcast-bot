@@ -28,6 +28,7 @@ import java.util.Date;
 public class ChatContext implements Comparable<ChatContext> {
 
     private final static Logger LOG = LoggerFactory.getLogger(ChatContext.class);
+    private final static int attempts = 2;
 
     private boolean skip;
     private Update update;
@@ -45,64 +46,55 @@ public class ChatContext implements Comparable<ChatContext> {
     private Integer color;
     private String opening;
 
-    public Message call(TelegramLongPollingBot bot) throws IllegalStateException, TelegramApiException {
+    public Message call(TelegramLongPollingBot bot) throws IllegalStateException, TelegramApiException, InterruptedException {
         if (stickerId != null) {
-            executeWithTry(bot, makeSendSticker());
+            executeWithRetry(bot, makeSendSticker(), attempts);
             return null;
         }
         if (forwardedReplyMessageId != null && fileId != null) {
-            executeWithTry(bot, makeSendExistingPhoto());
+            executeWithRetry(bot, makeSendExistingPhoto(), attempts);
             return null;
         }
         if (replyMessageId != null && inputStream != null) {
-             return executeWithTry(bot, makeEditMessageMedia());
+             return executeWithRetry(bot, makeEditMessageMedia(), attempts);
         }
         if (this.getInputStream() != null) {
-            return executeWithTry(bot, makeSendPhoto());
+            return executeWithRetry(bot, makeSendPhoto(), attempts);
         }
         if (this.getMarkedCaption() != null) {
-            executeWithTry(bot, makeSendMessage());
+            executeWithRetry(bot, makeSendMessage(), attempts);
         }
         LOG.debug("No valid data to send " + this);
         return null;
     }
 
-    private Message executeWithTry(TelegramLongPollingBot bot, BotApiMethod method) {
+    private Message executeWithRetry(TelegramLongPollingBot bot, Object method, int retriesLeft) throws InterruptedException {
         try {
-            return (Message) bot.execute(method);
+            if (method instanceof EditMessageMedia) {
+                return (Message) bot.execute((EditMessageMedia) method);
+            }
+            if (method instanceof SendPhoto) {
+                return  bot.execute((SendPhoto) method);
+            }
+            if (method instanceof BotApiMethod) {
+                return (Message) bot.execute((BotApiMethod) method);
+            }
+            if (method instanceof SendSticker) {
+                return bot.execute((SendSticker) method);
+            }
         } catch (Throwable e) {
-            LOG.error("\nChatContext:\n" + this, e);
+            LOG.error("Message sending failed", e);
+            if (retriesLeft > 0) {
+                retriesLeft--;
+                LOG.info("Retrying, retries left {}", retriesLeft);
+                Thread.sleep(1000);
+                executeWithRetry(bot, method, retriesLeft);
+            } else {
+                LOG.error("Retries are left - won't retry");
+            }
         }
         return null;
     }
-
-    private Message executeWithTry(TelegramLongPollingBot bot, SendPhoto method) {
-        try {
-            return bot.execute(method);
-        } catch (Throwable e) {
-            LOG.error("\nChatContext:\n" + this, e);
-        }
-        return null;
-    }
-
-    private Message executeWithTry(TelegramLongPollingBot bot, SendSticker method) {
-        try {
-            return bot.execute(method);
-        } catch (Throwable e) {
-            LOG.error("\nChatContext:\n" + this, e);
-        }
-        return null;
-    }
-
-    private Message executeWithTry(TelegramLongPollingBot bot, EditMessageMedia method) {
-        try {
-            return (Message) bot.execute(method);
-        } catch (Throwable e) {
-            LOG.error("\nChatContext:\n" + this, e);
-        }
-        return null;
-    }
-
 
     private SendMessage makeSendMessage() {
         return SendMessage.builder()
