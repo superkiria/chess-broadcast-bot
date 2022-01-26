@@ -8,10 +8,13 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 @Component
 public class ActorsChain {
 
+    private final ExecutorService pool = Executors.newFixedThreadPool(5);
     private final List<ChatActor> actors = new ArrayList<>();
 
     @Autowired
@@ -28,14 +31,14 @@ public class ActorsChain {
     }
 
     public void startWithContext(ChatContext context) {
-        Thread thread = new Thread(() -> {
+        Runnable task = () -> {
             for (ChatActor actor : actors) {
                 if (!context.isSkip()) {
                     actor.act(context);
                 }
             }
-        });
-        thread.start();
+        };
+        pool.submit(task);
     }
 
 }

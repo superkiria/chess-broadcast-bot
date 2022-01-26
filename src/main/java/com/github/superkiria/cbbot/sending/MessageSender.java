@@ -38,7 +38,7 @@ public class MessageSender {
         new Thread(() -> {
             while (true) {
                 try {
-                    waitForBestElementInQueue();
+                    waitForBestElementInQueueWithPeek();
                     ChatContext context = queue.take();
                     context.setReplyMessageId(keeper.getMessageId(context.getKey()));
                     waitToNotViolateTelegramRestrictions(context.getChatId());
@@ -51,11 +51,11 @@ public class MessageSender {
         }).start();
     }
 
-    private void waitForBestElementInQueue() throws InterruptedException {
+    private void waitForBestElementInQueueWithPeek() throws InterruptedException {
         ChatContext peeked = queue.peek();
         if (!queue.isEmpty()) {
             while (lastForUser.containsKey(peeked.getChatId())
-                    && new Date().getTime() - lastForUser.get(peeked.getChatId()).getTime() < 2750) {
+                    && new Date().getTime() - lastForUser.get(peeked.getChatId()).getTime() < 2800) {
                 Thread.sleep(100);
                 peeked = queue.peek();
             }
