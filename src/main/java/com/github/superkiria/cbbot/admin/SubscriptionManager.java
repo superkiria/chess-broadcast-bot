@@ -86,11 +86,14 @@ public class SubscriptionManager {
         if (eventId == null) {
             return null;
         }
-        return lichess.getLichessEventById(eventId).getRounds()
-                .stream()
-                .filter(r -> r.getFinished() == null || !r.getFinished())
-                .min(Comparator.comparing(LichessRound::getStartsAt))
-                .orElse(null);
+        LichessEvent lichessEventById = lichess.getLichessEventById(eventId);
+        return lichessEventById != null ?
+                    lichessEventById.getRounds()
+                    .stream()
+                    .filter(r -> r.getFinished() == null || !r.getFinished())
+                    .min(Comparator.comparing(LichessRound::getStartsAt))
+                    .orElse(null)
+                : null;
     }
 
     public LichessEvent currentEvent() {

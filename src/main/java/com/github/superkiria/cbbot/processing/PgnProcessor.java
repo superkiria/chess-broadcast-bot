@@ -57,6 +57,7 @@ public class PgnProcessor {
             while (true) {
                 LOG.debug("Trying to extract a game");
                 ExtractedGame extractedGame = null;
+                ChatContext context = null;
                 try {
                     extractedGame = extractNextGame();
                     sendRoundAnnouncementIfNotSent();
@@ -64,14 +65,16 @@ public class PgnProcessor {
                     checkExtractedGameAndFallbackIfNecessary(extractedGame, key);
                     MarkedCaption caption = gameHelper.makeMarkedCaptionFromGame(extractedGame.getGame(), key);
                     MarkedCaption shortCaption = gameHelper.makeMarkedCaptionFromGame(extractedGame.getGame(), key, true);
-                    ChatContext context = makeChatContext(extractedGame, caption, shortCaption, key);
+                    context = makeChatContext(extractedGame, caption, shortCaption, key);
                     Integer color = getColorForBoard(key);
                     context.setColor(color);
                     context.setInputStream(makePictureFromGame(extractedGame.getGame(), color));
                     messageQueue.add(context);
+                    LOG.info("Move prepared {} {}", key, extractedGame.getGame().getHalfMoves().size());
                 } catch (Exception e) {
                     LOG.error("Error on making a move: ", e);
-                    LOG.error(String.valueOf(extractedGame));
+                    LOG.error("Extracted game was: " + extractedGame);
+                    LOG.error("ChatContext was: " + context);
                 }
             }
         }).start();

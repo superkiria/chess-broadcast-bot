@@ -40,7 +40,7 @@ public class SentMessageProcessor {
             keeper.putOpening(context.getKey(), context.getOpening());
         }
         keeper.putMessageId(context.getKey(), message.getMessageId());
-        LOG.info("messageId {} for game {}, total {} games", message.getMessageId(), context.getKey(), keeper.getMessageIdsCount());
+        LOG.debug("messageId {} for game {}, total {} games", message.getMessageId(), context.getKey(), keeper.getMessageIdsCount());
     }
 
 }

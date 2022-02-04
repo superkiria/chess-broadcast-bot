@@ -84,6 +84,8 @@ public class ChatContext implements Comparable<ChatContext> {
             }
         } catch (Throwable e) {
             LOG.error("Message sending failed", e);
+            LOG.error("Context:\n{}", this);
+            LOG.error("Method:\n{}", method);
             if (retriesLeft > 0) {
                 retriesLeft--;
                 LOG.info("Retrying, retries left {}", retriesLeft);

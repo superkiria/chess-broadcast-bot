@@ -2,6 +2,8 @@ package com.github.superkiria.cbbot.sending;
 
 import com.github.superkiria.cbbot.main.ChatContext;
 import com.github.superkiria.cbbot.sending.keepers.SentDataKeeper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -16,6 +18,8 @@ import java.util.Map;
 
 @Component
 public class MessageSender {
+
+    private final static Logger LOG = LoggerFactory.getLogger(MessageSender.class);
 
     private final MessageQueue queue;
     private final TelegramLongPollingBot bot;
@@ -44,8 +48,12 @@ public class MessageSender {
                     waitToNotViolateTelegramRestrictions(context.getChatId());
                     Message message = context.call(bot);
                     processor.process(context, message);
+                    LOG.info("Message sent. chatId {}, messageId {}, gameKey: {}",
+                            context.getChatId(),
+                            message != null ? message.getMessageId() : null,
+                            context.getKey());
                 } catch (TelegramApiException | InterruptedException e) {
-                    e.printStackTrace();
+                    LOG.error("Message processing error", e);
                 }
             }
         }).start();
