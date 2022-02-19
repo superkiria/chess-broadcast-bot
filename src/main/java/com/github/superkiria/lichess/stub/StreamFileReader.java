@@ -22,8 +22,6 @@ public class StreamFileReader {
                 buffer.add(line);
                 line = reader.readLine();
             }
-        } catch (FileNotFoundException ex) {
-            ex.printStackTrace();
         } catch (IOException ex) {
             ex.printStackTrace();
         }

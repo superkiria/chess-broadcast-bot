@@ -3,6 +3,7 @@ package com.github.superkiria.cbbot.processing;
 import com.github.superkiria.cbbot.lichess.model.LichessEvent;
 import com.github.superkiria.cbbot.lichess.model.LichessRound;
 import com.github.superkiria.cbbot.main.ChatContext;
+import com.github.superkiria.cbbot.sending.model.MarkedCaption;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
@@ -47,7 +48,12 @@ public class ComposeMessageHelper {
             constructor.addLink("check on lichess", lichessRound.getUrl());
         }
         return ChatContext.builder()
-                .chatId(chatId).response(constructor.getCaption()).entities(constructor.getEntities()).build();
+                .chatId(chatId)
+                .markedCaption(MarkedCaption.builder()
+                        .caption(constructor.getCaption())
+                        .entities(constructor.getEntities())
+                        .build())
+                .build();
     }
 
 }

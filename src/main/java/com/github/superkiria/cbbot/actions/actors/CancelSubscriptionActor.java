@@ -3,6 +3,7 @@ package com.github.superkiria.cbbot.actions.actors;
 import com.github.superkiria.cbbot.actions.ChatActor;
 import com.github.superkiria.cbbot.main.ChatContext;
 import com.github.superkiria.cbbot.admin.SubscriptionManager;
+import com.github.superkiria.cbbot.sending.model.MarkedCaption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -28,5 +29,6 @@ public class CancelSubscriptionActor implements ChatActor {
             return;
         }
         subscriptionManager.cancelSubscription();
+        context.setMarkedCaption(MarkedCaption.builder().caption("Cancelled").build());
     }
 }

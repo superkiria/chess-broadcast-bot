@@ -4,6 +4,7 @@ import com.github.superkiria.cbbot.main.ChatContext;
 import com.github.superkiria.cbbot.lichess.LichessConsumer;
 import com.github.superkiria.cbbot.lichess.model.LichessEvent;
 import com.github.superkiria.cbbot.sending.MessageQueue;
+import com.github.superkiria.cbbot.sending.model.MarkedCaption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -38,7 +39,7 @@ public class NewEventsNotifier {
         for (LichessEvent event : currentBroadcasts) {
             if (!sentNotifications.contains(event.getTour().getId())) {
                 ChatContext context = ChatContext.builder()
-                        .response("🍀 " + eventInfo(event))
+                        .markedCaption(MarkedCaption.builder().caption("🍀 " + eventInfo(event)).build())
                         .chatId(adminChatId)
                         .build();
                 messageQueue.add(context);

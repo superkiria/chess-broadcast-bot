@@ -11,8 +11,7 @@ public class ChatIdExtractor implements ChatActor {
     public void act(ChatContext context) {
         if (context.getUpdate().getMessage() != null) {
             context.setChatId(context.getUpdate().getMessage().getChat().getId().toString());
-        }
-        if (context.getUpdate().getCallbackQuery() != null) {
+        } else if (context.getUpdate().getCallbackQuery() != null) {
             context.setChatId(context.getUpdate().getCallbackQuery().getMessage().getChatId().toString());
         }
     }

@@ -51,7 +51,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!--		//  https://github.com/rubenlagus/TelegramBots-->
+		<!-- https://github.com/rubenlagus/TelegramBots -->
 		<dependency>
 			<groupId>org.telegram</groupId>
 			<artifactId>telegrambots</artifactId>
@@ -61,7 +61,17 @@
 		<dependency>
 			<groupId>com.github.superkiria</groupId>
 			<artifactId>chess-pgn-to-picture</artifactId>
-			<version>0.1.1</version>
+			<version>0.1.2</version>
+		</dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<scope>test</scope>
 		</dependency>
 
 	</dependencies>
@@ -79,7 +89,6 @@
 						</exclude>
 					</excludes>
 				</configuration>
-
 			</plugin>
 		</plugins>
 		<finalName>chess-bot</finalName>

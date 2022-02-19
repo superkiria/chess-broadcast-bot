@@ -15,6 +15,7 @@ import reactor.util.retry.Retry;
 import java.time.Duration;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
@@ -93,12 +94,12 @@ public class LichessConsumer {
         }
         synchronized (this) {
             eventsCacheLastCall = new Date();
-            LOG.info("getLichessBroadcasts");
             eventsCache = webClient.get()
                         .uri(broadcastsEndpoint)
                         .retrieve()
                         .bodyToFlux(LichessEvent.class)
                         .collect(Collectors.toList()).block();
+            LOG.info("getLichessBroadcasts {}", eventsCache != null ? eventsCache.size() : null);
             return eventsCache;
         }
     }
@@ -111,7 +112,8 @@ public class LichessConsumer {
 
     public LichessEvent getLichessEventById(String eventId) {
         List<LichessEvent> events = getLichessBroadcasts();
-        return events.stream().filter(e -> e.getTour().getId().equals(eventId)).findFirst().get();
+        Optional<LichessEvent> first = events.stream().filter(e -> e.getTour().getId().equals(eventId)).findFirst();
+        return first.orElse(null);
     }
 
     public String getCurrentSubscriptionRoundId() {

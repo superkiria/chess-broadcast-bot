@@ -1,151 +1,137 @@
-[Event "Round 11: Diego Flores - Leandro Krysa"]
-[Site "https://lichess.org/study/DYcygfVK/EOudpbMC"]
-[White "Diego Flores"]
-[Black "Leandro Krysa"]
+
+
+[Event "Tata Steel Chess Masters 2022"]
+[Site "Wijk aan Zee, Netherlands"]
+[Date "2022.01.22"]
+[Round "7.4"]
+[White "Esipenko, Andrey"]
+[Black "Shankland, Sam"]
 [Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
+[WhiteElo "2714"]
+[BlackElo "2708"]
+[UTCDate "2022.01.22"]
+[UTCTime "13:08:27"]
 [Variant "Standard"]
-[ECO "A20"]
-[Opening "English Opening: King's English Variation"]
-[Annotator "https://lichess.org/@/rhungaski"]
+[ECO "B48"]
+[Opening "Sicilian Defense: Taimanov Variation, Bastrikov Variation"]
+[Annotator "https://lichess.org/@/ImaginaryGC"]
 
-1. c4 { [%clk 1:30:26] } 1... e5 { [%clk 1:30:42] } 2. e3 { [%clk 1:28:17] } 2... Nf6 { [%clk 1:30:18] } 3. Nc3 { [%clk 1:28:12] } 3... Bb4 { [%clk 1:30:30] } 4. Nge2 { [%clk 1:23:38] } 4... O-O { [%clk 1:30:18] } 5. a3 { [%clk 1:21:31] } 5... Be7 { [%clk 1:29:44] } 6. d4 { [%clk 1:12:55] } 6... exd4 { [%clk 1:29:22] } 7. Qxd4 { [%clk 1:09:02] } 7... c6 { [%clk 1:25:05] } 8. g4 { [%clk 0:44:11] } 8... d6 { [%clk 1:02:46] } 9. h3 { [%clk 0:29:30] } 9... Na6 { [%clk 0:59:16] } 10. b4 { [%clk 0:21:30] } 10... c5 { [%clk 0:49:13] } 11. bxc5 { [%clk 0:14:20] } 11... Nxc5 { [%clk 0:49:34] } 12. Rb1 { [%clk 0:14:24] } 12... Be6 { [%clk 0:27:10] } 13. Bg2 { [%clk 0:10:47] } 13... Nfd7 { [%clk 0:26:52] } 14. Nd5 { [%clk 0:07:37] } 14... Bf6 { [%clk 0:20:54] } 15. Nxf6+ { [%clk 0:04:23] } 15... Qxf6 { [%clk 0:20:51] } 16. Nf4 { [%clk 0:04:47] } 16... Ne5 { [%clk 0:15:16] } 17. O-O { [%clk 0:05:00] } 17... Bxc4 { [%clk 0:13:17] } 18. Rd1 { [%clk 0:05:14] } 18... Nb3 { [%clk 0:11:46] } 19. Nh5 { [%clk 0:04:59] } 19... Qg6 { [%clk 0:08:27] } 20. Qb2 { [%clk 0:01:14] } *
+1. e4 { [%clk 1:40:55] } 1... c5 { [%clk 1:40:48] } 2. Nf3 { [%clk 1:40:43] } 2... e6 { [%clk 1:41:13] } 3. d4 { [%clk 1:40:18] } 3... cxd4 { [%clk 1:41:39] } 4. Nxd4 { [%clk 1:40:45] } 4... Nc6 { [%clk 1:42:05] } 5. Nc3 { [%clk 1:40:59] } 5... Qc7 { [%clk 1:42:29] } 6. Be3 { [%clk 1:41:09] } 6... a6 { [%clk 1:42:53] } 7. g4 { [%clk 1:41:04] } 7... b5 { [%clk 1:43:03] } 8. Nxc6 { [%clk 1:41:04] } 8... Qxc6 { [%clk 1:43:28] } 9. Qd2 { [%clk 1:41:24] } 9... b4 { [%clk 1:43:48] } 10. Ne2 { [%clk 1:41:47] } 10... Qxe4 { [%clk 1:44:11] } 11. Rg1 { [%clk 1:42:13] } 11... Qc4 { [%clk 1:44:34] } 12. Ng3 { [%clk 1:41:16] } 12... Qc7 { [%clk 1:44:51] } 13. O-O-O { [%clk 1:41:25] } 13... Ne7 { [%clk 1:45:15] } 14. Nh5 { [%clk 1:40:57] } 14... Nd5 { [%clk 1:45:17] } 15. Bd4 { [%clk 1:40:50] } 15... Rg8 { [%clk 1:45:34] } 16. Qd3 { [%clk 1:40:52] } 16... g6 { [%clk 1:45:53] } 17. Bg2 { [%clk 1:39:56] } 17... gxh5 { [%clk 1:45:59] } 18. Bxd5 { [%clk 1:38:07] } 18... Bb7 { [%clk 1:46:25] } 19. Bxb7 { [%clk 1:30:50] } 19... Qxb7 { [%clk 1:46:46] } 20. gxh5 { [%clk 1:08:31] } 20... Rxg1 { [%clk 1:46:47] } 21. Rxg1 { [%clk 1:08:58] } 21... Qd5 { [%clk 1:47:07] } 22. b3 { [%clk 1:01:27] } 22... f5 { [%clk 1:44:57] } 23. Qe3 { [%clk 0:50:50] } 23... Qe4 { [%clk 1:25:25] } 24. Qd2 { [%clk 0:47:18] } 24... Rc8 { [%clk 1:23:06] } 25. Kb1 { [%clk 0:44:58] } 25... f4 { [%clk 1:18:04] } 26. Qd1 { [%clk 0:37:57] } 26... d6 { [%clk 1:11:21] } 27. f3 { [%clk 0:32:20] } 27... Qd5 { [%clk 1:03:12] } 28. Qd3 { [%clk 0:29:52] } 28... Rc7 { [%clk 1:01:40] } 29. Re1 { [%clk 0:23:49] } 29... Re7 { [%clk 0:55:08] } 30. Re4 { [%clk 0:24:04] } 30... e5 { [%clk 0:42:25] } 31. Qxa6 { [%clk 0:24:22] } 31... Kf7 { [%clk 0:42:23] } 32. Bb2 { [%clk 0:19:35] } 32... Qd1+ { [%clk 0:40:24] } 33. Bc1 { [%clk 0:20:01] } 33... d5 { [%clk 0:40:19] } 34. Re2 { [%clk 0:18:54] } 34... Rc7 { [%clk 0:36:31] } 35. Rf2 { [%clk 0:17:23] } 35... d4 { [%clk 0:26:20] } 36. Qb6 { [%clk 0:13:14] } 36... Rc3 { [%clk 0:25:03] } 37. Qb7+ { [%clk 0:11:54] } 37... Be7 { [%clk 0:24:48] } 38. Qe4 { [%clk 0:08:44] } 38... Ke6 { [%clk 0:21:31] } 39. Qxh7 { [%clk 0:08:14] } 39... Qg1 { [%clk 0:20:45] } 40. Qg6+ { [%clk 0:02:28] } 40... Qxg6 { [%clk 0:21:08] } 41. hxg6 { [%clk 0:02:55] } 41... Kf6 { [%clk 0:12:47] } 42. Bd2 { [%clk 0:01:03] } 42... Rc8 { [%clk 0:11:27] } 43. Rg2 { [%clk 0:41:02] } 43... Kg7 { [%clk 1:00:22] } 44. Re2 { [%clk 0:31:38] } 44... Bd6 { [%clk 0:52:12] } 45. h4 { [%clk 0:31:27] } 45... Rh8 { [%clk 0:52:16] } 46. Be1 { [%clk 0:30:31] } 46... Kxg6 { [%clk 0:52:26] } 47. Kc1 { [%clk 0:30:08] } 47... Ra8 { [%clk 0:45:31] } *
 
 
-[Event "Round 11: Pablo Ismael Acosta - Diego Valerga"]
-[Site "https://lichess.org/study/DYcygfVK/Olj8slgF"]
-[White "Pablo Ismael Acosta"]
-[Black "Diego Valerga"]
+      [Event "Tata Steel Chess Masters 2022"]
+[Site "Wijk aan Zee, Netherlands"]
+[Date "2022.01.22"]
+[Round "7.4"]
+[White "Esipenko, Andrey"]
+[Black "Shankland, Sam"]
 [Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
+[WhiteElo "2714"]
+[BlackElo "2708"]
+[UTCDate "2022.01.22"]
+[UTCTime "13:08:27"]
 [Variant "Standard"]
-[ECO "A11"]
-[Opening "English Opening: Caro-Kann Defensive System"]
-[Annotator "https://lichess.org/@/rhungaski"]
+[ECO "B48"]
+[Opening "Sicilian Defense: Taimanov Variation, Bastrikov Variation"]
+[Annotator "https://lichess.org/@/ImaginaryGC"]
 
-1. c4 { [%clk 1:30:34] } 1... c6 { [%clk 1:30:45] } 2. Nf3 { [%clk 1:28:56] } 2... d5 { [%clk 1:31:06] } 3. e3 { [%clk 1:29:20] } 3... Nf6 { [%clk 1:31:25] } 4. b3 { [%clk 1:29:37] } 4... Bg4 { [%clk 1:30:51] } 5. Bb2 { [%clk 1:29:35] } 5... e6 { [%clk 1:30:03] } 6. Be2 { [%clk 1:29:18] } 6... Nbd7 { [%clk 1:28:06] } 7. Nc3 { [%clk 1:26:18] } 7... Bd6 { [%clk 1:21:53] } 8. O-O { [%clk 1:24:43] } 8... O-O { [%clk 1:21:06] } 9. h3 { [%clk 1:20:55] } 9... Bh5 { [%clk 1:19:53] } 10. d3 { [%clk 1:15:21] } 10... Re8 { [%clk 1:13:42] } 11. a3 { [%clk 1:06:08] } 11... h6 { [%clk 1:13:33] } 12. b4 { [%clk 1:01:46] } 12... a6 { [%clk 1:02:09] } 13. e4 { [%clk 0:45:34] } 13... Bxf3 { [%clk 0:48:06] } 14. Bxf3 { [%clk 0:45:52] } 14... d4 { [%clk 0:48:25] } 15. Ne2 { [%clk 0:40:41] } 15... e5 { [%clk 0:48:19] } 16. c5 { [%clk 0:41:02] } 16... Bf8 { [%clk 0:43:21] } 17. Bc1 { [%clk 0:30:31] } 17... a5 { [%clk 0:35:42] } 18. Bd2 { [%clk 0:30:20] } 18... axb4 { [%clk 0:34:30] } 19. axb4 { [%clk 0:30:43] } 19... Rxa1 { [%clk 0:34:32] } 20. Qxa1 { [%clk 0:31:08] } 20... b6 { [%clk 0:34:57] } 21. cxb6 { [%clk 0:31:07] } 21... Qxb6 { [%clk 0:35:10] } 22. Rb1 { [%clk 0:29:54] } 22... Qb7 { [%clk 0:31:32] } 23. Nc1 { [%clk 0:28:25] } 23... Ra8 { [%clk 0:30:30] } 24. Qb2 { [%clk 0:28:50] } 24... Qb5 { [%clk 0:28:45] } 25. Bd1 { [%clk 0:24:46] } 25... c5 { [%clk 0:25:22] } 26. bxc5 { [%clk 0:22:24] } 26... Qxb2 { [%clk 0:25:13] } 27. Rxb2 { [%clk 0:22:48] } 27... Nxc5 { [%clk 0:23:28] } 28. g3 { [%clk 0:21:07] } 28... Ra1 { [%clk 0:19:56] } 29. Bc2 { [%clk 0:20:38] } 29... Nfd7 { [%clk 0:20:17] } 30. Kg2 { [%clk 0:20:18] } 30... Ra7 { [%clk 0:14:49] } 31. f4 { [%clk 0:20:14] } 31... Bd6 { [%clk 0:15:11] } 32. h4 { [%clk 0:19:19] } 32... Kf8 { [%clk 0:13:31] } 33. Kf3 { [%clk 0:17:16] } 33... Ke7 { [%clk 0:13:00] } 34. Na2 { [%clk 0:15:19] } *
+1. e4 { [%clk 1:40:55] } 1... c5 { [%clk 1:40:48] } 2. Nf3 { [%clk 1:40:43] } 2... e6 { [%clk 1:41:13] } 3. d4 { [%clk 1:40:18] } 3... cxd4 { [%clk 1:41:39] } 4. Nxd4 { [%clk 1:40:45] } 4... Nc6 { [%clk 1:42:05] } 5. Nc3 { [%clk 1:40:59] } 5... Qc7 { [%clk 1:42:29] } 6. Be3 { [%clk 1:41:09] } 6... a6 { [%clk 1:42:53] } 7. g4 { [%clk 1:41:04] } 7... b5 { [%clk 1:43:03] } 8. Nxc6 { [%clk 1:41:04] } 8... Qxc6 { [%clk 1:43:28] } 9. Qd2 { [%clk 1:41:24] } 9... b4 { [%clk 1:43:48] } 10. Ne2 { [%clk 1:41:47] } 10... Qxe4 { [%clk 1:44:11] } 11. Rg1 { [%clk 1:42:13] } 11... Qc4 { [%clk 1:44:34] } 12. Ng3 { [%clk 1:41:16] } 12... Qc7 { [%clk 1:44:51] } 13. O-O-O { [%clk 1:41:25] } 13... Ne7 { [%clk 1:45:15] } 14. Nh5 { [%clk 1:40:57] } 14... Nd5 { [%clk 1:45:17] } 15. Bd4 { [%clk 1:40:50] } 15... Rg8 { [%clk 1:45:34] } 16. Qd3 { [%clk 1:40:52] } 16... g6 { [%clk 1:45:53] } 17. Bg2 { [%clk 1:39:56] } 17... gxh5 { [%clk 1:45:59] } 18. Bxd5 { [%clk 1:38:07] } 18... Bb7 { [%clk 1:46:25] } 19. Bxb7 { [%clk 1:30:50] } 19... Qxb7 { [%clk 1:46:46] } 20. gxh5 { [%clk 1:08:31] } 20... Rxg1 { [%clk 1:46:47] } 21. Rxg1 { [%clk 1:08:58] } 21... Qd5 { [%clk 1:47:07] } 22. b3 { [%clk 1:01:27] } 22... f5 { [%clk 1:44:57] } 23. Qe3 { [%clk 0:50:50] } 23... Qe4 { [%clk 1:25:25] } 24. Qd2 { [%clk 0:47:18] } 24... Rc8 { [%clk 1:23:06] } 25. Kb1 { [%clk 0:44:58] } 25... f4 { [%clk 1:18:04] } 26. Qd1 { [%clk 0:37:57] } 26... d6 { [%clk 1:11:21] } 27. f3 { [%clk 0:32:20] } 27... Qd5 { [%clk 1:03:12] } 28. Qd3 { [%clk 0:29:52] } 28... Rc7 { [%clk 1:01:40] } 29. Re1 { [%clk 0:23:49] } 29... Re7 { [%clk 0:55:08] } 30. Re4 { [%clk 0:24:04] } 30... e5 { [%clk 0:42:25] } 31. Qxa6 { [%clk 0:24:22] } 31... Kf7 { [%clk 0:42:23] } 32. Bb2 { [%clk 0:19:35] } 32... Qd1+ { [%clk 0:40:24] } 33. Bc1 { [%clk 0:20:01] } 33... d5 { [%clk 0:40:19] } 34. Re2 { [%clk 0:18:54] } 34... Rc7 { [%clk 0:36:31] } 35. Rf2 { [%clk 0:17:23] } 35... d4 { [%clk 0:26:20] } 36. Qb6 { [%clk 0:13:14] } 36... Rc3 { [%clk 0:25:03] } 37. Qb7+ { [%clk 0:11:54] } 37... Be7 { [%clk 0:24:48] } 38. Qe4 { [%clk 0:08:44] } 38... Ke6 { [%clk 0:21:31] } 39. Qxh7 { [%clk 0:08:14] } 39... Qg1 { [%clk 0:20:45] } 40. Qg6+ { [%clk 0:02:28] } 40... Qxg6 { [%clk 0:21:08] } 41. hxg6 { [%clk 0:02:55] } 41... Kf6 { [%clk 0:12:47] } 42. Bd2 { [%clk 0:01:03] } 42... Rc8 { [%clk 0:11:27] } 43. Rg2 { [%clk 0:41:02] } 43... Kg7 { [%clk 1:00:22] } 44. Re2 { [%clk 0:31:38] } 44... Bd6 { [%clk 0:52:12] } 45. h4 { [%clk 0:31:27] } 45... Rh8 { [%clk 0:52:16] } 46. Be1 { [%clk 0:30:31] } 46... Kxg6 { [%clk 0:52:26] } 47. Kc1 { [%clk 0:30:08] } 47... Ra8 { [%clk 0:45:31] } 48. Kd2 { [%clk 0:24:03] } *
 
 
-[Event "Round 11: Sergio Slipak - Federico Perez Ponsa"]
-[Site "https://lichess.org/study/DYcygfVK/QX01tZ8e"]
-[White "Sergio Slipak"]
-[Black "Federico Perez Ponsa"]
+  [Event "Tata Steel Chess Masters 2022"]
+[Site "Wijk aan Zee, Netherlands"]
+[Date "2022.01.22"]
+[Round "7.4"]
+[White "Esipenko, Andrey"]
+[Black "Shankland, Sam"]
 [Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
+[WhiteElo "2714"]
+[BlackElo "2708"]
+[UTCDate "2022.01.22"]
+[UTCTime "13:08:27"]
 [Variant "Standard"]
-[ECO "A48"]
-[Opening "Torre Attack"]
-[Annotator "https://lichess.org/@/rhungaski"]
+[ECO "B48"]
+[Opening "Sicilian Defense: Taimanov Variation, Bastrikov Variation"]
+[Annotator "https://lichess.org/@/ImaginaryGC"]
 
-1. d4 { [%clk 1:30:56] } 1... Nf6 { [%clk 1:30:50] } 2. Nf3 { [%clk 1:31:20] } 2... g6 { [%clk 1:30:56] } 3. Bg5 { [%clk 1:31:43] } 3... Bg7 { [%clk 1:31:20] } 4. Nbd2 { [%clk 1:32:06] } 4... O-O { [%clk 1:31:34] } 5. e3 { [%clk 1:32:31] } 5... d6 { [%clk 1:31:34] } 6. c3 { [%clk 1:32:55] } 6... h6 { [%clk 1:30:51] } 7. Bh4 { [%clk 1:33:16] } 7... Qe8 { [%clk 1:31:09] } 8. Bc4 { [%clk 1:29:59] } 8... b5 { [%clk 1:21:55] } 9. Bb3 { [%clk 1:28:04] } 9... Bb7 { [%clk 1:14:17] } 10. a4 { [%clk 1:26:18] } 10... a6 { [%clk 1:14:06] } 11. O-O { [%clk 1:26:12] } 11... Nbd7 { [%clk 1:10:11] } 12. Qe2 { [%clk 1:20:47] } 12... Nb6 { [%clk 1:08:21] } 13. a5 { [%clk 1:18:45] } 13... Na4 { [%clk 0:56:43] } 14. Bxf6 { [%clk 1:05:38] } 14... Bxf6 { [%clk 0:54:00] } 15. Rfc1 { [%clk 1:01:04] } 15... Rb8 { [%clk 0:44:22] } 16. Rc2 { [%clk 0:58:30] } 16... e5 { [%clk 0:38:08] } 17. dxe5 { [%clk 0:51:28] } 17... dxe5 { [%clk 0:38:06] } 18. Bxa4 { [%clk 0:50:23] } 18... bxa4 { [%clk 0:38:15] } 19. Qc4 { [%clk 0:50:05] } 19... Bc6 { [%clk 0:38:14] } 20. Ne4 { [%clk 0:48:55] } 20... Bg7 { [%clk 0:38:21] } 21. Nc5 { [%clk 0:46:36] } 21... Bb5 { [%clk 0:30:58] } 22. Qa2 { [%clk 0:42:40] } 22... Qc6 { [%clk 0:29:33] } 23. Nxa4 { [%clk 0:39:03] } 23... Bc4 { [%clk 0:24:53] } 24. Qa3 { [%clk 0:38:52] } 24... Bb3 { [%clk 0:22:17] } 25. Rd2 { [%clk 0:29:10] } 25... Rfe8 { [%clk 0:22:10] } 26. Nc5 { [%clk 0:28:02] } 26... Bf8 { [%clk 0:21:01] } 27. Qxb3 { [%clk 0:28:16] } 27... Rxb3 { [%clk 0:21:23] } 28. Nxb3 { [%clk 0:28:40] } 28... Rb8 { [%clk 0:19:39] } 29. Nc1 { [%clk 0:26:17] } 29... e4 { [%clk 0:18:41] } 30. Nd4 { [%clk 0:22:06] } 30... Qc4 { [%clk 0:18:23] } 31. Nde2 { [%clk 0:22:18] } 31... Bg7 { [%clk 0:16:15] } 32. b3 { [%clk 0:19:50] } 32... Qc5 { [%clk 0:15:24] } 33. Ra4 { [%clk 0:18:54] } 33... Bxc3 { [%clk 0:11:14] } 34. Rc2 { [%clk 0:17:07] } 34... Rd8 { [%clk 0:11:40] } *
+1. e4 { [%clk 1:40:55] } 1... c5 { [%clk 1:40:48] } 2. Nf3 { [%clk 1:40:43] } 2... e6 { [%clk 1:41:13] } 3. d4 { [%clk 1:40:18] } 3... cxd4 { [%clk 1:41:39] } 4. Nxd4 { [%clk 1:40:45] } 4... Nc6 { [%clk 1:42:05] } 5. Nc3 { [%clk 1:40:59] } 5... Qc7 { [%clk 1:42:29] } 6. Be3 { [%clk 1:41:09] } 6... a6 { [%clk 1:42:53] } 7. g4 { [%clk 1:41:04] } 7... b5 { [%clk 1:43:03] } 8. Nxc6 { [%clk 1:41:04] } 8... Qxc6 { [%clk 1:43:28] } 9. Qd2 { [%clk 1:41:24] } 9... b4 { [%clk 1:43:48] } 10. Ne2 { [%clk 1:41:47] } 10... Qxe4 { [%clk 1:44:11] } 11. Rg1 { [%clk 1:42:13] } 11... Qc4 { [%clk 1:44:34] } 12. Ng3 { [%clk 1:41:16] } 12... Qc7 { [%clk 1:44:51] } 13. O-O-O { [%clk 1:41:25] } 13... Ne7 { [%clk 1:45:15] } 14. Nh5 { [%clk 1:40:57] } 14... Nd5 { [%clk 1:45:17] } 15. Bd4 { [%clk 1:40:50] } 15... Rg8 { [%clk 1:45:34] } 16. Qd3 { [%clk 1:40:52] } 16... g6 { [%clk 1:45:53] } 17. Bg2 { [%clk 1:39:56] } 17... gxh5 { [%clk 1:45:59] } 18. Bxd5 { [%clk 1:38:07] } 18... Bb7 { [%clk 1:46:25] } 19. Bxb7 { [%clk 1:30:50] } 19... Qxb7 { [%clk 1:46:46] } 20. gxh5 { [%clk 1:08:31] } 20... Rxg1 { [%clk 1:46:47] } 21. Rxg1 { [%clk 1:08:58] } 21... Qd5 { [%clk 1:47:07] } 22. b3 { [%clk 1:01:27] } 22... f5 { [%clk 1:44:57] } 23. Qe3 { [%clk 0:50:50] } 23... Qe4 { [%clk 1:25:25] } 24. Qd2 { [%clk 0:47:18] } 24... Rc8 { [%clk 1:23:06] } 25. Kb1 { [%clk 0:44:58] } 25... f4 { [%clk 1:18:04] } 26. Qd1 { [%clk 0:37:57] } 26... d6 { [%clk 1:11:21] } 27. f3 { [%clk 0:32:20] } 27... Qd5 { [%clk 1:03:12] } 28. Qd3 { [%clk 0:29:52] } 28... Rc7 { [%clk 1:01:40] } 29. Re1 { [%clk 0:23:49] } 29... Re7 { [%clk 0:55:08] } 30. Re4 { [%clk 0:24:04] } 30... e5 { [%clk 0:42:25] } 31. Qxa6 { [%clk 0:24:22] } 31... Kf7 { [%clk 0:42:23] } 32. Bb2 { [%clk 0:19:35] } 32... Qd1+ { [%clk 0:40:24] } 33. Bc1 { [%clk 0:20:01] } 33... d5 { [%clk 0:40:19] } 34. Re2 { [%clk 0:18:54] } 34... Rc7 { [%clk 0:36:31] } 35. Rf2 { [%clk 0:17:23] } 35... d4 { [%clk 0:26:20] } 36. Qb6 { [%clk 0:13:14] } 36... Rc3 { [%clk 0:25:03] } 37. Qb7+ { [%clk 0:11:54] } 37... Be7 { [%clk 0:24:48] } 38. Qe4 { [%clk 0:08:44] } 38... Ke6 { [%clk 0:21:31] } 39. Qxh7 { [%clk 0:08:14] } 39... Qg1 { [%clk 0:20:45] } 40. Qg6+ { [%clk 0:02:28] } 40... Qxg6 { [%clk 0:21:08] } 41. hxg6 { [%clk 0:02:55] } 41... Kf6 { [%clk 0:12:47] } 42. Bd2 { [%clk 0:01:03] } 42... Rc8 { [%clk 0:11:27] } 43. Rg2 { [%clk 0:41:02] } 43... Kg7 { [%clk 1:00:22] } 44. Re2 { [%clk 0:31:38] } 44... Bd6 { [%clk 0:52:12] } 45. h4 { [%clk 0:31:27] } 45... Rh8 { [%clk 0:52:16] } 46. Be1 { [%clk 0:30:31] } 46... Kxg6 { [%clk 0:52:26] } 47. Kc1 { [%clk 0:30:08] } 47... Ra8 { [%clk 0:45:31] } 48. Kd2 { [%clk 0:24:03] } 48... Rxa2 { [%clk 0:44:55] } 49. Kd3 { [%clk 0:21:57] } *
 
 
-[Event "Round 11: Sergio Slipak - Federico Perez Ponsa"]
-[Site "https://lichess.org/study/DYcygfVK/QX01tZ8e"]
-[White "Sergio Slipak"]
-[Black "Federico Perez Ponsa"]
+
+[Event "Tata Steel Chess Masters 2022"]
+[Site "Wijk aan Zee, Netherlands"]
+[Date "2022.01.22"]
+[Round "7.4"]
+[White "Esipenko, Andrey"]
+[Black "Shankland, Sam"]
 [Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
+[WhiteElo "2714"]
+[BlackElo "2708"]
+[UTCDate "2022.01.22"]
+[UTCTime "13:08:27"]
 [Variant "Standard"]
-[ECO "A48"]
-[Opening "Torre Attack"]
-[Annotator "https://lichess.org/@/rhungaski"]
+[ECO "B48"]
+[Opening "Sicilian Defense: Taimanov Variation, Bastrikov Variation"]
+[Annotator "https://lichess.org/@/ImaginaryGC"]
 
-1. d4 { [%clk 1:30:56] } 1... Nf6 { [%clk 1:30:50] } 2. Nf3 { [%clk 1:31:20] } 2... g6 { [%clk 1:30:56] } 3. Bg5 { [%clk 1:31:43] } 3... Bg7 { [%clk 1:31:20] } 4. Nbd2 { [%clk 1:32:06] } 4... O-O { [%clk 1:31:34] } 5. e3 { [%clk 1:32:31] } 5... d6 { [%clk 1:31:34] } 6. c3 { [%clk 1:32:55] } 6... h6 { [%clk 1:30:51] } 7. Bh4 { [%clk 1:33:16] } 7... Qe8 { [%clk 1:31:09] } 8. Bc4 { [%clk 1:29:59] } 8... b5 { [%clk 1:21:55] } 9. Bb3 { [%clk 1:28:04] } 9... Bb7 { [%clk 1:14:17] } 10. a4 { [%clk 1:26:18] } 10... a6 { [%clk 1:14:06] } 11. O-O { [%clk 1:26:12] } 11... Nbd7 { [%clk 1:10:11] } 12. Qe2 { [%clk 1:20:47] } 12... Nb6 { [%clk 1:08:21] } 13. a5 { [%clk 1:18:45] } 13... Na4 { [%clk 0:56:43] } 14. Bxf6 { [%clk 1:05:38] } 14... Bxf6 { [%clk 0:54:00] } 15. Rfc1 { [%clk 1:01:04] } 15... Rb8 { [%clk 0:44:22] } 16. Rc2 { [%clk 0:58:30] } 16... e5 { [%clk 0:38:08] } 17. dxe5 { [%clk 0:51:28] } 17... dxe5 { [%clk 0:38:06] } 18. Bxa4 { [%clk 0:50:23] } 18... bxa4 { [%clk 0:38:15] } 19. Qc4 { [%clk 0:50:05] } 19... Bc6 { [%clk 0:38:14] } 20. Ne4 { [%clk 0:48:55] } 20... Bg7 { [%clk 0:38:21] } 21. Nc5 { [%clk 0:46:36] } 21... Bb5 { [%clk 0:30:58] } 22. Qa2 { [%clk 0:42:40] } 22... Qc6 { [%clk 0:29:33] } 23. Nxa4 { [%clk 0:39:03] } 23... Bc4 { [%clk 0:24:53] } 24. Qa3 { [%clk 0:38:52] } 24... Bb3 { [%clk 0:22:17] } 25. Rd2 { [%clk 0:29:10] } 25... Rfe8 { [%clk 0:22:10] } 26. Nc5 { [%clk 0:28:02] } 26... Bf8 { [%clk 0:21:01] } 27. Qxb3 { [%clk 0:28:16] } 27... Rxb3 { [%clk 0:21:23] } 28. Nxb3 { [%clk 0:28:40] } 28... Rb8 { [%clk 0:19:39] } 29. Nc1 { [%clk 0:26:17] } 29... e4 { [%clk 0:18:41] } 30. Nd4 { [%clk 0:22:06] } 30... Qc4 { [%clk 0:18:23] } 31. Nde2 { [%clk 0:22:18] } 31... Bg7 { [%clk 0:16:15] } 32. b3 { [%clk 0:19:50] } 32... Qc5 { [%clk 0:15:24] } 33. Ra4 { [%clk 0:18:54] } 33... Bxc3 { [%clk 0:11:14] } 34. Rc2 { [%clk 0:17:07] } 34... Rd8 { [%clk 0:11:40] } 35. g4 { [%clk 0:12:10] } *
+1. e4 { [%clk 1:40:55] } 1... c5 { [%clk 1:40:48] } 2. Nf3 { [%clk 1:40:43] } 2... e6 { [%clk 1:41:13] } 3. d4 { [%clk 1:40:18] } 3... cxd4 { [%clk 1:41:39] } 4. Nxd4 { [%clk 1:40:45] } 4... Nc6 { [%clk 1:42:05] } 5. Nc3 { [%clk 1:40:59] } 5... Qc7 { [%clk 1:42:29] } 6. Be3 { [%clk 1:41:09] } 6... a6 { [%clk 1:42:53] } 7. g4 { [%clk 1:41:04] } 7... b5 { [%clk 1:43:03] } 8. Nxc6 { [%clk 1:41:04] } 8... Qxc6 { [%clk 1:43:28] } 9. Qd2 { [%clk 1:41:24] } 9... b4 { [%clk 1:43:48] } 10. Ne2 { [%clk 1:41:47] } 10... Qxe4 { [%clk 1:44:11] } 11. Rg1 { [%clk 1:42:13] } 11... Qc4 { [%clk 1:44:34] } 12. Ng3 { [%clk 1:41:16] } 12... Qc7 { [%clk 1:44:51] } 13. O-O-O { [%clk 1:41:25] } 13... Ne7 { [%clk 1:45:15] } 14. Nh5 { [%clk 1:40:57] } 14... Nd5 { [%clk 1:45:17] } 15. Bd4 { [%clk 1:40:50] } 15... Rg8 { [%clk 1:45:34] } 16. Qd3 { [%clk 1:40:52] } 16... g6 { [%clk 1:45:53] } 17. Bg2 { [%clk 1:39:56] } 17... gxh5 { [%clk 1:45:59] } 18. Bxd5 { [%clk 1:38:07] } 18... Bb7 { [%clk 1:46:25] } 19. Bxb7 { [%clk 1:30:50] } 19... Qxb7 { [%clk 1:46:46] } 20. gxh5 { [%clk 1:08:31] } 20... Rxg1 { [%clk 1:46:47] } 21. Rxg1 { [%clk 1:08:58] } 21... Qd5 { [%clk 1:47:07] } 22. b3 { [%clk 1:01:27] } 22... f5 { [%clk 1:44:57] } 23. Qe3 { [%clk 0:50:50] } 23... Qe4 { [%clk 1:25:25] } 24. Qd2 { [%clk 0:47:18] } 24... Rc8 { [%clk 1:23:06] } 25. Kb1 { [%clk 0:44:58] } 25... f4 { [%clk 1:18:04] } 26. Qd1 { [%clk 0:37:57] } 26... d6 { [%clk 1:11:21] } 27. f3 { [%clk 0:32:20] } 27... Qd5 { [%clk 1:03:12] } 28. Qd3 { [%clk 0:29:52] } 28... Rc7 { [%clk 1:01:40] } 29. Re1 { [%clk 0:23:49] } 29... Re7 { [%clk 0:55:08] } 30. Re4 { [%clk 0:24:04] } 30... e5 { [%clk 0:42:25] } 31. Qxa6 { [%clk 0:24:22] } 31... Kf7 { [%clk 0:42:23] } 32. Bb2 { [%clk 0:19:35] } 32... Qd1+ { [%clk 0:40:24] } 33. Bc1 { [%clk 0:20:01] } 33... d5 { [%clk 0:40:19] } 34. Re2 { [%clk 0:18:54] } 34... Rc7 { [%clk 0:36:31] } 35. Rf2 { [%clk 0:17:23] } 35... d4 { [%clk 0:26:20] } 36. Qb6 { [%clk 0:13:14] } 36... Rc3 { [%clk 0:25:03] } 37. Qb7+ { [%clk 0:11:54] } 37... Be7 { [%clk 0:24:48] } 38. Qe4 { [%clk 0:08:44] } 38... Ke6 { [%clk 0:21:31] } 39. Qxh7 { [%clk 0:08:14] } 39... Qg1 { [%clk 0:20:45] } 40. Qg6+ { [%clk 0:02:28] } 40... Qxg6 { [%clk 0:21:08] } 41. hxg6 { [%clk 0:02:55] } 41... Kf6 { [%clk 0:12:47] } 42. Bd2 { [%clk 0:01:03] } 42... Rc8 { [%clk 0:11:27] } 43. Rg2 { [%clk 0:41:02] } 43... Kg7 { [%clk 1:00:22] } 44. Re2 { [%clk 0:31:38] } 44... Bd6 { [%clk 0:52:12] } 45. h4 { [%clk 0:31:27] } 45... Rh8 { [%clk 0:52:16] } 46. Be1 { [%clk 0:30:31] } 46... Kxg6 { [%clk 0:52:26] } 47. Kc1 { [%clk 0:30:08] } 47... Ra8 { [%clk 0:45:31] } 48. Kd2 { [%clk 0:24:03] } 48... Rxa2 { [%clk 0:44:55] } 49. Kd3 { [%clk 0:21:57] } 49... Kf5 { [%clk 0:44:40] } 50. h5 { [%clk 0:22:07] } *
 
 
- [Event "Round 11: Pablo Ismael Acosta - Diego Valerga"]
-[Site "https://lichess.org/study/DYcygfVK/Olj8slgF"]
-[White "Pablo Ismael Acosta"]
-[Black "Diego Valerga"]
+   [Event "Tata Steel Chess Masters 2022"]
+[Site "Wijk aan Zee, Netherlands"]
+[Date "2022.01.22"]
+[Round "7.4"]
+[White "Esipenko, Andrey"]
+[Black "Shankland, Sam"]
 [Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
+[WhiteElo "2714"]
+[BlackElo "2708"]
+[UTCDate "2022.01.22"]
+[UTCTime "13:08:27"]
 [Variant "Standard"]
-[ECO "A11"]
-[Opening "English Opening: Caro-Kann Defensive System"]
-[Annotator "https://lichess.org/@/rhungaski"]
+[ECO "B48"]
+[Opening "Sicilian Defense: Taimanov Variation, Bastrikov Variation"]
+[Annotator "https://lichess.org/@/ImaginaryGC"]
 
-1. c4 { [%clk 1:30:34] } 1... c6 { [%clk 1:30:45] } 2. Nf3 { [%clk 1:28:56] } 2... d5 { [%clk 1:31:06] } 3. e3 { [%clk 1:29:20] } 3... Nf6 { [%clk 1:31:25] } 4. b3 { [%clk 1:29:37] } 4... Bg4 { [%clk 1:30:51] } 5. Bb2 { [%clk 1:29:35] } 5... e6 { [%clk 1:30:03] } 6. Be2 { [%clk 1:29:18] } 6... Nbd7 { [%clk 1:28:06] } 7. Nc3 { [%clk 1:26:18] } 7... Bd6 { [%clk 1:21:53] } 8. O-O { [%clk 1:24:43] } 8... O-O { [%clk 1:21:06] } 9. h3 { [%clk 1:20:55] } 9... Bh5 { [%clk 1:19:53] } 10. d3 { [%clk 1:15:21] } 10... Re8 { [%clk 1:13:42] } 11. a3 { [%clk 1:06:08] } 11... h6 { [%clk 1:13:33] } 12. b4 { [%clk 1:01:46] } 12... a6 { [%clk 1:02:09] } 13. e4 { [%clk 0:45:34] } 13... Bxf3 { [%clk 0:48:06] } 14. Bxf3 { [%clk 0:45:52] } 14... d4 { [%clk 0:48:25] } 15. Ne2 { [%clk 0:40:41] } 15... e5 { [%clk 0:48:19] } 16. c5 { [%clk 0:41:02] } 16... Bf8 { [%clk 0:43:21] } 17. Bc1 { [%clk 0:30:31] } 17... a5 { [%clk 0:35:42] } 18. Bd2 { [%clk 0:30:20] } 18... axb4 { [%clk 0:34:30] } 19. axb4 { [%clk 0:30:43] } 19... Rxa1 { [%clk 0:34:32] } 20. Qxa1 { [%clk 0:31:08] } 20... b6 { [%clk 0:34:57] } 21. cxb6 { [%clk 0:31:07] } 21... Qxb6 { [%clk 0:35:10] } 22. Rb1 { [%clk 0:29:54] } 22... Qb7 { [%clk 0:31:32] } 23. Nc1 { [%clk 0:28:25] } 23... Ra8 { [%clk 0:30:30] } 24. Qb2 { [%clk 0:28:50] } 24... Qb5 { [%clk 0:28:45] } 25. Bd1 { [%clk 0:24:46] } 25... c5 { [%clk 0:25:22] } 26. bxc5 { [%clk 0:22:24] } 26... Qxb2 { [%clk 0:25:13] } 27. Rxb2 { [%clk 0:22:48] } 27... Nxc5 { [%clk 0:23:28] } 28. g3 { [%clk 0:21:07] } 28... Ra1 { [%clk 0:19:56] } 29. Bc2 { [%clk 0:20:38] } 29... Nfd7 { [%clk 0:20:17] } 30. Kg2 { [%clk 0:20:18] } 30... Ra7 { [%clk 0:14:49] } 31. f4 { [%clk 0:20:14] } 31... Bd6 { [%clk 0:15:11] } 32. h4 { [%clk 0:19:19] } 32... Kf8 { [%clk 0:13:31] } 33. Kf3 { [%clk 0:17:16] } 33... Ke7 { [%clk 0:13:00] } 34. Na2 { [%clk 0:15:19] } 34... Na6 { [%clk 0:06:53] } *
+1. e4 { [%clk 1:40:55] } 1... c5 { [%clk 1:40:48] } 2. Nf3 { [%clk 1:40:43] } 2... e6 { [%clk 1:41:13] } 3. d4 { [%clk 1:40:18] } 3... cxd4 { [%clk 1:41:39] } 4. Nxd4 { [%clk 1:40:45] } 4... Nc6 { [%clk 1:42:05] } 5. Nc3 { [%clk 1:40:59] } 5... Qc7 { [%clk 1:42:29] } 6. Be3 { [%clk 1:41:09] } 6... a6 { [%clk 1:42:53] } 7. g4 { [%clk 1:41:04] } 7... b5 { [%clk 1:43:03] } 8. Nxc6 { [%clk 1:41:04] } 8... Qxc6 { [%clk 1:43:28] } 9. Qd2 { [%clk 1:41:24] } 9... b4 { [%clk 1:43:48] } 10. Ne2 { [%clk 1:41:47] } 10... Qxe4 { [%clk 1:44:11] } 11. Rg1 { [%clk 1:42:13] } 11... Qc4 { [%clk 1:44:34] } 12. Ng3 { [%clk 1:41:16] } 12... Qc7 { [%clk 1:44:51] } 13. O-O-O { [%clk 1:41:25] } 13... Ne7 { [%clk 1:45:15] } 14. Nh5 { [%clk 1:40:57] } 14... Nd5 { [%clk 1:45:17] } 15. Bd4 { [%clk 1:40:50] } 15... Rg8 { [%clk 1:45:34] } 16. Qd3 { [%clk 1:40:52] } 16... g6 { [%clk 1:45:53] } 17. Bg2 { [%clk 1:39:56] } 17... gxh5 { [%clk 1:45:59] } 18. Bxd5 { [%clk 1:38:07] } 18... Bb7 { [%clk 1:46:25] } 19. Bxb7 { [%clk 1:30:50] } 19... Qxb7 { [%clk 1:46:46] } 20. gxh5 { [%clk 1:08:31] } 20... Rxg1 { [%clk 1:46:47] } 21. Rxg1 { [%clk 1:08:58] } 21... Qd5 { [%clk 1:47:07] } 22. b3 { [%clk 1:01:27] } 22... f5 { [%clk 1:44:57] } 23. Qe3 { [%clk 0:50:50] } 23... Qe4 { [%clk 1:25:25] } 24. Qd2 { [%clk 0:47:18] } 24... Rc8 { [%clk 1:23:06] } 25. Kb1 { [%clk 0:44:58] } 25... f4 { [%clk 1:18:04] } 26. Qd1 { [%clk 0:37:57] } 26... d6 { [%clk 1:11:21] } 27. f3 { [%clk 0:32:20] } 27... Qd5 { [%clk 1:03:12] } 28. Qd3 { [%clk 0:29:52] } 28... Rc7 { [%clk 1:01:40] } 29. Re1 { [%clk 0:23:49] } 29... Re7 { [%clk 0:55:08] } 30. Re4 { [%clk 0:24:04] } 30... e5 { [%clk 0:42:25] } 31. Qxa6 { [%clk 0:24:22] } 31... Kf7 { [%clk 0:42:23] } 32. Bb2 { [%clk 0:19:35] } 32... Qd1+ { [%clk 0:40:24] } 33. Bc1 { [%clk 0:20:01] } 33... d5 { [%clk 0:40:19] } 34. Re2 { [%clk 0:18:54] } 34... Rc7 { [%clk 0:36:31] } 35. Rf2 { [%clk 0:17:23] } 35... d4 { [%clk 0:26:20] } 36. Qb6 { [%clk 0:13:14] } 36... Rc3 { [%clk 0:25:03] } 37. Qb7+ { [%clk 0:11:54] } 37... Be7 { [%clk 0:24:48] } 38. Qe4 { [%clk 0:08:44] } 38... Ke6 { [%clk 0:21:31] } 39. Qxh7 { [%clk 0:08:14] } 39... Qg1 { [%clk 0:20:45] } 40. Qg6+ { [%clk 0:02:28] } 40... Qxg6 { [%clk 0:21:08] } 41. hxg6 { [%clk 0:02:55] } 41... Kf6 { [%clk 0:12:47] } 42. Bd2 { [%clk 0:01:03] } 42... Rc8 { [%clk 0:11:27] } 43. Rg2 { [%clk 0:41:02] } 43... Kg7 { [%clk 1:00:22] } 44. Re2 { [%clk 0:31:38] } 44... Bd6 { [%clk 0:52:12] } 45. h4 { [%clk 0:31:27] } 45... Rh8 { [%clk 0:52:16] } 46. Be1 { [%clk 0:30:31] } 46... Kxg6 { [%clk 0:52:26] } 47. Kc1 { [%clk 0:30:08] } 47... Ra8 { [%clk 0:45:31] } 48. Kd2 { [%clk 0:24:03] } 48... Rxa2 { [%clk 0:44:55] } 49. Kd3 { [%clk 0:21:57] } 49... Kf5 { [%clk 0:44:40] } 50. h5 { [%clk 0:22:07] } 50... Bf8 { [%clk 0:41:23] } *
 
 
-[Event "Round 11: Sergio Slipak - Federico Perez Ponsa"]
-[Site "https://lichess.org/study/DYcygfVK/QX01tZ8e"]
-[White "Sergio Slipak"]
-[Black "Federico Perez Ponsa"]
+[Event "Tata Steel Chess Masters 2022"]
+[Site "Wijk aan Zee, Netherlands"]
+[Date "2022.01.22"]
+[Round "7.4"]
+[White "Esipenko, Andrey"]
+[Black "Shankland, Sam"]
 [Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
+[WhiteElo "2714"]
+[BlackElo "2708"]
+[UTCDate "2022.01.22"]
+[UTCTime "13:08:27"]
 [Variant "Standard"]
-[ECO "A48"]
-[Opening "Torre Attack"]
-[Annotator "https://lichess.org/@/rhungaski"]
+[ECO "B48"]
+[Opening "Sicilian Defense: Taimanov Variation, Bastrikov Variation"]
+[Annotator "https://lichess.org/@/ImaginaryGC"]
 
-1. d4 { [%clk 1:30:56] } 1... Nf6 { [%clk 1:30:50] } 2. Nf3 { [%clk 1:31:20] } 2... g6 { [%clk 1:30:56] } 3. Bg5 { [%clk 1:31:43] } 3... Bg7 { [%clk 1:31:20] } 4. Nbd2 { [%clk 1:32:06] } 4... O-O { [%clk 1:31:34] } 5. e3 { [%clk 1:32:31] } 5... d6 { [%clk 1:31:34] } 6. c3 { [%clk 1:32:55] } 6... h6 { [%clk 1:30:51] } 7. Bh4 { [%clk 1:33:16] } 7... Qe8 { [%clk 1:31:09] } 8. Bc4 { [%clk 1:29:59] } 8... b5 { [%clk 1:21:55] } 9. Bb3 { [%clk 1:28:04] } 9... Bb7 { [%clk 1:14:17] } 10. a4 { [%clk 1:26:18] } 10... a6 { [%clk 1:14:06] } 11. O-O { [%clk 1:26:12] } 11... Nbd7 { [%clk 1:10:11] } 12. Qe2 { [%clk 1:20:47] } 12... Nb6 { [%clk 1:08:21] } 13. a5 { [%clk 1:18:45] } 13... Na4 { [%clk 0:56:43] } 14. Bxf6 { [%clk 1:05:38] } 14... Bxf6 { [%clk 0:54:00] } 15. Rfc1 { [%clk 1:01:04] } 15... Rb8 { [%clk 0:44:22] } 16. Rc2 { [%clk 0:58:30] } 16... e5 { [%clk 0:38:08] } 17. dxe5 { [%clk 0:51:28] } 17... dxe5 { [%clk 0:38:06] } 18. Bxa4 { [%clk 0:50:23] } 18... bxa4 { [%clk 0:38:15] } 19. Qc4 { [%clk 0:50:05] } 19... Bc6 { [%clk 0:38:14] } 20. Ne4 { [%clk 0:48:55] } 20... Bg7 { [%clk 0:38:21] } 21. Nc5 { [%clk 0:46:36] } 21... Bb5 { [%clk 0:30:58] } 22. Qa2 { [%clk 0:42:40] } 22... Qc6 { [%clk 0:29:33] } 23. Nxa4 { [%clk 0:39:03] } 23... Bc4 { [%clk 0:24:53] } 24. Qa3 { [%clk 0:38:52] } 24... Bb3 { [%clk 0:22:17] } 25. Rd2 { [%clk 0:29:10] } 25... Rfe8 { [%clk 0:22:10] } 26. Nc5 { [%clk 0:28:02] } 26... Bf8 { [%clk 0:21:01] } 27. Qxb3 { [%clk 0:28:16] } 27... Rxb3 { [%clk 0:21:23] } 28. Nxb3 { [%clk 0:28:40] } 28... Rb8 { [%clk 0:19:39] } 29. Nc1 { [%clk 0:26:17] } 29... e4 { [%clk 0:18:41] } 30. Nd4 { [%clk 0:22:06] } 30... Qc4 { [%clk 0:18:23] } 31. Nde2 { [%clk 0:22:18] } 31... Bg7 { [%clk 0:16:15] } 32. b3 { [%clk 0:19:50] } 32... Qc5 { [%clk 0:15:24] } 33. Ra4 { [%clk 0:18:54] } 33... Bxc3 { [%clk 0:11:14] } 34. Rc2 { [%clk 0:17:07] } 34... Rd8 { [%clk 0:11:40] } 35. g4 { [%clk 0:12:10] } 35... Rd1+ { [%clk 0:09:11] } *
+1. e4 { [%clk 1:40:55] } 1... c5 { [%clk 1:40:48] } 2. Nf3 { [%clk 1:40:43] } 2... e6 { [%clk 1:41:13] } 3. d4 { [%clk 1:40:18] } 3... cxd4 { [%clk 1:41:39] } 4. Nxd4 { [%clk 1:40:45] } 4... Nc6 { [%clk 1:42:05] } 5. Nc3 { [%clk 1:40:59] } 5... Qc7 { [%clk 1:42:29] } 6. Be3 { [%clk 1:41:09] } 6... a6 { [%clk 1:42:53] } 7. g4 { [%clk 1:41:04] } 7... b5 { [%clk 1:43:03] } 8. Nxc6 { [%clk 1:41:04] } 8... Qxc6 { [%clk 1:43:28] } 9. Qd2 { [%clk 1:41:24] } 9... b4 { [%clk 1:43:48] } 10. Ne2 { [%clk 1:41:47] } 10... Qxe4 { [%clk 1:44:11] } 11. Rg1 { [%clk 1:42:13] } 11... Qc4 { [%clk 1:44:34] } 12. Ng3 { [%clk 1:41:16] } 12... Qc7 { [%clk 1:44:51] } 13. O-O-O { [%clk 1:41:25] } 13... Ne7 { [%clk 1:45:15] } 14. Nh5 { [%clk 1:40:57] } 14... Nd5 { [%clk 1:45:17] } 15. Bd4 { [%clk 1:40:50] } 15... Rg8 { [%clk 1:45:34] } 16. Qd3 { [%clk 1:40:52] } 16... g6 { [%clk 1:45:53] } 17. Bg2 { [%clk 1:39:56] } 17... gxh5 { [%clk 1:45:59] } 18. Bxd5 { [%clk 1:38:07] } 18... Bb7 { [%clk 1:46:25] } 19. Bxb7 { [%clk 1:30:50] } 19... Qxb7 { [%clk 1:46:46] } 20. gxh5 { [%clk 1:08:31] } 20... Rxg1 { [%clk 1:46:47] } 21. Rxg1 { [%clk 1:08:58] } 21... Qd5 { [%clk 1:47:07] } 22. b3 { [%clk 1:01:27] } 22... f5 { [%clk 1:44:57] } 23. Qe3 { [%clk 0:50:50] } 23... Qe4 { [%clk 1:25:25] } 24. Qd2 { [%clk 0:47:18] } 24... Rc8 { [%clk 1:23:06] } 25. Kb1 { [%clk 0:44:58] } 25... f4 { [%clk 1:18:04] } 26. Qd1 { [%clk 0:37:57] } 26... d6 { [%clk 1:11:21] } 27. f3 { [%clk 0:32:20] } 27... Qd5 { [%clk 1:03:12] } 28. Qd3 { [%clk 0:29:52] } 28... Rc7 { [%clk 1:01:40] } 29. Re1 { [%clk 0:23:49] } 29... Re7 { [%clk 0:55:08] } 30. Re4 { [%clk 0:24:04] } 30... e5 { [%clk 0:42:25] } 31. Qxa6 { [%clk 0:24:22] } 31... Kf7 { [%clk 0:42:23] } 32. Bb2 { [%clk 0:19:35] } 32... Qd1+ { [%clk 0:40:24] } 33. Bc1 { [%clk 0:20:01] } 33... d5 { [%clk 0:40:19] } 34. Re2 { [%clk 0:18:54] } 34... Rc7 { [%clk 0:36:31] } 35. Rf2 { [%clk 0:17:23] } 35... d4 { [%clk 0:26:20] } 36. Qb6 { [%clk 0:13:14] } 36... Rc3 { [%clk 0:25:03] } 37. Qb7+ { [%clk 0:11:54] } 37... Be7 { [%clk 0:24:48] } 38. Qe4 { [%clk 0:08:44] } 38... Ke6 { [%clk 0:21:31] } 39. Qxh7 { [%clk 0:08:14] } 39... Qg1 { [%clk 0:20:45] } 40. Qg6+ { [%clk 0:02:28] } 40... Qxg6 { [%clk 0:21:08] } 41. hxg6 { [%clk 0:02:55] } 41... Kf6 { [%clk 0:12:47] } 42. Bd2 { [%clk 0:01:03] } 42... Rc8 { [%clk 0:11:27] } 43. Rg2 { [%clk 0:41:02] } 43... Kg7 { [%clk 1:00:22] } 44. Re2 { [%clk 0:31:38] } 44... Bd6 { [%clk 0:52:12] } 45. h4 { [%clk 0:31:27] } 45... Rh8 { [%clk 0:52:16] } 46. Be1 { [%clk 0:30:31] } 46... Kxg6 { [%clk 0:52:26] } 47. Kc1 { [%clk 0:30:08] } 47... Ra8 { [%clk 0:45:31] } 48. Kd2 { [%clk 0:24:03] } 48... Rxa2 { [%clk 0:44:55] } 49. Kd3 { [%clk 0:21:57] } 49... Kf5 { [%clk 0:44:40] } 50. h5 { [%clk 0:22:07] } 50... Bf8 { [%clk 0:41:23] } 51. h6 { [%clk 0:21:02] } *
 
 
-[Event "Round 11: Sergio Slipak - Federico Perez Ponsa"]
-[Site "https://lichess.org/study/DYcygfVK/QX01tZ8e"]
-[White "Sergio Slipak"]
-[Black "Federico Perez Ponsa"]
-[Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
+ [Event "Tata Steel Chess Masters 2022"]
+[Site "Wijk aan Zee, Netherlands"]
+[Date "2022.01.22"]
+[Round "7.4"]
+[White "Esipenko, Andrey"]
+[Black "Shankland, Sam"]
+[Result "1/2-1/2"]
+[WhiteElo "2714"]
+[BlackElo "2708"]
+[UTCDate "2022.01.22"]
+[UTCTime "13:08:27"]
 [Variant "Standard"]
-[ECO "A48"]
-[Opening "Torre Attack"]
-[Annotator "https://lichess.org/@/rhungaski"]
+[ECO "B48"]
+[Opening "Sicilian Defense: Taimanov Variation, Bastrikov Variation"]
+[Annotator "https://lichess.org/@/ImaginaryGC"]
 
-1. d4 { [%clk 1:30:56] } 1... Nf6 { [%clk 1:30:50] } 2. Nf3 { [%clk 1:31:20] } 2... g6 { [%clk 1:30:56] } 3. Bg5 { [%clk 1:31:43] } 3... Bg7 { [%clk 1:31:20] } 4. Nbd2 { [%clk 1:32:06] } 4... O-O { [%clk 1:31:34] } 5. e3 { [%clk 1:32:31] } 5... d6 { [%clk 1:31:34] } 6. c3 { [%clk 1:32:55] } 6... h6 { [%clk 1:30:51] } 7. Bh4 { [%clk 1:33:16] } 7... Qe8 { [%clk 1:31:09] } 8. Bc4 { [%clk 1:29:59] } 8... b5 { [%clk 1:21:55] } 9. Bb3 { [%clk 1:28:04] } 9... Bb7 { [%clk 1:14:17] } 10. a4 { [%clk 1:26:18] } 10... a6 { [%clk 1:14:06] } 11. O-O { [%clk 1:26:12] } 11... Nbd7 { [%clk 1:10:11] } 12. Qe2 { [%clk 1:20:47] } 12... Nb6 { [%clk 1:08:21] } 13. a5 { [%clk 1:18:45] } 13... Na4 { [%clk 0:56:43] } 14. Bxf6 { [%clk 1:05:38] } 14... Bxf6 { [%clk 0:54:00] } 15. Rfc1 { [%clk 1:01:04] } 15... Rb8 { [%clk 0:44:22] } 16. Rc2 { [%clk 0:58:30] } 16... e5 { [%clk 0:38:08] } 17. dxe5 { [%clk 0:51:28] } 17... dxe5 { [%clk 0:38:06] } 18. Bxa4 { [%clk 0:50:23] } 18... bxa4 { [%clk 0:38:15] } 19. Qc4 { [%clk 0:50:05] } 19... Bc6 { [%clk 0:38:14] } 20. Ne4 { [%clk 0:48:55] } 20... Bg7 { [%clk 0:38:21] } 21. Nc5 { [%clk 0:46:36] } 21... Bb5 { [%clk 0:30:58] } 22. Qa2 { [%clk 0:42:40] } 22... Qc6 { [%clk 0:29:33] } 23. Nxa4 { [%clk 0:39:03] } 23... Bc4 { [%clk 0:24:53] } 24. Qa3 { [%clk 0:38:52] } 24... Bb3 { [%clk 0:22:17] } 25. Rd2 { [%clk 0:29:10] } 25... Rfe8 { [%clk 0:22:10] } 26. Nc5 { [%clk 0:28:02] } 26... Bf8 { [%clk 0:21:01] } 27. Qxb3 { [%clk 0:28:16] } 27... Rxb3 { [%clk 0:21:23] } 28. Nxb3 { [%clk 0:28:40] } 28... Rb8 { [%clk 0:19:39] } 29. Nc1 { [%clk 0:26:17] } 29... e4 { [%clk 0:18:41] } 30. Nd4 { [%clk 0:22:06] } 30... Qc4 { [%clk 0:18:23] } 31. Nde2 { [%clk 0:22:18] } 31... Bg7 { [%clk 0:16:15] } 32. b3 { [%clk 0:19:50] } 32... Qc5 { [%clk 0:15:24] } 33. Ra4 { [%clk 0:18:54] } 33... Bxc3 { [%clk 0:11:14] } 34. Rc2 { [%clk 0:17:07] } 34... Rd8 { [%clk 0:11:40] } 35. g4 { [%clk 0:12:10] } 35... Rd1+ { [%clk 0:09:11] } 36. Kg2 { [%clk 0:12:35] } *
-
-
-[Event "Round 11: Sergio Slipak - Federico Perez Ponsa"]
-[Site "https://lichess.org/study/DYcygfVK/QX01tZ8e"]
-[White "Sergio Slipak"]
-[Black "Federico Perez Ponsa"]
-[Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
-[Variant "Standard"]
-[ECO "A48"]
-[Opening "Torre Attack"]
-[Annotator "https://lichess.org/@/rhungaski"]
-
-1. d4 { [%clk 1:30:56] } 1... Nf6 { [%clk 1:30:50] } 2. Nf3 { [%clk 1:31:20] } 2... g6 { [%clk 1:30:56] } 3. Bg5 { [%clk 1:31:43] } 3... Bg7 { [%clk 1:31:20] } 4. Nbd2 { [%clk 1:32:06] } 4... O-O { [%clk 1:31:34] } 5. e3 { [%clk 1:32:31] } 5... d6 { [%clk 1:31:34] } 6. c3 { [%clk 1:32:55] } 6... h6 { [%clk 1:30:51] } 7. Bh4 { [%clk 1:33:16] } 7... Qe8 { [%clk 1:31:09] } 8. Bc4 { [%clk 1:29:59] } 8... b5 { [%clk 1:21:55] } 9. Bb3 { [%clk 1:28:04] } 9... Bb7 { [%clk 1:14:17] } 10. a4 { [%clk 1:26:18] } 10... a6 { [%clk 1:14:06] } 11. O-O { [%clk 1:26:12] } 11... Nbd7 { [%clk 1:10:11] } 12. Qe2 { [%clk 1:20:47] } 12... Nb6 { [%clk 1:08:21] } 13. a5 { [%clk 1:18:45] } 13... Na4 { [%clk 0:56:43] } 14. Bxf6 { [%clk 1:05:38] } 14... Bxf6 { [%clk 0:54:00] } 15. Rfc1 { [%clk 1:01:04] } 15... Rb8 { [%clk 0:44:22] } 16. Rc2 { [%clk 0:58:30] } 16... e5 { [%clk 0:38:08] } 17. dxe5 { [%clk 0:51:28] } 17... dxe5 { [%clk 0:38:06] } 18. Bxa4 { [%clk 0:50:23] } 18... bxa4 { [%clk 0:38:15] } 19. Qc4 { [%clk 0:50:05] } 19... Bc6 { [%clk 0:38:14] } 20. Ne4 { [%clk 0:48:55] } 20... Bg7 { [%clk 0:38:21] } 21. Nc5 { [%clk 0:46:36] } 21... Bb5 { [%clk 0:30:58] } 22. Qa2 { [%clk 0:42:40] } 22... Qc6 { [%clk 0:29:33] } 23. Nxa4 { [%clk 0:39:03] } 23... Bc4 { [%clk 0:24:53] } 24. Qa3 { [%clk 0:38:52] } 24... Bb3 { [%clk 0:22:17] } 25. Rd2 { [%clk 0:29:10] } 25... Rfe8 { [%clk 0:22:10] } 26. Nc5 { [%clk 0:28:02] } 26... Bf8 { [%clk 0:21:01] } 27. Qxb3 { [%clk 0:28:16] } 27... Rxb3 { [%clk 0:21:23] } 28. Nxb3 { [%clk 0:28:40] } 28... Rb8 { [%clk 0:19:39] } 29. Nc1 { [%clk 0:26:17] } 29... e4 { [%clk 0:18:41] } 30. Nd4 { [%clk 0:22:06] } 30... Qc4 { [%clk 0:18:23] } 31. Nde2 { [%clk 0:22:18] } 31... Bg7 { [%clk 0:16:15] } 32. b3 { [%clk 0:19:50] } 32... Qc5 { [%clk 0:15:24] } 33. Ra4 { [%clk 0:18:54] } 33... Bxc3 { [%clk 0:11:14] } 34. Rc2 { [%clk 0:17:07] } 34... Rd8 { [%clk 0:11:40] } 35. g4 { [%clk 0:12:10] } 35... Rd1+ { [%clk 0:09:11] } 36. Kg2 { [%clk 0:12:35] } 36... Qg5 { [%clk 0:09:31] } *
-
-
-[Event "Round 11: Pablo Ismael Acosta - Diego Valerga"]
-[Site "https://lichess.org/study/DYcygfVK/Olj8slgF"]
-[White "Pablo Ismael Acosta"]
-[Black "Diego Valerga"]
-[Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
-[Variant "Standard"]
-[ECO "A11"]
-[Opening "English Opening: Caro-Kann Defensive System"]
-[Annotator "https://lichess.org/@/rhungaski"]
-
-1. c4 { [%clk 1:30:34] } 1... c6 { [%clk 1:30:45] } 2. Nf3 { [%clk 1:28:56] } 2... d5 { [%clk 1:31:06] } 3. e3 { [%clk 1:29:20] } 3... Nf6 { [%clk 1:31:25] } 4. b3 { [%clk 1:29:37] } 4... Bg4 { [%clk 1:30:51] } 5. Bb2 { [%clk 1:29:35] } 5... e6 { [%clk 1:30:03] } 6. Be2 { [%clk 1:29:18] } 6... Nbd7 { [%clk 1:28:06] } 7. Nc3 { [%clk 1:26:18] } 7... Bd6 { [%clk 1:21:53] } 8. O-O { [%clk 1:24:43] } 8... O-O { [%clk 1:21:06] } 9. h3 { [%clk 1:20:55] } 9... Bh5 { [%clk 1:19:53] } 10. d3 { [%clk 1:15:21] } 10... Re8 { [%clk 1:13:42] } 11. a3 { [%clk 1:06:08] } 11... h6 { [%clk 1:13:33] } 12. b4 { [%clk 1:01:46] } 12... a6 { [%clk 1:02:09] } 13. e4 { [%clk 0:45:34] } 13... Bxf3 { [%clk 0:48:06] } 14. Bxf3 { [%clk 0:45:52] } 14... d4 { [%clk 0:48:25] } 15. Ne2 { [%clk 0:40:41] } 15... e5 { [%clk 0:48:19] } 16. c5 { [%clk 0:41:02] } 16... Bf8 { [%clk 0:43:21] } 17. Bc1 { [%clk 0:30:31] } 17... a5 { [%clk 0:35:42] } 18. Bd2 { [%clk 0:30:20] } 18... axb4 { [%clk 0:34:30] } 19. axb4 { [%clk 0:30:43] } 19... Rxa1 { [%clk 0:34:32] } 20. Qxa1 { [%clk 0:31:08] } 20... b6 { [%clk 0:34:57] } 21. cxb6 { [%clk 0:31:07] } 21... Qxb6 { [%clk 0:35:10] } 22. Rb1 { [%clk 0:29:54] } 22... Qb7 { [%clk 0:31:32] } 23. Nc1 { [%clk 0:28:25] } 23... Ra8 { [%clk 0:30:30] } 24. Qb2 { [%clk 0:28:50] } 24... Qb5 { [%clk 0:28:45] } 25. Bd1 { [%clk 0:24:46] } 25... c5 { [%clk 0:25:22] } 26. bxc5 { [%clk 0:22:24] } 26... Qxb2 { [%clk 0:25:13] } 27. Rxb2 { [%clk 0:22:48] } 27... Nxc5 { [%clk 0:23:28] } 28. g3 { [%clk 0:21:07] } 28... Ra1 { [%clk 0:19:56] } 29. Bc2 { [%clk 0:20:38] } 29... Nfd7 { [%clk 0:20:17] } 30. Kg2 { [%clk 0:20:18] } 30... Ra7 { [%clk 0:14:49] } 31. f4 { [%clk 0:20:14] } 31... Bd6 { [%clk 0:15:11] } 32. h4 { [%clk 0:19:19] } 32... Kf8 { [%clk 0:13:31] } 33. Kf3 { [%clk 0:17:16] } 33... Ke7 { [%clk 0:13:00] } 34. Na2 { [%clk 0:15:19] } 34... Na6 { [%clk 0:06:53] } 35. Ke2 { [%clk 0:13:24] } *
-
-
-[Event "Round 11: Diego Flores - Leandro Krysa"]
-[Site "https://lichess.org/study/DYcygfVK/EOudpbMC"]
-[White "Diego Flores"]
-[Black "Leandro Krysa"]
-[Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
-[Variant "Standard"]
-[ECO "A20"]
-[Opening "English Opening: King's English Variation"]
-[Annotator "https://lichess.org/@/rhungaski"]
-
-1. c4 { [%clk 1:30:26] } 1... e5 { [%clk 1:30:42] } 2. e3 { [%clk 1:28:17] } 2... Nf6 { [%clk 1:30:18] } 3. Nc3 { [%clk 1:28:12] } 3... Bb4 { [%clk 1:30:30] } 4. Nge2 { [%clk 1:23:38] } 4... O-O { [%clk 1:30:18] } 5. a3 { [%clk 1:21:31] } 5... Be7 { [%clk 1:29:44] } 6. d4 { [%clk 1:12:55] } 6... exd4 { [%clk 1:29:22] } 7. Qxd4 { [%clk 1:09:02] } 7... c6 { [%clk 1:25:05] } 8. g4 { [%clk 0:44:11] } 8... d6 { [%clk 1:02:46] } 9. h3 { [%clk 0:29:30] } 9... Na6 { [%clk 0:59:16] } 10. b4 { [%clk 0:21:30] } 10... c5 { [%clk 0:49:13] } 11. bxc5 { [%clk 0:14:20] } 11... Nxc5 { [%clk 0:49:34] } 12. Rb1 { [%clk 0:14:24] } 12... Be6 { [%clk 0:27:10] } 13. Bg2 { [%clk 0:10:47] } 13... Nfd7 { [%clk 0:26:52] } 14. Nd5 { [%clk 0:07:37] } 14... Bf6 { [%clk 0:20:54] } 15. Nxf6+ { [%clk 0:04:23] } 15... Qxf6 { [%clk 0:20:51] } 16. Nf4 { [%clk 0:04:47] } 16... Ne5 { [%clk 0:15:16] } 17. O-O { [%clk 0:05:00] } 17... Bxc4 { [%clk 0:13:17] } 18. Rd1 { [%clk 0:05:14] } 18... Nb3 { [%clk 0:11:46] } 19. Nh5 { [%clk 0:04:59] } 19... Qg6 { [%clk 0:08:27] } 20. Qb2 { [%clk 0:01:14] } 20... f6 { [%clk 0:04:23] } *
+1. e4 { [%clk 1:40:55] } 1... c5 { [%clk 1:40:48] } 2. Nf3 { [%clk 1:40:43] } 2... e6 { [%clk 1:41:13] } 3. d4 { [%clk 1:40:18] } 3... cxd4 { [%clk 1:41:39] } 4. Nxd4 { [%clk 1:40:45] } 4... Nc6 { [%clk 1:42:05] } 5. Nc3 { [%clk 1:40:59] } 5... Qc7 { [%clk 1:42:29] } 6. Be3 { [%clk 1:41:09] } 6... a6 { [%clk 1:42:53] } 7. g4 { [%clk 1:41:04] } 7... b5 { [%clk 1:43:03] } 8. Nxc6 { [%clk 1:41:04] } 8... Qxc6 { [%clk 1:43:28] } 9. Qd2 { [%clk 1:41:24] } 9... b4 { [%clk 1:43:48] } 10. Ne2 { [%clk 1:41:47] } 10... Qxe4 { [%clk 1:44:11] } 11. Rg1 { [%clk 1:42:13] } 11... Qc4 { [%clk 1:44:34] } 12. Ng3 { [%clk 1:41:16] } 12... Qc7 { [%clk 1:44:51] } 13. O-O-O { [%clk 1:41:25] } 13... Ne7 { [%clk 1:45:15] } 14. Nh5 { [%clk 1:40:57] } 14... Nd5 { [%clk 1:45:17] } 15. Bd4 { [%clk 1:40:50] } 15... Rg8 { [%clk 1:45:34] } 16. Qd3 { [%clk 1:40:52] } 16... g6 { [%clk 1:45:53] } 17. Bg2 { [%clk 1:39:56] } 17... gxh5 { [%clk 1:45:59] } 18. Bxd5 { [%clk 1:38:07] } 18... Bb7 { [%clk 1:46:25] } 19. Bxb7 { [%clk 1:30:50] } 19... Qxb7 { [%clk 1:46:46] } 20. gxh5 { [%clk 1:08:31] } 20... Rxg1 { [%clk 1:46:47] } 21. Rxg1 { [%clk 1:08:58] } 21... Qd5 { [%clk 1:47:07] } 22. b3 { [%clk 1:01:27] } 22... f5 { [%clk 1:44:57] } 23. Qe3 { [%clk 0:50:50] } 23... Qe4 { [%clk 1:25:25] } 24. Qd2 { [%clk 0:47:18] } 24... Rc8 { [%clk 1:23:06] } 25. Kb1 { [%clk 0:44:58] } 25... f4 { [%clk 1:18:04] } 26. Qd1 { [%clk 0:37:57] } 26... d6 { [%clk 1:11:21] } 27. f3 { [%clk 0:32:20] } 27... Qd5 { [%clk 1:03:12] } 28. Qd3 { [%clk 0:29:52] } 28... Rc7 { [%clk 1:01:40] } 29. Re1 { [%clk 0:23:49] } 29... Re7 { [%clk 0:55:08] } 30. Re4 { [%clk 0:24:04] } 30... e5 { [%clk 0:42:25] } 31. Qxa6 { [%clk 0:24:22] } 31... Kf7 { [%clk 0:42:23] } 32. Bb2 { [%clk 0:19:35] } 32... Qd1+ { [%clk 0:40:24] } 33. Bc1 { [%clk 0:20:01] } 33... d5 { [%clk 0:40:19] } 34. Re2 { [%clk 0:18:54] } 34... Rc7 { [%clk 0:36:31] } 35. Rf2 { [%clk 0:17:23] } 35... d4 { [%clk 0:26:20] } 36. Qb6 { [%clk 0:13:14] } 36... Rc3 { [%clk 0:25:03] } 37. Qb7+ { [%clk 0:11:54] } 37... Be7 { [%clk 0:24:48] } 38. Qe4 { [%clk 0:08:44] } 38... Ke6 { [%clk 0:21:31] } 39. Qxh7 { [%clk 0:08:14] } 39... Qg1 { [%clk 0:20:45] } 40. Qg6+ { [%clk 0:02:28] } 40... Qxg6 { [%clk 0:21:08] } 41. hxg6 { [%clk 0:02:55] } 41... Kf6 { [%clk 0:12:47] } 42. Bd2 { [%clk 0:01:03] } 42... Rc8 { [%clk 0:11:27] } 43. Rg2 { [%clk 0:41:02] } 43... Kg7 { [%clk 1:00:22] } 44. Re2 { [%clk 0:31:38] } 44... Bd6 { [%clk 0:52:12] } 45. h4 { [%clk 0:31:27] } 45... Rh8 { [%clk 0:52:16] } 46. Be1 { [%clk 0:30:31] } 46... Kxg6 { [%clk 0:52:26] } 47. Kc1 { [%clk 0:30:08] } 47... Ra8 { [%clk 0:45:31] } 48. Kd2 { [%clk 0:24:03] } 48... Rxa2 { [%clk 0:44:55] } 49. Kd3 { [%clk 0:21:57] } 49... Kf5 { [%clk 0:44:40] } 50. h5 { [%clk 0:22:07] } 50... Bf8 { [%clk 0:41:23] } 51. h6 { [%clk 0:21:02] } 51... Bxh6 { [%clk 0:41:29] } 52. Ke4+ 1/2-1/2
 
 
 [Event "Round 11: Sergio Slipak - Federico Perez Ponsa"]
@@ -163,20 +149,6 @@
 1. d4 { [%clk 1:30:56] } 1... Nf6 { [%clk 1:30:50] } 2. Nf3 { [%clk 1:31:20] } 2... g6 { [%clk 1:30:56] } 3. Bg5 { [%clk 1:31:43] } 3... Bg7 { [%clk 1:31:20] } 4. Nbd2 { [%clk 1:32:06] } 4... O-O { [%clk 1:31:34] } 5. e3 { [%clk 1:32:31] } 5... d6 { [%clk 1:31:34] } 6. c3 { [%clk 1:32:55] } 6... h6 { [%clk 1:30:51] } 7. Bh4 { [%clk 1:33:16] } 7... Qe8 { [%clk 1:31:09] } 8. Bc4 { [%clk 1:29:59] } 8... b5 { [%clk 1:21:55] } 9. Bb3 { [%clk 1:28:04] } 9... Bb7 { [%clk 1:14:17] } 10. a4 { [%clk 1:26:18] } 10... a6 { [%clk 1:14:06] } 11. O-O { [%clk 1:26:12] } 11... Nbd7 { [%clk 1:10:11] } 12. Qe2 { [%clk 1:20:47] } 12... Nb6 { [%clk 1:08:21] } 13. a5 { [%clk 1:18:45] } 13... Na4 { [%clk 0:56:43] } 14. Bxf6 { [%clk 1:05:38] } 14... Bxf6 { [%clk 0:54:00] } 15. Rfc1 { [%clk 1:01:04] } 15... Rb8 { [%clk 0:44:22] } 16. Rc2 { [%clk 0:58:30] } 16... e5 { [%clk 0:38:08] } 17. dxe5 { [%clk 0:51:28] } 17... dxe5 { [%clk 0:38:06] } 18. Bxa4 { [%clk 0:50:23] } 18... bxa4 { [%clk 0:38:15] } 19. Qc4 { [%clk 0:50:05] } 19... Bc6 { [%clk 0:38:14] } 20. Ne4 { [%clk 0:48:55] } 20... Bg7 { [%clk 0:38:21] } 21. Nc5 { [%clk 0:46:36] } 21... Bb5 { [%clk 0:30:58] } 22. Qa2 { [%clk 0:42:40] } 22... Qc6 { [%clk 0:29:33] } 23. Nxa4 { [%clk 0:39:03] } 23... Bc4 { [%clk 0:24:53] } 24. Qa3 { [%clk 0:38:52] } 24... Bb3 { [%clk 0:22:17] } 25. Rd2 { [%clk 0:29:10] } 25... Rfe8 { [%clk 0:22:10] } 26. Nc5 { [%clk 0:28:02] } 26... Bf8 { [%clk 0:21:01] } 27. Qxb3 { [%clk 0:28:16] } 27... Rxb3 { [%clk 0:21:23] } 28. Nxb3 { [%clk 0:28:40] } 28... Rb8 { [%clk 0:19:39] } 29. Nc1 { [%clk 0:26:17] } 29... e4 { [%clk 0:18:41] } 30. Nd4 { [%clk 0:22:06] } 30... Qc4 { [%clk 0:18:23] } 31. Nde2 { [%clk 0:22:18] } 31... Bg7 { [%clk 0:16:15] } 32. b3 { [%clk 0:19:50] } 32... Qc5 { [%clk 0:15:24] } 33. Ra4 { [%clk 0:18:54] } 33... Bxc3 { [%clk 0:11:14] } 34. Rc2 { [%clk 0:17:07] } 34... Rd8 { [%clk 0:11:40] } 35. g4 { [%clk 0:12:10] } 35... Rd1+ { [%clk 0:09:11] } 36. Kg2 { [%clk 0:12:35] } 36... Qg5 { [%clk 0:09:31] } 37. Rxe4 { [%clk 0:12:17] } *
 
 
-[Event "Round 11: Diego Flores - Leandro Krysa"]
-[Site "https://lichess.org/study/DYcygfVK/EOudpbMC"]
-[White "Diego Flores"]
-[Black "Leandro Krysa"]
-[Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
-[Variant "Standard"]
-[ECO "A20"]
-[Opening "English Opening: King's English Variation"]
-[Annotator "https://lichess.org/@/rhungaski"]
-
-1. c4 { [%clk 1:30:26] } 1... e5 { [%clk 1:30:42] } 2. e3 { [%clk 1:28:17] } 2... Nf6 { [%clk 1:30:18] } 3. Nc3 { [%clk 1:28:12] } 3... Bb4 { [%clk 1:30:30] } 4. Nge2 { [%clk 1:23:38] } 4... O-O { [%clk 1:30:18] } 5. a3 { [%clk 1:21:31] } 5... Be7 { [%clk 1:29:44] } 6. d4 { [%clk 1:12:55] } 6... exd4 { [%clk 1:29:22] } 7. Qxd4 { [%clk 1:09:02] } 7... c6 { [%clk 1:25:05] } 8. g4 { [%clk 0:44:11] } 8... d6 { [%clk 1:02:46] } 9. h3 { [%clk 0:29:30] } 9... Na6 { [%clk 0:59:16] } 10. b4 { [%clk 0:21:30] } 10... c5 { [%clk 0:49:13] } 11. bxc5 { [%clk 0:14:20] } 11... Nxc5 { [%clk 0:49:34] } 12. Rb1 { [%clk 0:14:24] } 12... Be6 { [%clk 0:27:10] } 13. Bg2 { [%clk 0:10:47] } 13... Nfd7 { [%clk 0:26:52] } 14. Nd5 { [%clk 0:07:37] } 14... Bf6 { [%clk 0:20:54] } 15. Nxf6+ { [%clk 0:04:23] } 15... Qxf6 { [%clk 0:20:51] } 16. Nf4 { [%clk 0:04:47] } 16... Ne5 { [%clk 0:15:16] } 17. O-O { [%clk 0:05:00] } 17... Bxc4 { [%clk 0:13:17] } 18. Rd1 { [%clk 0:05:14] } 18... Nb3 { [%clk 0:11:46] } 19. Nh5 { [%clk 0:04:59] } 19... Qg6 { [%clk 0:08:27] } 20. Qb2 { [%clk 0:01:14] } 20... f6 { [%clk 0:04:23] } 21. Bd2 { [%clk 0:00:37] } *
-
 
 [Event "Round 11: Sergio Slipak - Federico Perez Ponsa"]
 [Site "https://lichess.org/study/DYcygfVK/QX01tZ8e"]
@@ -193,109 +165,6 @@
 1. d4 { [%clk 1:30:56] } 1... Nf6 { [%clk 1:30:50] } 2. Nf3 { [%clk 1:31:20] } 2... g6 { [%clk 1:30:56] } 3. Bg5 { [%clk 1:31:43] } 3... Bg7 { [%clk 1:31:20] } 4. Nbd2 { [%clk 1:32:06] } 4... O-O { [%clk 1:31:34] } 5. e3 { [%clk 1:32:31] } 5... d6 { [%clk 1:31:34] } 6. c3 { [%clk 1:32:55] } 6... h6 { [%clk 1:30:51] } 7. Bh4 { [%clk 1:33:16] } 7... Qe8 { [%clk 1:31:09] } 8. Bc4 { [%clk 1:29:59] } 8... b5 { [%clk 1:21:55] } 9. Bb3 { [%clk 1:28:04] } 9... Bb7 { [%clk 1:14:17] } 10. a4 { [%clk 1:26:18] } 10... a6 { [%clk 1:14:06] } 11. O-O { [%clk 1:26:12] } 11... Nbd7 { [%clk 1:10:11] } 12. Qe2 { [%clk 1:20:47] } 12... Nb6 { [%clk 1:08:21] } 13. a5 { [%clk 1:18:45] } 13... Na4 { [%clk 0:56:43] } 14. Bxf6 { [%clk 1:05:38] } 14... Bxf6 { [%clk 0:54:00] } 15. Rfc1 { [%clk 1:01:04] } 15... Rb8 { [%clk 0:44:22] } 16. Rc2 { [%clk 0:58:30] } 16... e5 { [%clk 0:38:08] } 17. dxe5 { [%clk 0:51:28] } 17... dxe5 { [%clk 0:38:06] } 18. Bxa4 { [%clk 0:50:23] } 18... bxa4 { [%clk 0:38:15] } 19. Qc4 { [%clk 0:50:05] } 19... Bc6 { [%clk 0:38:14] } 20. Ne4 { [%clk 0:48:55] } 20... Bg7 { [%clk 0:38:21] } 21. Nc5 { [%clk 0:46:36] } 21... Bb5 { [%clk 0:30:58] } 22. Qa2 { [%clk 0:42:40] } 22... Qc6 { [%clk 0:29:33] } 23. Nxa4 { [%clk 0:39:03] } 23... Bc4 { [%clk 0:24:53] } 24. Qa3 { [%clk 0:38:52] } 24... Bb3 { [%clk 0:22:17] } 25. Rd2 { [%clk 0:29:10] } 25... Rfe8 { [%clk 0:22:10] } 26. Nc5 { [%clk 0:28:02] } 26... Bf8 { [%clk 0:21:01] } 27. Qxb3 { [%clk 0:28:16] } 27... Rxb3 { [%clk 0:21:23] } 28. Nxb3 { [%clk 0:28:40] } 28... Rb8 { [%clk 0:19:39] } 29. Nc1 { [%clk 0:26:17] } 29... e4 { [%clk 0:18:41] } 30. Nd4 { [%clk 0:22:06] } 30... Qc4 { [%clk 0:18:23] } 31. Nde2 { [%clk 0:22:18] } 31... Bg7 { [%clk 0:16:15] } 32. b3 { [%clk 0:19:50] } 32... Qc5 { [%clk 0:15:24] } 33. Ra4 { [%clk 0:18:54] } 33... Bxc3 { [%clk 0:11:14] } 34. Rc2 { [%clk 0:17:07] } 34... Rd8 { [%clk 0:11:40] } 35. g4 { [%clk 0:12:10] } 35... Rd1+ { [%clk 0:09:11] } 36. Kg2 { [%clk 0:12:35] } 36... Qg5 { [%clk 0:09:31] } 37. Rxe4 { [%clk 0:12:17] } 37... Bxa5 *
 
 
-[Event "Round 11: Pablo Ismael Acosta - Diego Valerga"]
-[Site "https://lichess.org/study/DYcygfVK/Olj8slgF"]
-[White "Pablo Ismael Acosta"]
-[Black "Diego Valerga"]
-[Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
-[Variant "Standard"]
-[ECO "A11"]
-[Opening "English Opening: Caro-Kann Defensive System"]
-[Annotator "https://lichess.org/@/rhungaski"]
-
-1. c4 { [%clk 1:30:34] } 1... c6 { [%clk 1:30:45] } 2. Nf3 { [%clk 1:28:56] } 2... d5 { [%clk 1:31:06] } 3. e3 { [%clk 1:29:20] } 3... Nf6 { [%clk 1:31:25] } 4. b3 { [%clk 1:29:37] } 4... Bg4 { [%clk 1:30:51] } 5. Bb2 { [%clk 1:29:35] } 5... e6 { [%clk 1:30:03] } 6. Be2 { [%clk 1:29:18] } 6... Nbd7 { [%clk 1:28:06] } 7. Nc3 { [%clk 1:26:18] } 7... Bd6 { [%clk 1:21:53] } 8. O-O { [%clk 1:24:43] } 8... O-O { [%clk 1:21:06] } 9. h3 { [%clk 1:20:55] } 9... Bh5 { [%clk 1:19:53] } 10. d3 { [%clk 1:15:21] } 10... Re8 { [%clk 1:13:42] } 11. a3 { [%clk 1:06:08] } 11... h6 { [%clk 1:13:33] } 12. b4 { [%clk 1:01:46] } 12... a6 { [%clk 1:02:09] } 13. e4 { [%clk 0:45:34] } 13... Bxf3 { [%clk 0:48:06] } 14. Bxf3 { [%clk 0:45:52] } 14... d4 { [%clk 0:48:25] } 15. Ne2 { [%clk 0:40:41] } 15... e5 { [%clk 0:48:19] } 16. c5 { [%clk 0:41:02] } 16... Bf8 { [%clk 0:43:21] } 17. Bc1 { [%clk 0:30:31] } 17... a5 { [%clk 0:35:42] } 18. Bd2 { [%clk 0:30:20] } 18... axb4 { [%clk 0:34:30] } 19. axb4 { [%clk 0:30:43] } 19... Rxa1 { [%clk 0:34:32] } 20. Qxa1 { [%clk 0:31:08] } 20... b6 { [%clk 0:34:57] } 21. cxb6 { [%clk 0:31:07] } 21... Qxb6 { [%clk 0:35:10] } 22. Rb1 { [%clk 0:29:54] } 22... Qb7 { [%clk 0:31:32] } 23. Nc1 { [%clk 0:28:25] } 23... Ra8 { [%clk 0:30:30] } 24. Qb2 { [%clk 0:28:50] } 24... Qb5 { [%clk 0:28:45] } 25. Bd1 { [%clk 0:24:46] } 25... c5 { [%clk 0:25:22] } 26. bxc5 { [%clk 0:22:24] } 26... Qxb2 { [%clk 0:25:13] } 27. Rxb2 { [%clk 0:22:48] } 27... Nxc5 { [%clk 0:23:28] } 28. g3 { [%clk 0:21:07] } 28... Ra1 { [%clk 0:19:56] } 29. Bc2 { [%clk 0:20:38] } 29... Nfd7 { [%clk 0:20:17] } 30. Kg2 { [%clk 0:20:18] } 30... Ra7 { [%clk 0:14:49] } 31. f4 { [%clk 0:20:14] } 31... Bd6 { [%clk 0:15:11] } 32. h4 { [%clk 0:19:19] } 32... Kf8 { [%clk 0:13:31] } 33. Kf3 { [%clk 0:17:16] } 33... Ke7 { [%clk 0:13:00] } 34. Na2 { [%clk 0:15:19] } 34... Na6 { [%clk 0:06:53] } 35. Ke2 { [%clk 0:13:24] } 35... Rc7 { [%clk 0:05:14] } *
-
-
-[Event "Round 11: Diego Flores - Leandro Krysa"]
-[Site "https://lichess.org/study/DYcygfVK/EOudpbMC"]
-[White "Diego Flores"]
-[Black "Leandro Krysa"]
-[Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
-[Variant "Standard"]
-[ECO "A20"]
-[Opening "English Opening: King's English Variation"]
-[Annotator "https://lichess.org/@/rhungaski"]
-
-1. c4 { [%clk 1:30:26] } 1... e5 { [%clk 1:30:42] } 2. e3 { [%clk 1:28:17] } 2... Nf6 { [%clk 1:30:18] } 3. Nc3 { [%clk 1:28:12] } 3... Bb4 { [%clk 1:30:30] } 4. Nge2 { [%clk 1:23:38] } 4... O-O { [%clk 1:30:18] } 5. a3 { [%clk 1:21:31] } 5... Be7 { [%clk 1:29:44] } 6. d4 { [%clk 1:12:55] } 6... exd4 { [%clk 1:29:22] } 7. Qxd4 { [%clk 1:09:02] } 7... c6 { [%clk 1:25:05] } 8. g4 { [%clk 0:44:11] } 8... d6 { [%clk 1:02:46] } 9. h3 { [%clk 0:29:30] } 9... Na6 { [%clk 0:59:16] } 10. b4 { [%clk 0:21:30] } 10... c5 { [%clk 0:49:13] } 11. bxc5 { [%clk 0:14:20] } 11... Nxc5 { [%clk 0:49:34] } 12. Rb1 { [%clk 0:14:24] } 12... Be6 { [%clk 0:27:10] } 13. Bg2 { [%clk 0:10:47] } 13... Nfd7 { [%clk 0:26:52] } 14. Nd5 { [%clk 0:07:37] } 14... Bf6 { [%clk 0:20:54] } 15. Nxf6+ { [%clk 0:04:23] } 15... Qxf6 { [%clk 0:20:51] } 16. Nf4 { [%clk 0:04:47] } 16... Ne5 { [%clk 0:15:16] } 17. O-O { [%clk 0:05:00] } 17... Bxc4 { [%clk 0:13:17] } 18. Rd1 { [%clk 0:05:14] } 18... Nb3 { [%clk 0:11:46] } 19. Nh5 { [%clk 0:04:59] } 19... Qg6 { [%clk 0:08:27] } 20. Qb2 { [%clk 0:01:14] } 20... f6 { [%clk 0:04:23] } 21. Bd2 { [%clk 0:00:37] } 21... Qf7 { [%clk 0:03:42] } *
-
-
-[Event "Round 11: Diego Flores - Leandro Krysa"]
-[Site "https://lichess.org/study/DYcygfVK/EOudpbMC"]
-[White "Diego Flores"]
-[Black "Leandro Krysa"]
-[Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
-[Variant "Standard"]
-[ECO "A20"]
-[Opening "English Opening: King's English Variation"]
-[Annotator "https://lichess.org/@/rhungaski"]
-
-1. c4 { [%clk 1:30:26] } 1... e5 { [%clk 1:30:42] } 2. e3 { [%clk 1:28:17] } 2... Nf6 { [%clk 1:30:18] } 3. Nc3 { [%clk 1:28:12] } 3... Bb4 { [%clk 1:30:30] } 4. Nge2 { [%clk 1:23:38] } 4... O-O { [%clk 1:30:18] } 5. a3 { [%clk 1:21:31] } 5... Be7 { [%clk 1:29:44] } 6. d4 { [%clk 1:12:55] } 6... exd4 { [%clk 1:29:22] } 7. Qxd4 { [%clk 1:09:02] } 7... c6 { [%clk 1:25:05] } 8. g4 { [%clk 0:44:11] } 8... d6 { [%clk 1:02:46] } 9. h3 { [%clk 0:29:30] } 9... Na6 { [%clk 0:59:16] } 10. b4 { [%clk 0:21:30] } 10... c5 { [%clk 0:49:13] } 11. bxc5 { [%clk 0:14:20] } 11... Nxc5 { [%clk 0:49:34] } 12. Rb1 { [%clk 0:14:24] } 12... Be6 { [%clk 0:27:10] } 13. Bg2 { [%clk 0:10:47] } 13... Nfd7 { [%clk 0:26:52] } 14. Nd5 { [%clk 0:07:37] } 14... Bf6 { [%clk 0:20:54] } 15. Nxf6+ { [%clk 0:04:23] } 15... Qxf6 { [%clk 0:20:51] } 16. Nf4 { [%clk 0:04:47] } 16... Ne5 { [%clk 0:15:16] } 17. O-O { [%clk 0:05:00] } 17... Bxc4 { [%clk 0:13:17] } 18. Rd1 { [%clk 0:05:14] } 18... Nb3 { [%clk 0:11:46] } 19. Nh5 { [%clk 0:04:59] } 19... Qg6 { [%clk 0:08:27] } 20. Qb2 { [%clk 0:01:14] } 20... f6 { [%clk 0:04:23] } 21. Bd2 { [%clk 0:00:37] } 21... Qf7 { [%clk 0:03:42] } 22. Bb4 { [%clk 0:00:48] } *
-
-
-[Event "Round 11: Pablo Ismael Acosta - Diego Valerga"]
-[Site "https://lichess.org/study/DYcygfVK/Olj8slgF"]
-[White "Pablo Ismael Acosta"]
-[Black "Diego Valerga"]
-[Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
-[Variant "Standard"]
-[ECO "A11"]
-[Opening "English Opening: Caro-Kann Defensive System"]
-[Annotator "https://lichess.org/@/rhungaski"]
-
-1. c4 { [%clk 1:30:34] } 1... c6 { [%clk 1:30:45] } 2. Nf3 { [%clk 1:28:56] } 2... d5 { [%clk 1:31:06] } 3. e3 { [%clk 1:29:20] } 3... Nf6 { [%clk 1:31:25] } 4. b3 { [%clk 1:29:37] } 4... Bg4 { [%clk 1:30:51] } 5. Bb2 { [%clk 1:29:35] } 5... e6 { [%clk 1:30:03] } 6. Be2 { [%clk 1:29:18] } 6... Nbd7 { [%clk 1:28:06] } 7. Nc3 { [%clk 1:26:18] } 7... Bd6 { [%clk 1:21:53] } 8. O-O { [%clk 1:24:43] } 8... O-O { [%clk 1:21:06] } 9. h3 { [%clk 1:20:55] } 9... Bh5 { [%clk 1:19:53] } 10. d3 { [%clk 1:15:21] } 10... Re8 { [%clk 1:13:42] } 11. a3 { [%clk 1:06:08] } 11... h6 { [%clk 1:13:33] } 12. b4 { [%clk 1:01:46] } 12... a6 { [%clk 1:02:09] } 13. e4 { [%clk 0:45:34] } 13... Bxf3 { [%clk 0:48:06] } 14. Bxf3 { [%clk 0:45:52] } 14... d4 { [%clk 0:48:25] } 15. Ne2 { [%clk 0:40:41] } 15... e5 { [%clk 0:48:19] } 16. c5 { [%clk 0:41:02] } 16... Bf8 { [%clk 0:43:21] } 17. Bc1 { [%clk 0:30:31] } 17... a5 { [%clk 0:35:42] } 18. Bd2 { [%clk 0:30:20] } 18... axb4 { [%clk 0:34:30] } 19. axb4 { [%clk 0:30:43] } 19... Rxa1 { [%clk 0:34:32] } 20. Qxa1 { [%clk 0:31:08] } 20... b6 { [%clk 0:34:57] } 21. cxb6 { [%clk 0:31:07] } 21... Qxb6 { [%clk 0:35:10] } 22. Rb1 { [%clk 0:29:54] } 22... Qb7 { [%clk 0:31:32] } 23. Nc1 { [%clk 0:28:25] } 23... Ra8 { [%clk 0:30:30] } 24. Qb2 { [%clk 0:28:50] } 24... Qb5 { [%clk 0:28:45] } 25. Bd1 { [%clk 0:24:46] } 25... c5 { [%clk 0:25:22] } 26. bxc5 { [%clk 0:22:24] } 26... Qxb2 { [%clk 0:25:13] } 27. Rxb2 { [%clk 0:22:48] } 27... Nxc5 { [%clk 0:23:28] } 28. g3 { [%clk 0:21:07] } 28... Ra1 { [%clk 0:19:56] } 29. Bc2 { [%clk 0:20:38] } 29... Nfd7 { [%clk 0:20:17] } 30. Kg2 { [%clk 0:20:18] } 30... Ra7 { [%clk 0:14:49] } 31. f4 { [%clk 0:20:14] } 31... Bd6 { [%clk 0:15:11] } 32. h4 { [%clk 0:19:19] } 32... Kf8 { [%clk 0:13:31] } 33. Kf3 { [%clk 0:17:16] } 33... Ke7 { [%clk 0:13:00] } 34. Na2 { [%clk 0:15:19] } 34... Na6 { [%clk 0:06:53] } 35. Ke2 { [%clk 0:13:24] } 35... Rc7 { [%clk 0:05:14] } 36. Bd1 { [%clk 0:13:00] } *
-
-
-[Event "Round 11: Diego Flores - Leandro Krysa"]
-[Site "https://lichess.org/study/DYcygfVK/EOudpbMC"]
-[White "Diego Flores"]
-[Black "Leandro Krysa"]
-[Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
-[Variant "Standard"]
-[ECO "A20"]
-[Opening "English Opening: King's English Variation"]
-[Annotator "https://lichess.org/@/rhungaski"]
-
-1. c4 { [%clk 1:30:26] } 1... e5 { [%clk 1:30:42] } 2. e3 { [%clk 1:28:17] } 2... Nf6 { [%clk 1:30:18] } 3. Nc3 { [%clk 1:28:12] } 3... Bb4 { [%clk 1:30:30] } 4. Nge2 { [%clk 1:23:38] } 4... O-O { [%clk 1:30:18] } 5. a3 { [%clk 1:21:31] } 5... Be7 { [%clk 1:29:44] } 6. d4 { [%clk 1:12:55] } 6... exd4 { [%clk 1:29:22] } 7. Qxd4 { [%clk 1:09:02] } 7... c6 { [%clk 1:25:05] } 8. g4 { [%clk 0:44:11] } 8... d6 { [%clk 1:02:46] } 9. h3 { [%clk 0:29:30] } 9... Na6 { [%clk 0:59:16] } 10. b4 { [%clk 0:21:30] } 10... c5 { [%clk 0:49:13] } 11. bxc5 { [%clk 0:14:20] } 11... Nxc5 { [%clk 0:49:34] } 12. Rb1 { [%clk 0:14:24] } 12... Be6 { [%clk 0:27:10] } 13. Bg2 { [%clk 0:10:47] } 13... Nfd7 { [%clk 0:26:52] } 14. Nd5 { [%clk 0:07:37] } 14... Bf6 { [%clk 0:20:54] } 15. Nxf6+ { [%clk 0:04:23] } 15... Qxf6 { [%clk 0:20:51] } 16. Nf4 { [%clk 0:04:47] } 16... Ne5 { [%clk 0:15:16] } 17. O-O { [%clk 0:05:00] } 17... Bxc4 { [%clk 0:13:17] } 18. Rd1 { [%clk 0:05:14] } 18... Nb3 { [%clk 0:11:46] } 19. Nh5 { [%clk 0:04:59] } 19... Qg6 { [%clk 0:08:27] } 20. Qb2 { [%clk 0:01:14] } 20... f6 { [%clk 0:04:23] } 21. Bd2 { [%clk 0:00:37] } 21... Qf7 { [%clk 0:03:42] } 22. Bb4 { [%clk 0:00:48] } 22... Rfd8 *
-
-
-[Event "Round 11: Pablo Ismael Acosta - Diego Valerga"]
-[Site "https://lichess.org/study/DYcygfVK/Olj8slgF"]
-[White "Pablo Ismael Acosta"]
-[Black "Diego Valerga"]
-[Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
-[Variant "Standard"]
-[ECO "A11"]
-[Opening "English Opening: Caro-Kann Defensive System"]
-[Annotator "https://lichess.org/@/rhungaski"]
-
-1. c4 { [%clk 1:30:34] } 1... c6 { [%clk 1:30:45] } 2. Nf3 { [%clk 1:28:56] } 2... d5 { [%clk 1:31:06] } 3. e3 { [%clk 1:29:20] } 3... Nf6 { [%clk 1:31:25] } 4. b3 { [%clk 1:29:37] } 4... Bg4 { [%clk 1:30:51] } 5. Bb2 { [%clk 1:29:35] } 5... e6 { [%clk 1:30:03] } 6. Be2 { [%clk 1:29:18] } 6... Nbd7 { [%clk 1:28:06] } 7. Nc3 { [%clk 1:26:18] } 7... Bd6 { [%clk 1:21:53] } 8. O-O { [%clk 1:24:43] } 8... O-O { [%clk 1:21:06] } 9. h3 { [%clk 1:20:55] } 9... Bh5 { [%clk 1:19:53] } 10. d3 { [%clk 1:15:21] } 10... Re8 { [%clk 1:13:42] } 11. a3 { [%clk 1:06:08] } 11... h6 { [%clk 1:13:33] } 12. b4 { [%clk 1:01:46] } 12... a6 { [%clk 1:02:09] } 13. e4 { [%clk 0:45:34] } 13... Bxf3 { [%clk 0:48:06] } 14. Bxf3 { [%clk 0:45:52] } 14... d4 { [%clk 0:48:25] } 15. Ne2 { [%clk 0:40:41] } 15... e5 { [%clk 0:48:19] } 16. c5 { [%clk 0:41:02] } 16... Bf8 { [%clk 0:43:21] } 17. Bc1 { [%clk 0:30:31] } 17... a5 { [%clk 0:35:42] } 18. Bd2 { [%clk 0:30:20] } 18... axb4 { [%clk 0:34:30] } 19. axb4 { [%clk 0:30:43] } 19... Rxa1 { [%clk 0:34:32] } 20. Qxa1 { [%clk 0:31:08] } 20... b6 { [%clk 0:34:57] } 21. cxb6 { [%clk 0:31:07] } 21... Qxb6 { [%clk 0:35:10] } 22. Rb1 { [%clk 0:29:54] } 22... Qb7 { [%clk 0:31:32] } 23. Nc1 { [%clk 0:28:25] } 23... Ra8 { [%clk 0:30:30] } 24. Qb2 { [%clk 0:28:50] } 24... Qb5 { [%clk 0:28:45] } 25. Bd1 { [%clk 0:24:46] } 25... c5 { [%clk 0:25:22] } 26. bxc5 { [%clk 0:22:24] } 26... Qxb2 { [%clk 0:25:13] } 27. Rxb2 { [%clk 0:22:48] } 27... Nxc5 { [%clk 0:23:28] } 28. g3 { [%clk 0:21:07] } 28... Ra1 { [%clk 0:19:56] } 29. Bc2 { [%clk 0:20:38] } 29... Nfd7 { [%clk 0:20:17] } 30. Kg2 { [%clk 0:20:18] } 30... Ra7 { [%clk 0:14:49] } 31. f4 { [%clk 0:20:14] } 31... Bd6 { [%clk 0:15:11] } 32. h4 { [%clk 0:19:19] } 32... Kf8 { [%clk 0:13:31] } 33. Kf3 { [%clk 0:17:16] } 33... Ke7 { [%clk 0:13:00] } 34. Na2 { [%clk 0:15:19] } 34... Na6 { [%clk 0:06:53] } 35. Ke2 { [%clk 0:13:24] } 35... Rc7 { [%clk 0:05:14] } 36. Bd1 { [%clk 0:13:00] } 36... Ndc5 { [%clk 0:04:42] } *
-
-
-[Event "Round 11: Diego Flores - Leandro Krysa"]
-[Site "https://lichess.org/study/DYcygfVK/EOudpbMC"]
-[White "Diego Flores"]
-[Black "Leandro Krysa"]
-[Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
-[Variant "Standard"]
-[ECO "A20"]
-[Opening "English Opening: King's English Variation"]
-[Annotator "https://lichess.org/@/rhungaski"]
-
-1. c4 { [%clk 1:30:26] } 1... e5 { [%clk 1:30:42] } 2. e3 { [%clk 1:28:17] } 2... Nf6 { [%clk 1:30:18] } 3. Nc3 { [%clk 1:28:12] } 3... Bb4 { [%clk 1:30:30] } 4. Nge2 { [%clk 1:23:38] } 4... O-O { [%clk 1:30:18] } 5. a3 { [%clk 1:21:31] } 5... Be7 { [%clk 1:29:44] } 6. d4 { [%clk 1:12:55] } 6... exd4 { [%clk 1:29:22] } 7. Qxd4 { [%clk 1:09:02] } 7... c6 { [%clk 1:25:05] } 8. g4 { [%clk 0:44:11] } 8... d6 { [%clk 1:02:46] } 9. h3 { [%clk 0:29:30] } 9... Na6 { [%clk 0:59:16] } 10. b4 { [%clk 0:21:30] } 10... c5 { [%clk 0:49:13] } 11. bxc5 { [%clk 0:14:20] } 11... Nxc5 { [%clk 0:49:34] } 12. Rb1 { [%clk 0:14:24] } 12... Be6 { [%clk 0:27:10] } 13. Bg2 { [%clk 0:10:47] } 13... Nfd7 { [%clk 0:26:52] } 14. Nd5 { [%clk 0:07:37] } 14... Bf6 { [%clk 0:20:54] } 15. Nxf6+ { [%clk 0:04:23] } 15... Qxf6 { [%clk 0:20:51] } 16. Nf4 { [%clk 0:04:47] } 16... Ne5 { [%clk 0:15:16] } 17. O-O { [%clk 0:05:00] } 17... Bxc4 { [%clk 0:13:17] } 18. Rd1 { [%clk 0:05:14] } 18... Nb3 { [%clk 0:11:46] } 19. Nh5 { [%clk 0:04:59] } 19... Qg6 { [%clk 0:08:27] } 20. Qb2 { [%clk 0:01:14] } 20... f6 { [%clk 0:04:23] } 21. Bd2 { [%clk 0:00:37] } 21... Qf7 { [%clk 0:03:42] } 22. Bb4 { [%clk 0:00:48] } 22... Rfd8 { [%clk 0:02:56] } 23. Nf4 *
 
 
 [Event "Round 11: Sergio Slipak - Federico Perez Ponsa"]
@@ -313,36 +182,6 @@
 1. d4 { [%clk 1:30:56] } 1... Nf6 { [%clk 1:30:50] } 2. Nf3 { [%clk 1:31:20] } 2... g6 { [%clk 1:30:56] } 3. Bg5 { [%clk 1:31:43] } 3... Bg7 { [%clk 1:31:20] } 4. Nbd2 { [%clk 1:32:06] } 4... O-O { [%clk 1:31:34] } 5. e3 { [%clk 1:32:31] } 5... d6 { [%clk 1:31:34] } 6. c3 { [%clk 1:32:55] } 6... h6 { [%clk 1:30:51] } 7. Bh4 { [%clk 1:33:16] } 7... Qe8 { [%clk 1:31:09] } 8. Bc4 { [%clk 1:29:59] } 8... b5 { [%clk 1:21:55] } 9. Bb3 { [%clk 1:28:04] } 9... Bb7 { [%clk 1:14:17] } 10. a4 { [%clk 1:26:18] } 10... a6 { [%clk 1:14:06] } 11. O-O { [%clk 1:26:12] } 11... Nbd7 { [%clk 1:10:11] } 12. Qe2 { [%clk 1:20:47] } 12... Nb6 { [%clk 1:08:21] } 13. a5 { [%clk 1:18:45] } 13... Na4 { [%clk 0:56:43] } 14. Bxf6 { [%clk 1:05:38] } 14... Bxf6 { [%clk 0:54:00] } 15. Rfc1 { [%clk 1:01:04] } 15... Rb8 { [%clk 0:44:22] } 16. Rc2 { [%clk 0:58:30] } 16... e5 { [%clk 0:38:08] } 17. dxe5 { [%clk 0:51:28] } 17... dxe5 { [%clk 0:38:06] } 18. Bxa4 { [%clk 0:50:23] } 18... bxa4 { [%clk 0:38:15] } 19. Qc4 { [%clk 0:50:05] } 19... Bc6 { [%clk 0:38:14] } 20. Ne4 { [%clk 0:48:55] } 20... Bg7 { [%clk 0:38:21] } 21. Nc5 { [%clk 0:46:36] } 21... Bb5 { [%clk 0:30:58] } 22. Qa2 { [%clk 0:42:40] } 22... Qc6 { [%clk 0:29:33] } 23. Nxa4 { [%clk 0:39:03] } 23... Bc4 { [%clk 0:24:53] } 24. Qa3 { [%clk 0:38:52] } 24... Bb3 { [%clk 0:22:17] } 25. Rd2 { [%clk 0:29:10] } 25... Rfe8 { [%clk 0:22:10] } 26. Nc5 { [%clk 0:28:02] } 26... Bf8 { [%clk 0:21:01] } 27. Qxb3 { [%clk 0:28:16] } 27... Rxb3 { [%clk 0:21:23] } 28. Nxb3 { [%clk 0:28:40] } 28... Rb8 { [%clk 0:19:39] } 29. Nc1 { [%clk 0:26:17] } 29... e4 { [%clk 0:18:41] } 30. Nd4 { [%clk 0:22:06] } 30... Qc4 { [%clk 0:18:23] } 31. Nde2 { [%clk 0:22:18] } 31... Bg7 { [%clk 0:16:15] } 32. b3 { [%clk 0:19:50] } 32... Qc5 { [%clk 0:15:24] } 33. Ra4 { [%clk 0:18:54] } 33... Bxc3 { [%clk 0:11:14] } 34. Rc2 { [%clk 0:17:07] } 34... Rd8 { [%clk 0:11:40] } 35. g4 { [%clk 0:12:10] } 35... Rd1+ { [%clk 0:09:11] } 36. Kg2 { [%clk 0:12:35] } 36... Qg5 { [%clk 0:09:31] } 37. Rxe4 { [%clk 0:12:17] } 37... Bxa5 { [%clk 0:09:08] } 38. b4 { [%clk 0:09:22] } *
 
 
-[Event "Round 11: Pablo Ismael Acosta - Diego Valerga"]
-[Site "https://lichess.org/study/DYcygfVK/Olj8slgF"]
-[White "Pablo Ismael Acosta"]
-[Black "Diego Valerga"]
-[Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
-[Variant "Standard"]
-[ECO "A11"]
-[Opening "English Opening: Caro-Kann Defensive System"]
-[Annotator "https://lichess.org/@/rhungaski"]
-
-1. c4 { [%clk 1:30:34] } 1... c6 { [%clk 1:30:45] } 2. Nf3 { [%clk 1:28:56] } 2... d5 { [%clk 1:31:06] } 3. e3 { [%clk 1:29:20] } 3... Nf6 { [%clk 1:31:25] } 4. b3 { [%clk 1:29:37] } 4... Bg4 { [%clk 1:30:51] } 5. Bb2 { [%clk 1:29:35] } 5... e6 { [%clk 1:30:03] } 6. Be2 { [%clk 1:29:18] } 6... Nbd7 { [%clk 1:28:06] } 7. Nc3 { [%clk 1:26:18] } 7... Bd6 { [%clk 1:21:53] } 8. O-O { [%clk 1:24:43] } 8... O-O { [%clk 1:21:06] } 9. h3 { [%clk 1:20:55] } 9... Bh5 { [%clk 1:19:53] } 10. d3 { [%clk 1:15:21] } 10... Re8 { [%clk 1:13:42] } 11. a3 { [%clk 1:06:08] } 11... h6 { [%clk 1:13:33] } 12. b4 { [%clk 1:01:46] } 12... a6 { [%clk 1:02:09] } 13. e4 { [%clk 0:45:34] } 13... Bxf3 { [%clk 0:48:06] } 14. Bxf3 { [%clk 0:45:52] } 14... d4 { [%clk 0:48:25] } 15. Ne2 { [%clk 0:40:41] } 15... e5 { [%clk 0:48:19] } 16. c5 { [%clk 0:41:02] } 16... Bf8 { [%clk 0:43:21] } 17. Bc1 { [%clk 0:30:31] } 17... a5 { [%clk 0:35:42] } 18. Bd2 { [%clk 0:30:20] } 18... axb4 { [%clk 0:34:30] } 19. axb4 { [%clk 0:30:43] } 19... Rxa1 { [%clk 0:34:32] } 20. Qxa1 { [%clk 0:31:08] } 20... b6 { [%clk 0:34:57] } 21. cxb6 { [%clk 0:31:07] } 21... Qxb6 { [%clk 0:35:10] } 22. Rb1 { [%clk 0:29:54] } 22... Qb7 { [%clk 0:31:32] } 23. Nc1 { [%clk 0:28:25] } 23... Ra8 { [%clk 0:30:30] } 24. Qb2 { [%clk 0:28:50] } 24... Qb5 { [%clk 0:28:45] } 25. Bd1 { [%clk 0:24:46] } 25... c5 { [%clk 0:25:22] } 26. bxc5 { [%clk 0:22:24] } 26... Qxb2 { [%clk 0:25:13] } 27. Rxb2 { [%clk 0:22:48] } 27... Nxc5 { [%clk 0:23:28] } 28. g3 { [%clk 0:21:07] } 28... Ra1 { [%clk 0:19:56] } 29. Bc2 { [%clk 0:20:38] } 29... Nfd7 { [%clk 0:20:17] } 30. Kg2 { [%clk 0:20:18] } 30... Ra7 { [%clk 0:14:49] } 31. f4 { [%clk 0:20:14] } 31... Bd6 { [%clk 0:15:11] } 32. h4 { [%clk 0:19:19] } 32... Kf8 { [%clk 0:13:31] } 33. Kf3 { [%clk 0:17:16] } 33... Ke7 { [%clk 0:13:00] } 34. Na2 { [%clk 0:15:19] } 34... Na6 { [%clk 0:06:53] } 35. Ke2 { [%clk 0:13:24] } 35... Rc7 { [%clk 0:05:14] } 36. Bd1 { [%clk 0:13:00] } 36... Ndc5 { [%clk 0:04:42] } 37. Rb5 { [%clk 0:12:15] } *
-
-
-[Event "Round 11: Diego Flores - Leandro Krysa"]
-[Site "https://lichess.org/study/DYcygfVK/EOudpbMC"]
-[White "Diego Flores"]
-[Black "Leandro Krysa"]
-[Result "*"]
-[UTCDate "2021.12.16"]
-[UTCTime "14:10:26"]
-[Variant "Standard"]
-[ECO "A20"]
-[Opening "English Opening: King's English Variation"]
-[Annotator "https://lichess.org/@/rhungaski"]
-
-1. c4 { [%clk 1:30:26] } 1... e5 { [%clk 1:30:42] } 2. e3 { [%clk 1:28:17] } 2... Nf6 { [%clk 1:30:18] } 3. Nc3 { [%clk 1:28:12] } 3... Bb4 { [%clk 1:30:30] } 4. Nge2 { [%clk 1:23:38] } 4... O-O { [%clk 1:30:18] } 5. a3 { [%clk 1:21:31] } 5... Be7 { [%clk 1:29:44] } 6. d4 { [%clk 1:12:55] } 6... exd4 { [%clk 1:29:22] } 7. Qxd4 { [%clk 1:09:02] } 7... c6 { [%clk 1:25:05] } 8. g4 { [%clk 0:44:11] } 8... d6 { [%clk 1:02:46] } 9. h3 { [%clk 0:29:30] } 9... Na6 { [%clk 0:59:16] } 10. b4 { [%clk 0:21:30] } 10... c5 { [%clk 0:49:13] } 11. bxc5 { [%clk 0:14:20] } 11... Nxc5 { [%clk 0:49:34] } 12. Rb1 { [%clk 0:14:24] } 12... Be6 { [%clk 0:27:10] } 13. Bg2 { [%clk 0:10:47] } 13... Nfd7 { [%clk 0:26:52] } 14. Nd5 { [%clk 0:07:37] } 14... Bf6 { [%clk 0:20:54] } 15. Nxf6+ { [%clk 0:04:23] } 15... Qxf6 { [%clk 0:20:51] } 16. Nf4 { [%clk 0:04:47] } 16... Ne5 { [%clk 0:15:16] } 17. O-O { [%clk 0:05:00] } 17... Bxc4 { [%clk 0:13:17] } 18. Rd1 { [%clk 0:05:14] } 18... Nb3 { [%clk 0:11:46] } 19. Nh5 { [%clk 0:04:59] } 19... Qg6 { [%clk 0:08:27] } 20. Qb2 { [%clk 0:01:14] } 20... f6 { [%clk 0:04:23] } 21. Bd2 { [%clk 0:00:37] } 21... Qf7 { [%clk 0:03:42] } 22. Bb4 { [%clk 0:00:48] } 22... Rfd8 { [%clk 0:02:56] } 23. Nf4 { [%clk 0:00:59] } 23... Nc5 { [%clk 0:02:21] } *
-
-
 [Event "Round 11: Sergio Slipak - Federico Perez Ponsa"]
 [Site "https://lichess.org/study/DYcygfVK/QX01tZ8e"]
 [White "Sergio Slipak"]
@@ -356,5 +195,3 @@
 [Annotator "https://lichess.org/@/rhungaski"]
 
 1. d4 { [%clk 1:30:56] } 1... Nf6 { [%clk 1:30:50] } 2. Nf3 { [%clk 1:31:20] } 2... g6 { [%clk 1:30:56] } 3. Bg5 { [%clk 1:31:43] } 3... Bg7 { [%clk 1:31:20] } 4. Nbd2 { [%clk 1:32:06] } 4... O-O { [%clk 1:31:34] } 5. e3 { [%clk 1:32:31] } 5... d6 { [%clk 1:31:34] } 6. c3 { [%clk 1:32:55] } 6... h6 { [%clk 1:30:51] } 7. Bh4 { [%clk 1:33:16] } 7... Qe8 { [%clk 1:31:09] } 8. Bc4 { [%clk 1:29:59] } 8... b5 { [%clk 1:21:55] } 9. Bb3 { [%clk 1:28:04] } 9... Bb7 { [%clk 1:14:17] } 10. a4 { [%clk 1:26:18] } 10... a6 { [%clk 1:14:06] } 11. O-O { [%clk 1:26:12] } 11... Nbd7 { [%clk 1:10:11] } 12. Qe2 { [%clk 1:20:47] } 12... Nb6 { [%clk 1:08:21] } 13. a5 { [%clk 1:18:45] } 13... Na4 { [%clk 0:56:43] } 14. Bxf6 { [%clk 1:05:38] } 14... Bxf6 { [%clk 0:54:00] } 15. Rfc1 { [%clk 1:01:04] } 15... Rb8 { [%clk 0:44:22] } 16. Rc2 { [%clk 0:58:30] } 16... e5 { [%clk 0:38:08] } 17. dxe5 { [%clk 0:51:28] } 17... dxe5 { [%clk 0:38:06] } 18. Bxa4 { [%clk 0:50:23] } 18... bxa4 { [%clk 0:38:15] } 19. Qc4 { [%clk 0:50:05] } 19... Bc6 { [%clk 0:38:14] } 20. Ne4 { [%clk 0:48:55] } 20... Bg7 { [%clk 0:38:21] } 21. Nc5 { [%clk 0:46:36] } 21... Bb5 { [%clk 0:30:58] } 22. Qa2 { [%clk 0:42:40] } 22... Qc6 { [%clk 0:29:33] } 23. Nxa4 { [%clk 0:39:03] } 23... Bc4 { [%clk 0:24:53] } 24. Qa3 { [%clk 0:38:52] } 24... Bb3 { [%clk 0:22:17] } 25. Rd2 { [%clk 0:29:10] } 25... Rfe8 { [%clk 0:22:10] } 26. Nc5 { [%clk 0:28:02] } 26... Bf8 { [%clk 0:21:01] } 27. Qxb3 { [%clk 0:28:16] } 27... Rxb3 { [%clk 0:21:23] } 28. Nxb3 { [%clk 0:28:40] } 28... Rb8 { [%clk 0:19:39] } 29. Nc1 { [%clk 0:26:17] } 29... e4 { [%clk 0:18:41] } 30. Nd4 { [%clk 0:22:06] } 30... Qc4 { [%clk 0:18:23] } 31. Nde2 { [%clk 0:22:18] } 31... Bg7 { [%clk 0:16:15] } 32. b3 { [%clk 0:19:50] } 32... Qc5 { [%clk 0:15:24] } 33. Ra4 { [%clk 0:18:54] } 33... Bxc3 { [%clk 0:11:14] } 34. Rc2 { [%clk 0:17:07] } 34... Rd8 { [%clk 0:11:40] } 35. g4 { [%clk 0:12:10] } 35... Rd1+ { [%clk 0:09:11] } 36. Kg2 { [%clk 0:12:35] } 36... Qg5 { [%clk 0:09:31] } 37. Rxe4 { [%clk 0:12:17] } 37... Bxa5 { [%clk 0:09:08] } 38. b4 { [%clk 0:09:22] } 38... Bb6 { [%clk 0:08:58] } *
-
-

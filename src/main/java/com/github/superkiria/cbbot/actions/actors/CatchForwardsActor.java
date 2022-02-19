@@ -36,12 +36,11 @@ public class CatchForwardsActor implements ChatActor {
                         context.getUpdate().getMessage().getForwardFromMessageId(),
                         context.getUpdate().getMessage().getMessageId()
                 );
-                LOG.info("Forward registered from {} to {}",
+                LOG.debug("Forward registered from {} to {}",
                         context.getUpdate().getMessage().getForwardFromMessageId(),
                         context.getUpdate().getMessage().getMessageId());
             }
         }
-
 
     }
 

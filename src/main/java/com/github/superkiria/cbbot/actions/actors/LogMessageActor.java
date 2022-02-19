@@ -11,7 +11,6 @@ public class LogMessageActor implements ChatActor {
 
     private final static Logger LOG = LoggerFactory.getLogger(LogMessageActor.class);
 
-
     @Override
     public void act(ChatContext context) {
         LOG.debug(String.valueOf(context.getUpdate()));

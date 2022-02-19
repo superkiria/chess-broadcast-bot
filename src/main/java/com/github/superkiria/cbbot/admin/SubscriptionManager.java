@@ -6,10 +6,11 @@ import com.github.superkiria.cbbot.lichess.model.LichessEvent;
 import com.github.superkiria.cbbot.lichess.model.LichessRound;
 import com.github.superkiria.cbbot.sending.MessageQueue;
 import com.github.superkiria.cbbot.sending.keepers.SentDataKeeper;
-import com.github.superkiria.cbbot.props.TelegramProps;
+import com.github.superkiria.cbbot.sending.model.MarkedCaption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -22,16 +23,17 @@ public class SubscriptionManager {
     private final static Logger LOG = LoggerFactory.getLogger(SubscriptionManager.class);
 
     private final LichessConsumer lichess;
-    private final TelegramProps telegramProps;
     private final MessageQueue messageQueue;
     private final SentDataKeeper keeper;
+
+    @Value("${telegram.admin.chatId}")
+    private String adminChatId;
 
     private String eventId;
 
     @Autowired
-    public SubscriptionManager(LichessConsumer lichess, TelegramProps telegramProps, MessageQueue messageQueue, SentDataKeeper keeper) {
+    public SubscriptionManager(LichessConsumer lichess, MessageQueue messageQueue, SentDataKeeper keeper) {
         this.lichess = lichess;
-        this.telegramProps = telegramProps;
         this.messageQueue = messageQueue;
         this.keeper = keeper;
     }
@@ -52,8 +54,8 @@ public class SubscriptionManager {
         if (!best.equals(lichess.getCurrentSubscriptionRoundId())) {
             lichess.subscribeForRound(best);
             messageQueue.add(ChatContext.builder()
-                    .chatId(telegramProps.getAdminChatId())
-                    .response("Subscribed for: " + best)
+                    .chatId(adminChatId)
+                    .markedCaption(MarkedCaption.builder().caption("Subscribed for: " + best).build())
                     .build());
         }
     }
@@ -74,7 +76,7 @@ public class SubscriptionManager {
         if (round == null) {
             return null;
         }
-        if (round.getStartsAt().before(new Date(System.currentTimeMillis() + 57_000))) {
+        if (round.getStartsAt().before(new Date(System.currentTimeMillis() + 37_000))) {
             return round.getId();
         }
         return null;
@@ -84,11 +86,14 @@ public class SubscriptionManager {
         if (eventId == null) {
             return null;
         }
-        return lichess.getLichessEventById(eventId).getRounds()
-                .stream()
-                .filter(r -> r.getFinished() == null || !r.getFinished())
-                .min(Comparator.comparing(LichessRound::getStartsAt))
-                .orElse(null);
+        LichessEvent lichessEventById = lichess.getLichessEventById(eventId);
+        return lichessEventById != null ?
+                    lichessEventById.getRounds()
+                    .stream()
+                    .filter(r -> r.getFinished() == null || !r.getFinished())
+                    .min(Comparator.comparing(LichessRound::getStartsAt))
+                    .orElse(null)
+                : null;
     }
 
     public LichessEvent currentEvent() {
