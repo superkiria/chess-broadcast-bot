@@ -89,7 +89,7 @@ public class GameHelper {
             constructor.addString(game.getWhitePlayer().getName() + " - " + game.getBlackPlayer().getName() + "\n", "bold");
         }
 
-        if (current > 0 && game.getOpening() != null) {
+        if (current > 0 && game.getOpening() != null && game.getOpening().strip().length() > 6) {
             if (!makeItShort || !game.getOpening().equals(sentDataKeeper.getOpening(gameKey))) {
                 constructor.addString(game.getOpening() + "\n", "italic");
             }
@@ -99,7 +99,8 @@ public class GameHelper {
             if (game.getRound() != null
                     && game.getRound().getEvent() != null
                     && game.getRound().getEvent().getSite() != null
-                    && game.getRound().getEvent().getSite().trim().startsWith("http")) {
+                    && game.getRound().getEvent().getSite().trim().startsWith("http")
+                    && game.getRound().getEvent().getSite().contains("lichess.org")) {
                 constructor.addLink("check on lichess", game.getRound().getEvent().getSite());
             }
         }
