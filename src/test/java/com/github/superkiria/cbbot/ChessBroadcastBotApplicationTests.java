@@ -1,4 +1,4 @@
-package com.github.superkiria.chessbroadcastbot;
+package com.github.superkiria.cbbot;
 
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
