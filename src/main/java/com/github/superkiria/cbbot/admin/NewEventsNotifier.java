@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -31,6 +32,19 @@ public class NewEventsNotifier {
     public NewEventsNotifier(LichessConsumer lichessConsumer, MessageQueue messageQueue) {
         this.lichessConsumer = lichessConsumer;
         this.messageQueue = messageQueue;
+    }
+
+    @PostConstruct
+    void init() {
+        List<LichessEvent> currentBroadcasts = lichessConsumer.getActualLichessBroadcasts();
+        for (LichessEvent event : currentBroadcasts) {
+            sentNotifications.add(event.getTour().getId());
+        }
+        ChatContext context = ChatContext.builder()
+                .markedCaption(MarkedCaption.builder().caption("🍀🍀🍀 the init of NewEventsNotifier").build())
+                .chatId(adminChatId)
+                .build();
+        messageQueue.add(context);
     }
 
     @Scheduled(fixedDelay = 1214_000, initialDelay = 60_000)

@@ -7,7 +7,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 public class ChessBroadcastBotApplication {
 
 	public static void main(String[] args) throws Exception {
-		SpringApplicationBuilder spring = new SpringApplicationBuilder(ChessBroadcastBotApplication.class).profiles();
+		SpringApplicationBuilder spring = new SpringApplicationBuilder(ChessBroadcastBotApplication.class).profiles(args);
 		spring.application().run();
 	}
 

@@ -13,6 +13,7 @@ import reactor.core.Disposable;
 import reactor.util.retry.Retry;
 
 import java.time.Duration;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -107,7 +108,7 @@ public class LichessConsumer {
     public List<LichessEvent> getActualLichessBroadcasts() {
         return getLichessBroadcasts().stream().filter(
                 o -> o.getRounds().stream().anyMatch(r -> r.getFinished() == null)
-        ).collect(Collectors.toList());
+        ).sorted(Comparator.comparing(o -> o.getTour().getName())).collect(Collectors.toList());
     }
 
     public LichessEvent getLichessEventById(String eventId) {
