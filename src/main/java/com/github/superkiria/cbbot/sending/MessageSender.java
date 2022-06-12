@@ -52,6 +52,8 @@ public class MessageSender {
                             context.getChatId(),
                             message != null ? message.getMessageId() : null,
                             context.getKey());
+                    LOG.info("Message sent. context: {}",
+                            context);
                 } catch (TelegramApiException | InterruptedException e) {
                     LOG.error("Message processing error", e);
                 }

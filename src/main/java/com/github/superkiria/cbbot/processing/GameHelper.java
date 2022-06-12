@@ -37,19 +37,27 @@ public class GameHelper {
         return game;
     }
 
-    public static InputStream makePictureFromGame(Game game, Integer color) throws Exception {
+    public static Game makeGameFromPgn(List<String> buffer, int halfMove) {
+        Game game = GameLoader.loadNextGame(buffer.listIterator());
+        game.setBoard(new Board());
+        game.gotoMove(game.getHalfMoves(), halfMove);
+        return game;
+    }
+
+    public static InputStream makePictureFromGame(Game game, Integer color, int halfMove) throws Exception {
         SvgBoardBuilder builder = new SvgBoardBuilder();
-        builder.setPgn(game.toPgn(false, false));
+        builder.setFen(game.getBoard().getFen());
+        builder.setLastMoveInNotation(game.getHalfMoves().get(halfMove - 1).toString());
         builder.init(color);
         ByteArrayOutputStream baos = saveDocumentToPngByteBuffer(builder.getDocument());
         return new ByteArrayInputStream(baos.toByteArray());
     }
 
-    public MarkedCaption makeMarkedCaptionFromGame(Game game, GameKey gameKey) {
-        return makeMarkedCaptionFromGame(game, gameKey, false);
+    public MarkedCaption makeMarkedCaptionFromGame(Game game, GameKey gameKey, int halfMove) {
+        return makeMarkedCaptionFromGame(game, gameKey, halfMove, false);
     }
 
-    public MarkedCaption makeMarkedCaptionFromGame(Game game, GameKey gameKey, boolean makeItShort) {
+    public MarkedCaption makeMarkedCaptionFromGame(Game game, GameKey gameKey, int halfMove, boolean makeItShort) {
         CaptionMarkupConstructor constructor = new CaptionMarkupConstructor();
         if (!game.getResult().equals(GameResult.ONGOING)) {
             String result = "";
@@ -66,19 +74,18 @@ public class GameHelper {
             }
             constructor.addString(result, "bold");
         }
-        int current = game.getHalfMoves().size();
-        if (current > 1) {
-            constructor.addString(moveFromMovesList(game, game.getHalfMoves().size() - 1) + "\n", "code");
+        if (halfMove > 1) {
+            constructor.addString(moveFromMovesList(game, halfMove - 1) + "\n", "code");
         }
-        if (current > 0) {
-            constructor.addString(moveFromMovesList(game, current) + "\n", "code");
+        if (halfMove > 0) {
+            constructor.addString(moveFromMovesList(game, halfMove) + "\n", "code");
         }
-        if (current > 1) {
+        if (halfMove > 1) {
             String time;
-            if (current % 2 == 0) {
-                time = timeFromMovesList(game, current - 1) + " ⏱ " + timeFromMovesList(game, current) + "\n";
+            if (halfMove % 2 == 0) {
+                time = timeFromMovesList(game, halfMove - 1) + " ⏱ " + timeFromMovesList(game, halfMove) + "\n";
             } else {
-                time = timeFromMovesList(game, current) + " ⏱ " + timeFromMovesList(game, current - 1) + "\n";
+                time = timeFromMovesList(game, halfMove) + " ⏱ " + timeFromMovesList(game, halfMove - 1) + "\n";
             }
             if (time.length() > " ⏱ \n".length()) {
                 constructor.addString(time, null);
@@ -89,7 +96,7 @@ public class GameHelper {
             constructor.addString(game.getWhitePlayer().getName() + " - " + game.getBlackPlayer().getName() + "\n", "bold");
         }
 
-        if (current > 0 && game.getOpening() != null && game.getOpening().strip().length() > 6) {
+        if (halfMove > 0 && game.getOpening() != null && game.getOpening().strip().length() > 6) {
             if (!makeItShort || !game.getOpening().equals(sentDataKeeper.getOpening(gameKey))) {
                 constructor.addString(game.getOpening() + "\n", "italic");
             }

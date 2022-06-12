@@ -13,6 +13,6 @@ public class LogMessageActor implements ChatActor {
 
     @Override
     public void act(ChatContext context) {
-        LOG.info(String.valueOf(context.getUpdate()));
+        LOG.debug(String.valueOf(context.getUpdate()));
     }
 }

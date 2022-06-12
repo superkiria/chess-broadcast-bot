@@ -18,12 +18,7 @@ public class MessageQueue {
         if (o == null) {
             return;
         }
-        Long scheduledTime = scheduledShipments.get(o.getChatId());
-        if (scheduledShipments.get(o.getChatId()) != null) {
-            scheduledTime = Math.max(new Date().getTime(), scheduledTime + 3000);
-        } else {
-            scheduledTime = new Date().getTime();
-        }
+        Long scheduledTime = Math.max(new Date().getTime(), scheduledShipments.getOrDefault(o.getChatId(), 0L) + 3000);
         scheduledShipments.put(o.getChatId(), scheduledTime);
         o.setScheduledTime(scheduledTime);
         queue.add(o);

@@ -4,6 +4,7 @@ import com.github.superkiria.cbbot.main.ChatContext;
 import com.github.superkiria.cbbot.lichess.LichessConsumer;
 import com.github.superkiria.cbbot.lichess.model.LichessEvent;
 import com.github.superkiria.cbbot.lichess.model.LichessRound;
+import com.github.superkiria.cbbot.processing.PgnProcessor;
 import com.github.superkiria.cbbot.sending.MessageQueue;
 import com.github.superkiria.cbbot.sending.keepers.SentDataKeeper;
 import com.github.superkiria.cbbot.sending.model.MarkedCaption;

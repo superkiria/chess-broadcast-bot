@@ -38,8 +38,9 @@ public class PgnProcessor {
     private final PgnQueue incoming;
     private final SubscriptionManager subscriptionManager;
     private final GameHelper gameHelper;
-
     private final Set<String> publishedRounds = new HashSet<>();
+
+    private Map<GameKey, Integer> lastPublishedMoves = new HashMap<>();
 
     @Autowired
     public PgnProcessor(MessageQueue messageQueue, SentDataKeeper keeper, PgnQueue incoming, SubscriptionManager subscriptionManager, GameHelper gameHelper) {
@@ -48,6 +49,10 @@ public class PgnProcessor {
         this.incoming = incoming;
         this.subscriptionManager = subscriptionManager;
         this.gameHelper = gameHelper;
+    }
+
+    public void reset() {
+        lastPublishedMoves = new HashMap<>();
     }
 
     @EventListener
@@ -59,18 +64,27 @@ public class PgnProcessor {
                 ExtractedGame extractedGame = null;
                 ChatContext context = null;
                 try {
-                    extractedGame = extractNextGame();
+
+                    List<ExtractedGame> extractedMoves = extractNextGames(lastPublishedMoves);
+
                     sendRoundAnnouncementIfNotSent();
-                    GameKey key = gameKeyFromExtractedGame(extractedGame);
-                    checkExtractedGameAndFallbackIfNecessary(extractedGame, key);
-                    MarkedCaption caption = gameHelper.makeMarkedCaptionFromGame(extractedGame.getGame(), key);
-                    MarkedCaption shortCaption = gameHelper.makeMarkedCaptionFromGame(extractedGame.getGame(), key, true);
-                    context = makeChatContext(extractedGame, caption, shortCaption, key);
-                    Integer color = getColorForBoard(key);
-                    context.setColor(color);
-                    context.setInputStream(makePictureFromGame(extractedGame.getGame(), color));
-                    messageQueue.add(context);
-                    LOG.info("Move prepared {} {}", key, extractedGame.getGame().getHalfMoves().size());
+
+                    GameKey key = gameKeyFromExtractedGame(extractedMoves.get(0));
+                    checkExtractedGameAndFallbackIfNecessary(extractedMoves.get(extractedMoves.size() - 1), key);
+
+                    for (ExtractedGame move : extractedMoves) {
+                        LOG.info("lastPublishedMoves: {}", lastPublishedMoves);
+                        int halfMove = lastPublishedMoves.getOrDefault(key, 0) + 1;
+                        lastPublishedMoves.put(key, halfMove);
+                        MarkedCaption caption = gameHelper.makeMarkedCaptionFromGame(move.getGame(), key, halfMove);
+                        MarkedCaption shortCaption = gameHelper.makeMarkedCaptionFromGame(move.getGame(), key, halfMove, true);
+                        context = makeChatContext(move, caption, shortCaption, key);
+                        Integer color = getColorForBoard(key);
+                        context.setColor(color);
+                        context.setInputStream(makePictureFromGame(move.getGame(), color, lastPublishedMoves.get(key)));
+                        messageQueue.add(context);
+                        LOG.info("Move prepared {} {}", key, lastPublishedMoves.get(key));
+                    }
                 } catch (Exception e) {
                     LOG.error("Error on making a move: ", e);
                     LOG.error("Extracted game was: " + extractedGame);
@@ -118,6 +132,14 @@ public class PgnProcessor {
                 .build();
     }
 
+    private GameKey gameKeyFromGame(Game game) {
+        return GameKey.builder()
+                .round(subscriptionManager.getCurrentSubscription())
+                .white(game.getWhitePlayer().getName())
+                .black(game.getBlackPlayer().getName())
+                .build();
+    }
+
     private Integer getColorForBoard(GameKey key) {
         if (keeper.getColor(key) == null) {
             keeper.putColor(key, keeper.getColorsCount());
@@ -129,30 +151,37 @@ public class PgnProcessor {
     private void sendRoundAnnouncementIfNotSent() {
         if (subscriptionManager.currentRound() != null
                 && !publishedRounds.contains(subscriptionManager.currentRound().getId())) {
+            this.reset();
             messageQueue.add(ChatContext.builder().stickerId(getRandomStickerId()).chatId(chatId).build());
             messageQueue.add(newRoundMessage(subscriptionManager.currentEvent(), subscriptionManager.currentRound(), chatId));
             publishedRounds.add(subscriptionManager.currentRound().getId());
         }
     }
 
-    private ExtractedGame extractNextGame() throws InterruptedException {
+    private List<ExtractedGame> extractNextGames(Map<GameKey, Integer> lastPublishedMoves) throws InterruptedException {
         List<String> pgn = waitAndPreparePgn();
-        ExtractedGame extractedGame;
+        List<ExtractedGame> result = new ArrayList<>();
         try {
-            Game game = makeGameFromPgn(pgn);
-            extractedGame = ExtractedGame.builder()
-                    .game(game)
-                    .round(subscriptionManager.getCurrentSubscription())
-                    .white(game.getWhitePlayer().getName())
-                    .black(game.getBlackPlayer().getName())
-                    .build();
-            LOG.debug("Game extracted");
+            Game lastMoveGame = makeGameFromPgn(pgn);
+            Game game;
+            for (int i = lastPublishedMoves.get(gameKeyFromGame(lastMoveGame)); i < lastMoveGame.getHalfMoves().size(); i++) {
+                game = makeGameFromPgn(pgn, i);
+                result.add(ExtractedGame.builder()
+                        .game(game)
+                        .round(subscriptionManager.getCurrentSubscription())
+                        .white(game.getWhitePlayer().getName())
+                        .black(game.getBlackPlayer().getName())
+                        .halfMove(i)
+                        .build()
+                );
+                LOG.debug("Game extracted");
+            }
         } catch (Exception e) {
             LOG.error("Game extraction failed", e);
             LOG.debug(String.join("\n", pgn));
-            extractedGame = fallbackGameExtraction(pgn);
+            result.add(fallbackGameExtraction(pgn));
         }
-        return extractedGame;
+        return result;
     }
 
     private ExtractedGame fallbackGameExtraction(List<String> pgn) {

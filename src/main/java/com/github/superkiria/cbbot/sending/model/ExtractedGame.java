@@ -16,5 +16,6 @@ public class ExtractedGame {
     private boolean hasMoves;
     private Game game;
     private GameResult gameResult;
+    private int halfMove;
 
 }

@@ -1,6 +1,7 @@
 package com.github.superkiria.cbbot.actions.actors;
 
 import com.github.superkiria.cbbot.actions.ChatActor;
+import com.github.superkiria.cbbot.lichess.model.LichessRound;
 import com.github.superkiria.cbbot.main.ChatContext;
 import com.github.superkiria.cbbot.lichess.LichessConsumer;
 import com.github.superkiria.cbbot.lichess.model.LichessEvent;
@@ -14,6 +15,8 @@ import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMa
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
 import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +25,7 @@ public class TourTableMenuActor implements ChatActor {
 
     private final static Logger LOG = LoggerFactory.getLogger(ButtonClickActor.class);
     private final static int PORTION = 5;
+    private final static String DELIMITER = "\n=== ";
 
     private final LichessConsumer broadcastConsumer;
     private final MessageQueue messageQueue;
@@ -43,14 +47,14 @@ public class TourTableMenuActor implements ChatActor {
         List<LichessEvent> ongoingTours = broadcastConsumer.getActualLichessBroadcasts();
 
         LOG.info("Gathered info about {} tours", ongoingTours.size());
-
-        for(int i = 0; i <= (ongoingTours.size() - 1) / PORTION; i++) {
-            sendTours(ongoingTours.subList(i * PORTION, Math.min(i * PORTION + PORTION, ongoingTours.size())), context);
+        int pages = (ongoingTours.size() - 1) / PORTION + 1;
+        for(int i = 0; i < pages; i++) {
+            sendTours(ongoingTours.subList(i * PORTION, Math.min(i * PORTION + PORTION, ongoingTours.size())), context, i + 1, pages);
         }
 
     }
 
-    private void sendTours(List<LichessEvent> tours, ChatContext context) {
+    private void sendTours(List<LichessEvent> tours, ChatContext context, int page, int pages) {
         InlineKeyboardMarkup.InlineKeyboardMarkupBuilder markup = InlineKeyboardMarkup.builder();
         for(LichessEvent event : tours) {
             InlineKeyboardButton button = InlineKeyboardButton.builder()
@@ -61,10 +65,13 @@ public class TourTableMenuActor implements ChatActor {
         }
         ChatContext newContext = ChatContext.builder().chatId(context.getChatId()).inlineKeyboardMarkup(markup.build())
                 .markedCaption(MarkedCaption.builder()
-                .caption("Found " + tours.size()
-                        + " tours:\n\n"
-                        + tours.stream().map(t -> t.getTour().getName() /*+ "\n" + t.getTour().getDescription() + "\n" + t.getTour().getUrl()*/)
-                        .collect(Collectors.joining("\n"))).build())
+                .caption(tours.size() + " tours - page " + page + "/" + pages
+                        + DELIMITER
+                        + tours.stream().map(t -> t.getTour().getName() + " "
+                                        + t.getRounds().stream().filter(o -> o.getFinished() != null && !o.getFinished()).min(Comparator.comparing(LichessRound::getStartsAt)).map(LichessRound::getStartsAt).orElse(new Date(0))
+                                /*+ "\n" + t.getTour().getDescription() + "\n" + t.getTour().getUrl()*/)
+                        .collect(Collectors.joining(DELIMITER)))
+                        .build())
                 .build();
         messageQueue.add(newContext);
     }

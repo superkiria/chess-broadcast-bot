@@ -64,7 +64,7 @@ public class ChatContext implements Comparable<ChatContext> {
         if (this.getMarkedCaption() != null) {
             executeWithRetry(bot, makeSendMessage(), attempts);
         }
-        LOG.debug("No valid data to send " + this);
+        LOG.warn("No valid data to send " + this);
         return null;
     }
 
