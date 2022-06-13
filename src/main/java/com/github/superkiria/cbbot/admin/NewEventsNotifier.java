@@ -7,6 +7,8 @@ import com.github.superkiria.cbbot.sending.MessageQueue;
 import com.github.superkiria.cbbot.model.MarkedCaption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.context.event.ApplicationReadyEvent;
+import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -34,8 +36,8 @@ public class NewEventsNotifier {
         this.messageQueue = messageQueue;
     }
 
-    @PostConstruct
-    void init() {
+    @EventListener
+    public void start(ApplicationReadyEvent e) {
         List<LichessEvent> currentBroadcasts = lichessConsumer.getActualLichessBroadcasts();
         for (LichessEvent event : currentBroadcasts) {
             sentNotifications.add(event.getTour().getId());
