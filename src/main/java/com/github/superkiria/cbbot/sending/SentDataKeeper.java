@@ -1,10 +1,9 @@
-package com.github.superkiria.cbbot.sending.keepers;
+package com.github.superkiria.cbbot.sending;
 
-import com.github.superkiria.cbbot.sending.model.ExtractedGame;
-import com.github.superkiria.cbbot.sending.model.GameKey;
+import com.github.superkiria.cbbot.processing.model.GameMoveInfo;
+import com.github.superkiria.cbbot.processing.model.GameKey;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -15,7 +14,7 @@ public class SentDataKeeper {
     private final Map<String, Integer> colors  = new ConcurrentHashMap<>();
     private final Map<Integer, Integer> forwards = new ConcurrentHashMap<>();
     private final Map<String, String> openings = new ConcurrentHashMap<>();
-    private final Map<String, ExtractedGame> lastValidGame = new ConcurrentHashMap<>();
+    private final Map<String, GameMoveInfo> lastValidGame = new ConcurrentHashMap<>();
 
     public Integer getMessageId(GameKey gameKey) {
         if (gameKey == null) {
@@ -55,11 +54,11 @@ public class SentDataKeeper {
         openings.put(gameKey.toString(), opening);
     }
 
-    public ExtractedGame getLastValidGame(GameKey key) {
+    public GameMoveInfo getLastValidGame(GameKey key) {
         return lastValidGame.get(key.toString());
     }
 
-    public void putLastValidGame(GameKey key, ExtractedGame game) {
+    public void putLastValidGame(GameKey key, GameMoveInfo game) {
         lastValidGame.put(key.toString(), game);
     }
 

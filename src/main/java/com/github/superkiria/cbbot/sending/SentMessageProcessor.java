@@ -1,7 +1,6 @@
 package com.github.superkiria.cbbot.sending;
 
 import com.github.superkiria.cbbot.main.ChatContext;
-import com.github.superkiria.cbbot.sending.keepers.SentDataKeeper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

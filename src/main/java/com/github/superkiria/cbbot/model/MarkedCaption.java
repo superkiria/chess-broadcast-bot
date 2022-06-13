@@ -1,4 +1,4 @@
-package com.github.superkiria.cbbot.sending.model;
+package com.github.superkiria.cbbot.model;
 
 import lombok.Builder;
 import lombok.Data;

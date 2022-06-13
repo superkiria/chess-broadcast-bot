@@ -1,56 +1,24 @@
-package com.github.superkiria.cbbot.processing;
+package com.github.superkiria.cbbot.processing.message;
 
-import com.github.bhlangonijr.chesslib.Board;
 import com.github.bhlangonijr.chesslib.game.Game;
 import com.github.bhlangonijr.chesslib.game.GameResult;
-import com.github.bhlangonijr.chesslib.pgn.GameLoader;
-import com.github.superkiria.cbbot.sending.keepers.SentDataKeeper;
-import com.github.superkiria.cbbot.sending.model.GameKey;
-import com.github.superkiria.cbbot.sending.model.MarkedCaption;
-import com.github.superkiria.chess.svg.SvgBoardBuilder;
+import com.github.superkiria.cbbot.sending.SentDataKeeper;
+import com.github.superkiria.cbbot.processing.model.GameKey;
+import com.github.superkiria.cbbot.model.MarkedCaption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.InputStream;
-import java.util.List;
-
-import static com.github.superkiria.cbbot.processing.CommentaryHelper.moveFromMovesList;
-import static com.github.superkiria.cbbot.processing.CommentaryHelper.timeFromMovesList;
-import static com.github.superkiria.chess.svg.SvgUtils.saveDocumentToPngByteBuffer;
+import static com.github.superkiria.cbbot.processing.message.CommentaryHelper.moveFromMovesList;
+import static com.github.superkiria.cbbot.processing.message.CommentaryHelper.timeFromMovesList;
 
 @Component
-public class GameHelper {
+public class MoveMarkedCaptionConstructor {
 
     private final SentDataKeeper sentDataKeeper;
 
     @Autowired
-    public GameHelper(SentDataKeeper sentDataKeeper) {
+    public MoveMarkedCaptionConstructor(SentDataKeeper sentDataKeeper) {
         this.sentDataKeeper = sentDataKeeper;
-    }
-
-    public static Game makeGameFromPgn(List<String> buffer) {
-        Game game = GameLoader.loadNextGame(buffer.listIterator());
-        game.setBoard(new Board());
-        game.gotoLast();
-        return game;
-    }
-
-    public static Game makeGameFromPgn(List<String> buffer, int halfMove) {
-        Game game = GameLoader.loadNextGame(buffer.listIterator());
-        game.setBoard(new Board());
-        game.gotoMove(game.getHalfMoves(), halfMove);
-        return game;
-    }
-
-    public static InputStream makePictureFromGame(Game game, Integer color, int halfMove) throws Exception {
-        SvgBoardBuilder builder = new SvgBoardBuilder();
-        builder.setFen(game.getBoard().getFen());
-        builder.setLastMoveInNotation(game.getHalfMoves().get(halfMove - 1).toString());
-        builder.init(color);
-        ByteArrayOutputStream baos = saveDocumentToPngByteBuffer(builder.getDocument());
-        return new ByteArrayInputStream(baos.toByteArray());
     }
 
     public MarkedCaption makeMarkedCaptionFromGame(Game game, GameKey gameKey, int halfMove) {
@@ -58,7 +26,7 @@ public class GameHelper {
     }
 
     public MarkedCaption makeMarkedCaptionFromGame(Game game, GameKey gameKey, int halfMove, boolean makeItShort) {
-        CaptionMarkupConstructor constructor = new CaptionMarkupConstructor();
+        CaptionMarkupBuilder constructor = new CaptionMarkupBuilder();
         if (!game.getResult().equals(GameResult.ONGOING)) {
             String result = "";
             switch (game.getResult()) {
@@ -74,18 +42,18 @@ public class GameHelper {
             }
             constructor.addString(result, "bold");
         }
-        if (halfMove > 1) {
+        if (halfMove >= 1) {
             constructor.addString(moveFromMovesList(game, halfMove - 1) + "\n", "code");
         }
-        if (halfMove > 0) {
+        if (halfMove >= 0) {
             constructor.addString(moveFromMovesList(game, halfMove) + "\n", "code");
         }
-        if (halfMove > 1) {
+        if (halfMove >= 1) {
             String time;
             if (halfMove % 2 == 0) {
-                time = timeFromMovesList(game, halfMove - 1) + " ⏱ " + timeFromMovesList(game, halfMove) + "\n";
-            } else {
                 time = timeFromMovesList(game, halfMove) + " ⏱ " + timeFromMovesList(game, halfMove - 1) + "\n";
+            } else {
+                time = timeFromMovesList(game, halfMove - 1) + " ⏱ " + timeFromMovesList(game, halfMove) + "\n";
             }
             if (time.length() > " ⏱ \n".length()) {
                 constructor.addString(time, null);

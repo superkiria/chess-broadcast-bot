@@ -5,7 +5,7 @@ import com.github.superkiria.cbbot.actions.ChatActor;
 import com.github.superkiria.cbbot.lichess.LichessConsumer;
 import com.github.superkiria.cbbot.admin.SubscriptionManager;
 import com.github.superkiria.cbbot.lichess.model.LichessEvent;
-import com.github.superkiria.cbbot.sending.model.MarkedCaption;
+import com.github.superkiria.cbbot.model.MarkedCaption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +13,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.*;
 
-import static com.github.superkiria.cbbot.processing.ComposeMessageHelper.eventInfo;
-import static com.github.superkiria.cbbot.processing.ComposeMessageHelper.eventSubscribeButton;
+import static com.github.superkiria.cbbot.processing.message.ComposeMessageHelper.eventInfo;
+import static com.github.superkiria.cbbot.processing.message.ComposeMessageHelper.eventSubscribeButton;
 
 @Component
 public class ButtonClickActor implements ChatActor {

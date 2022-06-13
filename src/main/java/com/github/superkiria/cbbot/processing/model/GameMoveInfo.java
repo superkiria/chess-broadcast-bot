@@ -1,4 +1,4 @@
-package com.github.superkiria.cbbot.sending.model;
+package com.github.superkiria.cbbot.processing.model;
 
 import com.github.bhlangonijr.chesslib.game.Game;
 import com.github.bhlangonijr.chesslib.game.GameResult;
@@ -7,7 +7,7 @@ import lombok.Data;
 
 @Data
 @Builder
-public class ExtractedGame {
+public class GameMoveInfo {
 
     private String pgn;
     private String round;

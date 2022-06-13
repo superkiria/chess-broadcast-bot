@@ -1,4 +1,4 @@
-package com.github.superkiria.cbbot.processing;
+package com.github.superkiria.cbbot.processing.message;
 
 import com.github.bhlangonijr.chesslib.game.Game;
 
@@ -36,9 +36,9 @@ public class CommentaryHelper {
         if (game.getHalfMoves().size() == 0) {
             return "";
         }
-        int moveNumber = move / 2 + move % 2;
-        String forBlackMove = move % 2 == 0 ? ".." : "";
-        String result = moveNumber + "." + forBlackMove + " " + game.getHalfMoves().get(move - 1).getSan();
+        int moveNumber = move / 2 + 1;
+        String forBlackMove = move % 2 == 0 ? "" : "..";
+        String result = moveNumber + "." + forBlackMove + " " + game.getHalfMoves().get(move).getSan();
         if (game.getCommentary() != null) {
             String comment = game.getCommentary().get(move);
             result = result + " " + CommentaryHelper.parseEval(comment);
@@ -46,11 +46,11 @@ public class CommentaryHelper {
         return result;
     }
 
-    public static String timeFromMovesList(Game game, int move) {
+    public static String timeFromMovesList(Game game, int halfMove) {
         if (game.getHalfMoves().size() == 0 || game.getCommentary() == null) {
             return "";
         }
-        String comment = game.getCommentary().get(move);
+        String comment = game.getCommentary().get(halfMove + 1);
         return CommentaryHelper.parseTime(comment);
     }
 

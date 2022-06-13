@@ -4,7 +4,7 @@ import com.github.superkiria.cbbot.main.ChatContext;
 import com.github.superkiria.cbbot.lichess.LichessConsumer;
 import com.github.superkiria.cbbot.lichess.model.LichessEvent;
 import com.github.superkiria.cbbot.sending.MessageQueue;
-import com.github.superkiria.cbbot.sending.model.MarkedCaption;
+import com.github.superkiria.cbbot.model.MarkedCaption;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -15,7 +15,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static com.github.superkiria.cbbot.processing.ComposeMessageHelper.eventInfo;
+import static com.github.superkiria.cbbot.processing.message.ComposeMessageHelper.eventInfo;
 
 @Component
 public class NewEventsNotifier {

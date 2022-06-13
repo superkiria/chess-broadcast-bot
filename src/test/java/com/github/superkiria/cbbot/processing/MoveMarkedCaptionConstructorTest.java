@@ -17,7 +17,7 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @ActiveProfiles(profiles = "test")
-public class GameHelperTest {
+public class MoveMarkedCaptionConstructorTest {
 
     @Test
     public void test_001() {

@@ -1,9 +1,9 @@
-package com.github.superkiria.cbbot.processing;
+package com.github.superkiria.cbbot.processing.message;
 
 import com.github.superkiria.cbbot.lichess.model.LichessEvent;
 import com.github.superkiria.cbbot.lichess.model.LichessRound;
 import com.github.superkiria.cbbot.main.ChatContext;
-import com.github.superkiria.cbbot.sending.model.MarkedCaption;
+import com.github.superkiria.cbbot.model.MarkedCaption;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.InlineKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 
@@ -40,7 +40,7 @@ public class ComposeMessageHelper {
         if (lichessEvent == null || lichessEvent.getTour() == null || lichessRound == null) {
             return null;
         }
-        CaptionMarkupConstructor constructor = new CaptionMarkupConstructor();
+        CaptionMarkupBuilder constructor = new CaptionMarkupBuilder();
         constructor.addStringLn(lichessEvent.getTour().getName(), "bold");
         constructor.addStringLn(lichessRound.getName(), "bold");
         constructor.addStringLn(lichessEvent.getTour().getDescription(), null);

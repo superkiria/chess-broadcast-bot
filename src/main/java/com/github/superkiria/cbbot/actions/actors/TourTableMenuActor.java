@@ -6,7 +6,7 @@ import com.github.superkiria.cbbot.main.ChatContext;
 import com.github.superkiria.cbbot.lichess.LichessConsumer;
 import com.github.superkiria.cbbot.lichess.model.LichessEvent;
 import com.github.superkiria.cbbot.sending.MessageQueue;
-import com.github.superkiria.cbbot.sending.model.MarkedCaption;
+import com.github.superkiria.cbbot.model.MarkedCaption;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

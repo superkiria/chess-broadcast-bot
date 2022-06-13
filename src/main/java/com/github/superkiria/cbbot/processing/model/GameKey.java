@@ -1,4 +1,4 @@
-package com.github.superkiria.cbbot.sending.model;
+package com.github.superkiria.cbbot.processing.model;
 
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
