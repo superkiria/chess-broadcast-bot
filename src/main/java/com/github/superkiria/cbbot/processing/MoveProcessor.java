@@ -65,7 +65,7 @@ public class MoveProcessor {
             if (lastMoveGame.getResult() != GameResult.ONGOING) {
                 lastPublishedMoves.put(key, lastPublishedMoves.get(key) + 1);
             }
-            if (result.size() == 0 && lastPublishedMoves.get(key) <= lastMoveGame.getHalfMoves().size()) {
+            if (result.size() == 0 && lastPublishedMoves.get(key) < lastMoveGame.getHalfMoves().size()) {
                 result.add(GameMoveInfo.builder()
                         .game(lastMoveGame)
                         .round(subscriptionManager.getCurrentSubscription())
