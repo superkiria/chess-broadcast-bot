@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.github.superkiria</groupId>
 	<artifactId>chess-broadcast-bot</artifactId>
-	<version>0.3.0-SNAPSHOT</version>
+	<version>0.3.2-SNAPSHOT</version>
 	<name>chess-broadcast-bot</name>
 	<description>Telegram bot for chess broadcasts from lichess.org</description>
 	<properties>
