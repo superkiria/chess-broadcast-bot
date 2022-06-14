@@ -27,7 +27,7 @@ public class MoveMarkedCaptionConstructor {
 
     public MarkedCaption makeMarkedCaptionFromGame(Game game, GameKey gameKey, int halfMove, boolean makeItShort) {
         CaptionMarkupBuilder constructor = new CaptionMarkupBuilder();
-        if (!game.getResult().equals(GameResult.ONGOING)) {
+        if (!game.getResult().equals(GameResult.ONGOING) && game.getHalfMoves().size() - 1 == halfMove) {
             String result = "";
             switch (game.getResult()) {
                 case WHITE_WON:
