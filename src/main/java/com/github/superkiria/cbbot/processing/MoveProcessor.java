@@ -47,7 +47,7 @@ public class MoveProcessor {
             Game lastMoveGame = makeGameFromPgn(pgn);
             GameKey key = gameKeyFromGame(subscriptionManager.getCurrentSubscription(), lastMoveGame);
             if (!lastPublishedMoves.containsKey(key)) {
-                lastPublishedMoves.put(key, Math.max(lastMoveGame.getHalfMoves().size() - 2, 0));
+                lastPublishedMoves.put(key, Math.max(lastMoveGame.getHalfMoves().size() - 10, 0));
             }
             for (int i = lastPublishedMoves.get(key) + 1; i < lastMoveGame.getHalfMoves().size(); i++) {
                 lastPublishedMoves.put(key, i);
@@ -62,9 +62,6 @@ public class MoveProcessor {
                 );
                 LOG.debug("Game extracted");
             }
-            if (lastMoveGame.getResult() != GameResult.ONGOING) {
-                lastPublishedMoves.put(key, lastPublishedMoves.get(key) + 1);
-            }
             if (result.size() == 0 && lastPublishedMoves.get(key) < lastMoveGame.getHalfMoves().size()) {
                 result.add(GameMoveInfo.builder()
                         .game(lastMoveGame)
@@ -73,6 +70,9 @@ public class MoveProcessor {
                         .black(lastMoveGame.getBlackPlayer().getName())
                         .halfMove(lastMoveGame.getHalfMoves().size() - 1)
                         .build());
+            }
+            if (lastMoveGame.getResult() != GameResult.ONGOING) {
+                lastPublishedMoves.put(key, lastPublishedMoves.get(key) + 1);
             }
         } catch (Throwable e) {
             LOG.error("Game extraction failed", e);

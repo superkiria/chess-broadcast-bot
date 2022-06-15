@@ -39,7 +39,7 @@ public class ButtonClickActor implements ChatActor {
         if (call.startsWith("tour:")) {
             Optional<LichessEvent> first = lichess.getLichessBroadcasts().stream().filter(t -> t.getTour().getId().equals(call.substring(5))).findFirst();
             if (first.isPresent()) {
-                context.setMarkedCaption(MarkedCaption.builder().caption(eventInfo(first.get())).build());
+                context.setMarkedCaption(MarkedCaption.builder().caption(eventInfo(first.get()) + "\n\n" + new Date()).build());
                 context.setInlineKeyboardMarkup(eventSubscribeButton(call.substring(5)));
             }
         } else if (call.startsWith("subscribe:")) {
