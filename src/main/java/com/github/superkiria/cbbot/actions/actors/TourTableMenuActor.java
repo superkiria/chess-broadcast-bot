@@ -67,12 +67,15 @@ public class TourTableMenuActor implements ChatActor {
                 .markedCaption(MarkedCaption.builder()
                 .caption(tours.size() + " tours - page " + page + "/" + pages
                         + DELIMITER
-                        + tours.stream().map(t -> t.getTour().getName() + " "
-                                        + t.getRounds().stream().filter(o -> o.getFinished() != null && !o.getFinished()).min(Comparator.comparing(LichessRound::getStartsAt)).map(LichessRound::getStartsAt).orElse(new Date(0))
-                                /*+ "\n" + t.getTour().getDescription() + "\n" + t.getTour().getUrl()*/)
-                        .collect(Collectors.joining(DELIMITER)))
-                        .build())
-                .build();
+                        + tours.stream().map(t -> t.getTour().getName()
+                                + " || "
+                                + "" + t.getRounds().stream().filter(r -> r.getFinished() != null).count()
+                                + "/" + t.getRounds().size()
+                                + " ~" + t.getRounds().stream().filter(r -> r.getOngoing() != null).count()
+
+                        )
+                        .collect(Collectors.joining(DELIMITER))
+                ).build()).build();
         messageQueue.add(newContext);
     }
 
