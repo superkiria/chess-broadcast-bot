@@ -28,7 +28,7 @@ public class LichessBroadcastStub {
     @GetMapping(value = "/stream/broadcast/round/qwerty.pgn", produces = MediaType.APPLICATION_STREAM_JSON_VALUE)
     public Flux<String> streamDataFlux() {
         LOG.info("Get /stream/broadcast/round/qwerty.pgn");
-        return Flux.interval(Duration.ofMillis(200)).map(i -> streamFileReader.readLine(i.intValue()) + "\n");
+        return Flux.interval(Duration.ofMillis(20)).map(i -> streamFileReader.readLine(i.intValue()) + "\n");
     }
 
     @GetMapping(value = "/broadcast", produces = MediaType.APPLICATION_NDJSON_VALUE)
