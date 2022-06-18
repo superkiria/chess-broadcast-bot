@@ -1,11 +1,11 @@
-package com.github.superkiria.cbbot.processing;
+package com.github.superkiria.cbbot.processing.message;
 
 import org.telegram.telegrambots.meta.api.objects.MessageEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CaptionMarkupConstructor {
+public class CaptionMarkupBuilder {
 
     private final StringBuilder caption = new StringBuilder();
     private final List<MessageEntity> entities = new ArrayList<>();

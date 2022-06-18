@@ -1,7 +1,7 @@
 package com.github.superkiria.cbbot.main;
 
-import com.github.superkiria.cbbot.sending.model.GameKey;
-import com.github.superkiria.cbbot.sending.model.MarkedCaption;
+import com.github.superkiria.cbbot.processing.model.GameKey;
+import com.github.superkiria.cbbot.model.MarkedCaption;
 import lombok.Builder;
 import lombok.Data;
 import org.slf4j.Logger;

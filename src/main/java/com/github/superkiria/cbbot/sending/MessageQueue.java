@@ -11,20 +11,22 @@ import java.util.concurrent.PriorityBlockingQueue;
 @Component
 public class MessageQueue {
 
-    private final Map<String, Long> scheduledShipments = new ConcurrentHashMap<>();
+    private final Map<String, Long> scheduledShipmentsByChat = new ConcurrentHashMap<>();
+    private final Map<String, Long> scheduledShipmentsByGame = new ConcurrentHashMap<>();
     private final PriorityBlockingQueue<ChatContext> queue = new PriorityBlockingQueue<>();
 
-    public void add(ChatContext o) {
+    public synchronized void add(ChatContext o) {
         if (o == null) {
             return;
         }
-        Long scheduledTime = scheduledShipments.get(o.getChatId());
-        if (scheduledShipments.get(o.getChatId()) != null) {
-            scheduledTime = Math.max(new Date().getTime(), scheduledTime + 3000);
+        Long scheduledTime = 3000 + Math.max(new Date().getTime() - 3000,
+                                 Math.max(scheduledShipmentsByGame.getOrDefault(o.getChatId() + "_" + o.getKey(), 0L) + 1000, scheduledShipmentsByChat.getOrDefault(o.getChatId(), 0L)));
+        if (o.getKey() != null) {
+            scheduledShipmentsByGame.put(o.getChatId() + "_" + o.getKey(), scheduledTime);
+            System.out.println(scheduledShipmentsByGame);
         } else {
-            scheduledTime = new Date().getTime();
+            scheduledShipmentsByChat.put(o.getChatId(), scheduledTime);
         }
-        scheduledShipments.put(o.getChatId(), scheduledTime);
         o.setScheduledTime(scheduledTime);
         queue.add(o);
     }
@@ -47,5 +49,9 @@ public class MessageQueue {
 
     public void clear() {
         queue.clear();
+    }
+
+    private long max(long a, long b, long c) {
+        return Math.max(Math.max(a, b), c);
     }
 }

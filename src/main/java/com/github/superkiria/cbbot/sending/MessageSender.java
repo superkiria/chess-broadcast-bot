@@ -1,7 +1,6 @@
 package com.github.superkiria.cbbot.sending;
 
 import com.github.superkiria.cbbot.main.ChatContext;
-import com.github.superkiria.cbbot.sending.keepers.SentDataKeeper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,10 +47,12 @@ public class MessageSender {
                     waitToNotViolateTelegramRestrictions(context.getChatId());
                     Message message = context.call(bot);
                     processor.process(context, message);
-                    LOG.info("Message sent. chatId {}, messageId {}, gameKey: {}",
+                    LOG.debug("Message sent. chatId {}, messageId {}, gameKey: {}",
                             context.getChatId(),
                             message != null ? message.getMessageId() : null,
                             context.getKey());
+                    LOG.trace("Message sent. context: {}",
+                            context);
                 } catch (TelegramApiException | InterruptedException e) {
                     LOG.error("Message processing error", e);
                 }
@@ -63,8 +64,8 @@ public class MessageSender {
         ChatContext peeked = queue.peek();
         if (!queue.isEmpty()) {
             while (lastForUser.containsKey(peeked.getChatId())
-                    && new Date().getTime() - lastForUser.get(peeked.getChatId()).getTime() < 2800) {
-                Thread.sleep(100);
+                    && new Date().getTime() - lastForUser.get(peeked.getChatId()).getTime() < 2950) {
+                Thread.sleep(17);
                 peeked = queue.peek();
             }
         }
