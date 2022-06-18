@@ -67,10 +67,9 @@ public class PublicationProcessor {
 
                     sendRoundAnnouncementIfNotSent();
 
-                    GameKey key = gameKeyFromExtractedGame(extractedMoves.get(0));
-                    checkMoveGameInfoAndFallbackIfNecessary(extractedMoves.get(extractedMoves.size() - 1), key);
-
                     for (GameMoveInfo move : extractedMoves) {
+                        GameKey key = gameKeyFromExtractedGame(move);
+                        checkMoveGameInfoAndFallbackIfNecessary(move, key);
                         MarkedCaption caption = moveMarkedCaptionConstructor.makeMarkedCaptionFromGame(move.getGame(), key, move.getHalfMove());
                         MarkedCaption shortCaption = moveMarkedCaptionConstructor.makeMarkedCaptionFromGame(move.getGame(), key, move.getHalfMove(), true);
                         context = makeChatContext(chatId, move, caption, shortCaption, key);
@@ -96,6 +95,7 @@ public class PublicationProcessor {
             Game fallbackGame = keeper.getLastValidGame(key).getGame();
             fallbackGame.setResult(gameMoveInfo.getGameResult());
             gameMoveInfo.setGame(fallbackGame);
+            gameMoveInfo.setHalfMove(fallbackGame.getHalfMoves().size() - 1);
         }
     }
 

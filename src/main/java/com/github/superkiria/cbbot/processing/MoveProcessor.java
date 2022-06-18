@@ -75,7 +75,7 @@ public class MoveProcessor {
                 lastPublishedMoves.put(key, lastPublishedMoves.get(key) + 1);
             }
         } catch (Throwable e) {
-            LOG.error("Game extraction failed", e);
+            LOG.warn("Game extraction failed", e);
             LOG.debug(String.join("\n", pgn));
             result.add(fallbackGameExtraction(pgn));
         }
