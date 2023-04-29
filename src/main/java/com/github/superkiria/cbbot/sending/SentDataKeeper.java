@@ -4,6 +4,7 @@ import com.github.superkiria.cbbot.processing.model.GameMoveInfo;
 import com.github.superkiria.cbbot.processing.model.GameKey;
 import org.springframework.stereotype.Component;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -15,6 +16,7 @@ public class SentDataKeeper {
     private final Map<Integer, Integer> forwards = new ConcurrentHashMap<>();
     private final Map<String, String> openings = new ConcurrentHashMap<>();
     private final Map<String, GameMoveInfo> lastValidGame = new ConcurrentHashMap<>();
+    private final Map<String, Integer> gameToMoveMap = new HashMap<>();
 
     public Integer getMessageId(GameKey gameKey) {
         if (gameKey == null) {
@@ -76,6 +78,17 @@ public class SentDataKeeper {
 
     public int getMessageIdsCount() {
         return messageIds.size();
+    }
+
+    public void checkNewGame(GameKey key, int move) {
+        gameToMoveMap.putIfAbsent(key.toString(), move);
+        if (move < 10 && gameToMoveMap.get(key.toString()) - move > 10) {
+            messageIds.put(key.toString(), null);
+            colors.put(key.toString(), null);
+            openings.put(key.toString(), null);
+            lastValidGame.put(key.toString(), null);
+        }
+        gameToMoveMap.put(key.toString(), move);
     }
 
 }

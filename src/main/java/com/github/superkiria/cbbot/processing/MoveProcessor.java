@@ -6,6 +6,7 @@ import com.github.bhlangonijr.chesslib.pgn.PgnProperty;
 import com.github.superkiria.cbbot.admin.SubscriptionManager;
 import com.github.superkiria.cbbot.processing.model.GameKey;
 import com.github.superkiria.cbbot.processing.model.GameMoveInfo;
+import com.github.superkiria.cbbot.sending.SentDataKeeper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,13 +28,15 @@ public class MoveProcessor {
 
     private final PgnProcessor pgnProcessor;
     private final SubscriptionManager subscriptionManager;
+    private final SentDataKeeper sentDataKeeper;
 
     private Map<GameKey, Integer> lastPublishedMoves = new HashMap<>();
 
     @Autowired
-    public MoveProcessor(PgnProcessor pgnProcessor, SubscriptionManager subscriptionManager) {
+    public MoveProcessor(PgnProcessor pgnProcessor, SubscriptionManager subscriptionManager, SentDataKeeper sentDataKeeper) {
         this.pgnProcessor = pgnProcessor;
         this.subscriptionManager = subscriptionManager;
+        this.sentDataKeeper = sentDataKeeper;
     }
 
     public void reset() {
@@ -46,10 +49,14 @@ public class MoveProcessor {
         try {
             Game lastMoveGame = makeGameFromPgn(pgn);
             GameKey key = gameKeyFromGame(subscriptionManager.getCurrentSubscription(), lastMoveGame);
+            int movesCount = lastMoveGame.getHalfMoves().size();
             if (!lastPublishedMoves.containsKey(key)) {
-                lastPublishedMoves.put(key, Math.max(lastMoveGame.getHalfMoves().size() - 10, 0));
+                lastPublishedMoves.put(key, Math.max(movesCount - 10, -1));
+            } else if (lastPublishedMoves.get(key) - movesCount > 10 && movesCount < 10) {
+                lastPublishedMoves.put(key, -1);
+                sentDataKeeper.checkNewGame(key, movesCount);
             }
-            for (int i = lastPublishedMoves.get(key) + 1; i < lastMoveGame.getHalfMoves().size(); i++) {
+            for (int i = lastPublishedMoves.get(key) + 1; i < movesCount; i++) {
                 lastPublishedMoves.put(key, i);
                 Game gameForAMove = makeGameFromPgn(pgn, i);
                 result.add(GameMoveInfo.builder()
@@ -62,13 +69,13 @@ public class MoveProcessor {
                 );
                 LOG.debug("Game extracted");
             }
-            if (result.size() == 0 && lastPublishedMoves.get(key) < lastMoveGame.getHalfMoves().size()) {
+            if (result.size() == 0 && lastPublishedMoves.get(key) < movesCount) {
                 result.add(GameMoveInfo.builder()
                         .game(lastMoveGame)
                         .round(subscriptionManager.getCurrentSubscription())
                         .white(lastMoveGame.getWhitePlayer().getName())
                         .black(lastMoveGame.getBlackPlayer().getName())
-                        .halfMove(lastMoveGame.getHalfMoves().size() - 1)
+                        .halfMove(movesCount - 1)
                         .build());
             }
             if (lastMoveGame.getResult() != GameResult.ONGOING) {

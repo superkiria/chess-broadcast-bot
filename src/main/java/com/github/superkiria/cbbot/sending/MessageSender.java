@@ -78,8 +78,8 @@ public class MessageSender {
             now = new Date().getTime();
         }
         if (lastForUser.get(chatId) != null
-                && now - lastForUser.get(chatId).getTime() < 3000) {
-            Thread.sleep(3000 - now + lastForUser.get(chatId).getTime());
+                && now - lastForUser.get(chatId).getTime() < 2000) {
+            Thread.sleep(2000 - now + lastForUser.get(chatId).getTime());
         }
         last = new Date();
         lastForUser.put(chatId, last);
